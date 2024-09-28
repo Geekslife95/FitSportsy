@@ -1,0 +1,68 @@
+{
+  "amex": {
+    "name": "American Stock Exchange",
+    "purchase_url": "",
+    "country_code": "us",
+    "hash": ""
+  },
+  "asx": {
+    "name": "Australian Stock Exchange",
+    "purchase_url": "https://bit.ly/spt-asx",
+    "country_code": "au",
+    "hash": "dc0dfa863519ae168b6f5a5e9074f9c1"
+  },
+  "byma": {
+    "name": "Buenos Aires Stock Exchange",
+    "purchase_url": "",
+    "country_code": "ar",
+    "hash": ""
+  },
+  "fse": {
+    "name": "Frankfurt Stock Exchange",
+    "purchase_url": "https://bit.ly/spt-fse",
+    "country_code": "de",
+    "hash": "5c3d3be19d4021416c00a10c8712c976"
+  },
+  "ise": {
+    "name": "Italian Stock Exchange",
+    "purchase_url": "https://bit.ly/spt-ise",
+    "country_code": "it",
+    "hash": "1be6e0358ac223da21c9a5842b387fcc"
+  },
+  "nasdaq": {
+    "name": "NASDAQ",
+    "purchase_url": "",
+    "country_code": "us",
+    "hash": ""
+  },
+  "nse": {
+    "name": "National Stock Exchange of India",
+    "purchase_url": "https://bit.ly/spt-nse",
+    "country_code": "in",
+    "hash": "9348b87a4b9d126c6dd3f292173e00d4"
+  },
+  "nyse": {
+    "name": "New York Stock Exchange",
+    "purchase_url": "",
+    "country_code": "us",
+    "hash": ""
+  },
+  "pse": {
+    "name": "Paris Stock Exchange",
+    "purchase_url": "https://bit.ly/spt-pse",
+    "country_code": "fr",
+    "hash": "ed6c3729666652d20d3f05ab3cdb1120"
+  },
+  "tsx": {
+    "name": "Toronto Stock Exchange",
+    "purchase_url": "https://bit.ly/spt-tsx",
+    "country_code": "ca",
+    "hash": "6b7e08cc308db14b344cad875b624441"
+  },
+  "tsxv": {
+    "name": "TSX Venture",
+    "purchase_url": "https://bit.ly/spt-tsxv",
+    "country_code": "ca",
+    "hash": "a43e5831e98b93a28a29360f970305db"
+  }
+}

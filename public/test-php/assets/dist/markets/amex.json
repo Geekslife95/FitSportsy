@@ -1,0 +1,1452 @@
+{
+    "AAMC": {
+        "name": "Altisource Asset Management Corp Com",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AAU": {
+        "name": "Almaden Minerals Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ACAQ": {
+        "name": "Athena Consumer Acquisition Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ACU": {
+        "name": "Acme United Corporation.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ADEX": {
+        "name": "Adit EdTech Acquisition Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ADRT": {
+        "name": "Ault Disruptive Technologies Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AE": {
+        "name": "Adams Resources & Energy Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AEF": {
+        "name": "abrdn Emerging Markets Equity Income Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AEON": {
+        "name": "AEON Biopharma Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AGE": {
+        "name": "AgeX Therapeutics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AIM": {
+        "name": "AIM ImmunoTech Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AINC": {
+        "name": "Ashford Inc. (Holding Company)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AIRI": {
+        "name": "Air Industries Group",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AMBI": {
+        "name": "Ambipar Emergency Response",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AMBO": {
+        "name": "Ambow Education Holding Ltd. American Depository Shares each representing two s",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AMPE": {
+        "name": "Ampio Pharmaceuticals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AMS": {
+        "name": "American Shared Hospital Services",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "APT": {
+        "name": "Alpha Pro Tech Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AREN": {
+        "name": "The Arena Group Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ARMP": {
+        "name": "Armata Pharmaceuticals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ASM": {
+        "name": "Avino Silver & Gold Mines Ltd. (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ASXC": {
+        "name": "Asensus Surgical Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ATEK": {
+        "name": "Athena Technology Acquisition Corp. II",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ATNM": {
+        "name": "Actinium Pharmaceuticals Inc. (Delaware)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AULT": {
+        "name": "Ault Alliance Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AUMN": {
+        "name": "Golden Minerals Company",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AUST": {
+        "name": "Austin Gold Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AWX": {
+        "name": "Avalon Holdings Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "AZTR": {
+        "name": "Azitra Inc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BACA": {
+        "name": "Berenson Acquisition Corp. I",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BATL": {
+        "name": "Battalion Oil Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BCV": {
+        "name": "Bancroft Fund Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BDL": {
+        "name": "Flanigan's Enterprises Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BGI": {
+        "name": "Birks Group Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BHB": {
+        "name": "Bar Harbor Bankshares Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BHM": {
+        "name": "Bluerock Homes Trust Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BITE": {
+        "name": "Bite Acquisition Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BKTI": {
+        "name": "BK Technologies Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BLUA": {
+        "name": "BlueRiver Acquisition Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BMTX": {
+        "name": "BM Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BRBS": {
+        "name": "Blue Ridge Bankshares Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BRN": {
+        "name": "Barnwell Industries Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BSAQ": {
+        "name": "Black Spade Acquisition Co",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BTG": {
+        "name": "B2Gold Corp (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BTTR": {
+        "name": "Better Choice Company Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "BURU": {
+        "name": "Nuburu Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CANF": {
+        "name": "Can-Fite Biopharma Ltd Sponsored ADR (Israel)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CATX": {
+        "name": "Perspective Therapeutics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CCEL": {
+        "name": "Cryo-Cell International Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CCF": {
+        "name": "Chase Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CEI": {
+        "name": "Camber Energy Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CET": {
+        "name": "Central Securities Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CEV": {
+        "name": "Eaton Vance California Municipal Income Trust Shares of Beneficial Interest",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CHAA": {
+        "name": "Catcha Investment Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CIK": {
+        "name": "Credit Suisse Asset Management Income Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CIX": {
+        "name": "CompX International Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CKX": {
+        "name": "CKX Lands Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CLM": {
+        "name": "Cornerstone Strategic Value Fund Inc. New",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CMCL": {
+        "name": "Caledonia Mining Corporation Plc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CMT": {
+        "name": "Core Molding Technologies Inc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "COE": {
+        "name": "51Talk Online Education Group American depositary shares each representing 60 s",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "COHN": {
+        "name": "Cohen & Company Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CPHI": {
+        "name": "China Pharma Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CQP": {
+        "name": "Cheniere Energy Partners LP Common Units",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CRF": {
+        "name": "Cornerstone Total Return Fund Inc. (The)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CTGO": {
+        "name": "Contango ORE Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CTM": {
+        "name": "Castellum Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CVM": {
+        "name": "Cel-Sci Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CVR": {
+        "name": "Chicago Rivet & Machine Co.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CVU": {
+        "name": "CPI Aerostructures Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "CYBN": {
+        "name": "Cybin Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DC": {
+        "name": "Dakota Gold Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DHY": {
+        "name": "Credit Suisse High Yield Bond Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DIT": {
+        "name": "AMCON Distributing Company",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DLA": {
+        "name": "Delta Apparel Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DMF": {
+        "name": "BNY Mellon Municipal Income Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DMYY": {
+        "name": "dMY Squared Technology Group Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DNN": {
+        "name": "Denison Mines Corp (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DPSI": {
+        "name": "DecisionPoint Systems Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DSS": {
+        "name": "DSS Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "DXF": {
+        "name": "Dunxin Financial Holdings Limited",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EAD": {
+        "name": "Allspring Income Opportunities Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ECF": {
+        "name": "Ellsworth Growth and Income Fund Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EFSH": {
+        "name": "1847 Holdings LLC",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EIM": {
+        "name": "Eaton Vance Municipal Bond Fund of Beneficial Interest $.01 par value",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ELA": {
+        "name": "Envela Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ELLO": {
+        "name": "Ellomay Capital Ltd (Israel)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ELMD": {
+        "name": "Electromed Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EMAN": {
+        "name": "eMagin Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EMX": {
+        "name": "EMX Royalty Corporation (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ENSV": {
+        "name": "Enservco Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ENX": {
+        "name": "Eaton Vance New York Municipal Bond Fund of Beneficial Interest $.01 par value",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EP": {
+        "name": "Empire Petroleum Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EPM": {
+        "name": "Evolution Petroleum Corporation Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EQX": {
+        "name": "Equinox Gold Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ERC": {
+        "name": "Allspring Multi-Sector Income Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ERH": {
+        "name": "Allspring Utilities and High Income Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ESP": {
+        "name": "Espey Mfg. & Electronics Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EU": {
+        "name": "enCore Energy Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EVBN": {
+        "name": "Evans Bancorp Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EVE": {
+        "name": "EVe Mobility Acquisition Corp",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EVI": {
+        "name": "EVI Industries Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EVM": {
+        "name": "Eaton Vance California Municipal Bond Fund of Beneficial Interest $.01 par value",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "EVV": {
+        "name": "Eaton Vance Limited Duration Income Fund of Beneficial Interest",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FAX": {
+        "name": "abrdn Asia-Pacific Income Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FCO": {
+        "name": "abrdn Global Income Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FEN": {
+        "name": "First Trust Energy Income and Growth Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FGH": {
+        "name": "FG Group Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FLAG": {
+        "name": "First Light Acquisition Group Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FOXO": {
+        "name": "FOXO Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FRD": {
+        "name": "Friedman Industries Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FSI": {
+        "name": "Flexible Solutions International Inc. (CDA)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FSP": {
+        "name": "Franklin Street Properties Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FTF": {
+        "name": "Franklin Limited Duration Income Trust of Beneficial Interest",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "FURY": {
+        "name": "Fury Gold Mines Limited",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GAU": {
+        "name": "Galiano Gold Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GBR": {
+        "name": "New Concept Energy Inc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GENC": {
+        "name": "Gencor Industries Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GGN": {
+        "name": "GAMCO Global Gold Natural Resources & Income Trust",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GLDG": {
+        "name": "GoldMining Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GLO": {
+        "name": "Clough Global Opportunities Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GLQ": {
+        "name": "Clough Global Equity Fund Clough Global Equity Fund of Beneficial Interest",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GLU": {
+        "name": "Gabelli Global Utility of Beneficial Ownership",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GLV": {
+        "name": "Clough Global Dividend and Income Fund of beneficial interest",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GNS": {
+        "name": "Genius Group Limited",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GORO": {
+        "name": "Gold Resource Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GRF": {
+        "name": "Eagle Capital Growth Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GRFX": {
+        "name": "Graphex Group Limited each American Depositary Share representing 20",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GROY": {
+        "name": "Gold Royalty Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GSAT": {
+        "name": "Globalstar Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "GTE": {
+        "name": "Gran Tierra Energy Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "HNRA": {
+        "name": "HNR Acquisition Corp",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "HNW": {
+        "name": "Pioneer Diversified High Income Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "HUSA": {
+        "name": "Houston American Energy Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IAF": {
+        "name": "abrdn Australia Equity Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IAUX": {
+        "name": "i-80 Gold Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IBIO": {
+        "name": "iBio Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ID": {
+        "name": "PARTS iD Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IDR": {
+        "name": "Idaho Strategic Resources Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IE": {
+        "name": "Ivanhoe Electric Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IGC": {
+        "name": "IGC Pharma Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IHT": {
+        "name": "InnSuites Hospitality Trust Shares of Beneficial Interest",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IMO": {
+        "name": "Imperial Oil Limited",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "INDO": {
+        "name": "Indonesia Energy Corporation Limited",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "INFU": {
+        "name": "InfuSystems Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "INLX": {
+        "name": "Intellinetics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "INTT": {
+        "name": "inTest Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "INUV": {
+        "name": "Inuvo Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IOR": {
+        "name": "Income Opportunity Realty Investors Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "IPVF": {
+        "name": "InterPrivate III Financial Partners Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ISDR": {
+        "name": "Issuer Direct Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ITP": {
+        "name": "IT Tech Packaging Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ITRG": {
+        "name": "Integra Resources Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "JOB": {
+        "name": "GEE Group Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "JWSM": {
+        "name": "Jaws Mustang Acquisition Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "KIQ": {
+        "name": "Kelso Technologies Inc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "KNW": {
+        "name": "Know Labs Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "KULR": {
+        "name": "KULR Technology Group Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LCTX": {
+        "name": "Lineage Cell Therapeutics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LEU": {
+        "name": "Centrus Energy Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LGL": {
+        "name": "LGL Group Inc. (The)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LNG": {
+        "name": "Cheniere Energy Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LODE": {
+        "name": "Comstock Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LPTV": {
+        "name": "Loop Media Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LSF": {
+        "name": "Laird Superfood Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "LXFR": {
+        "name": "Luxfer Holdings PLC",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MAG": {
+        "name": "MAG Silver Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MAIA": {
+        "name": "MAIA Biotechnology Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MGLD": {
+        "name": "The Marygold Companies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MHH": {
+        "name": "Mastech Digital Inc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MIMO": {
+        "name": "Airspan Networks Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MITQ": {
+        "name": "Moving iMage Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MLSS": {
+        "name": "Milestone Scientific Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MNK": {
+        "name": "Mallinckrodt plc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MPTI": {
+        "name": "M-tron Industries Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MPU": {
+        "name": "Mega Matrix Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MRT": {
+        "name": "Marti Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MSN": {
+        "name": "Emerson Radio Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MTA": {
+        "name": "Metalla Royalty & Streaming Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MTNB": {
+        "name": "Matinas Biopharma Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MWG": {
+        "name": "Multi Ways Holdings Limited",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MXC": {
+        "name": "Mexco Energy Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "MYO": {
+        "name": "Myomo Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NAK": {
+        "name": "Northern Dynasty Minerals Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NAVB": {
+        "name": "Navidea Biopharmaceuticals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NBH": {
+        "name": "Neuberger Berman Municipal Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NBO": {
+        "name": "Neuberger Berman New York Municipal Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NBW": {
+        "name": "Neuberger Berman California Municipal Fund Inc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NBY": {
+        "name": "NovaBay Pharmaceuticals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NEN": {
+        "name": "New England Realty Associates Limited Partnership Depositary Receipts Evidencing Units of Limited Partnership",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NEWP": {
+        "name": "New Pacific Metals Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NFGC": {
+        "name": "New Found Gold Corp",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NG": {
+        "name": "Novagold Resources Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NGD": {
+        "name": "New Gold Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NHC": {
+        "name": "National HealthCare Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NHS": {
+        "name": "Neuberger Berman High Yield Strategies Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NHWK": {
+        "name": "NightHawk Biosciences Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NML": {
+        "name": "Neuberger Berman Energy Infrastructure and Income Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NNVC": {
+        "name": "NanoViricides Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NRO": {
+        "name": "Neuberger Berman Real Estate Securities Income Fund Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NRXS": {
+        "name": "Neuraxis Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NSTB": {
+        "name": "Northern Star Investment Corp. II",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "NTIP": {
+        "name": "Network-1 Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "OBE": {
+        "name": "Obsidian Energy Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "OGEN": {
+        "name": "Oragenics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "OPTT": {
+        "name": "Ocean Power Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ORLA": {
+        "name": "Orla Mining Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "OZ": {
+        "name": "Belpointe PREP LLC Units",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PED": {
+        "name": "Pedevco Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PHGE": {
+        "name": "BiomX Inc. COmmon Stock",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PLAG": {
+        "name": "Planet Green Holdings Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PLG": {
+        "name": "Platinum Group Metals Ltd. (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PLM": {
+        "name": "Polymet Mining Corporation (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PLX": {
+        "name": "Protalix BioTherapeutics Inc. (DE)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "POL": {
+        "name": "Polished Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PRK": {
+        "name": "Park National Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PTN": {
+        "name": "Palatin Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PW": {
+        "name": "Power REIT (MD)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "PZG": {
+        "name": "Paramount Gold Nevada Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "QFTA": {
+        "name": "Quantum FinTech Acquisition Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "RCG": {
+        "name": "RENN Fund Inc",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "REI": {
+        "name": "Ring Energy Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "REPX": {
+        "name": "Riley Exploration Permian Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "RHE": {
+        "name": "Regional Health Properties Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "RLGT": {
+        "name": "Radiant Logistics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "RMED": {
+        "name": "Ra Medical Systems Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "RVP": {
+        "name": "Retractable Technologies Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SACC": {
+        "name": "Sachem Capital Corp. 6.875% Notes due 2024",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SACH": {
+        "name": "Sachem Capital Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SATX": {
+        "name": "SatixFy Communications Ltd. Ordinary Share",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SBEV": {
+        "name": "Splash Beverage Group Inc. (NV)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SCCC": {
+        "name": "Sachem Capital Corp. 7.75% Notes due 2025",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SCCD": {
+        "name": "Sachem Capital Corp. 6.00% Notes due 2026",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SCCE": {
+        "name": "Sachem Capital Corp. 6.00% Notes due 2027",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SCCF": {
+        "name": "Sachem Capital Corp. 7.125% Notes due 2027",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SCCG": {
+        "name": "Sachem Capital Corp. 8.00% Notes due 2027",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SDPI": {
+        "name": "Superior Drilling Products Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SEB": {
+        "name": "Seaboard Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SENS": {
+        "name": "Senseonics Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SGE": {
+        "name": "Strong Global Entertainment Inc. Common Voting Shares",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SIF": {
+        "name": "SIFCO Industries Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SILV": {
+        "name": "SilverCrest Metals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SIM": {
+        "name": "Grupo Simec S.A.B. de C.V.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SKYH": {
+        "name": "Sky Harbour Group Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SLI": {
+        "name": "Standard Lithium Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SLND": {
+        "name": "Southland Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SNMP": {
+        "name": "Evolve Transition Infrastructure LP Common Units representing Class B Limited Liability Company Interests",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SSY": {
+        "name": "SunLink Health Systems Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "STRW": {
+        "name": "Strawberry Fields REIT Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "STXS": {
+        "name": "Stereotaxis Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SVM": {
+        "name": "Silvercorp Metals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "SVT": {
+        "name": "Servotronics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "Symbol": {
+        "name": "Name",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TELL": {
+        "name": "Tellurian Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TELZ": {
+        "name": "Tellurian Inc. 8.25% Senior Notes due 2028",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TGB": {
+        "name": "Taseko Mines Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "THM": {
+        "name": "International Tower Hill Mines Ltd. (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TKAT": {
+        "name": "Takung Art Co. Ltd.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TMBR": {
+        "name": "Timber Pharmaceuticals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TMP": {
+        "name": "Tompkins Financial Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TMQ": {
+        "name": "Trilogy Metals Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TOON": {
+        "name": "Kartoon Studios Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TOVX": {
+        "name": "Theriva Biologics Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TPET": {
+        "name": "Trio Petroleum Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TPHS": {
+        "name": "Trinity Place Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TRT": {
+        "name": "Trio-Tech International",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "TRX": {
+        "name": "TRX Gold Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "UAMY": {
+        "name": "United States Antimony Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "UAVS": {
+        "name": "AgEagle Aerial Systems Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "UEC": {
+        "name": "Uranium Energy Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "UFAB": {
+        "name": "Unique Fabricating Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "URG": {
+        "name": "Ur Energy Inc (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "USAS": {
+        "name": "Americas Gold and Silver Corporation no par value",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "UTG": {
+        "name": "Reaves Utility Income Fund of Beneficial Interest",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "UUU": {
+        "name": "Universal Security Instruments Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "UUUU": {
+        "name": "Energy Fuels Inc (Canada)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "VFL": {
+        "name": "abrdn National Municipal Income Fund",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "VGZ": {
+        "name": "Vista Gold Corp",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "VINE": {
+        "name": "Fresh Vine Wine Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "VKI": {
+        "name": "Invesco Advantage Municipal Income Trust II of Beneficial Interest (DE)",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "VNRX": {
+        "name": "VolitionRX Limited",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "VZLA": {
+        "name": "Vizsla Silver Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "WRN": {
+        "name": "Western Copper and Gold Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "WWR": {
+        "name": "Westwater Resources Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "WYY": {
+        "name": "WidePoint Corporation",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "XPL": {
+        "name": "Solitario Resources Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "XTNT": {
+        "name": "Xtant Medical Holdings Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "YCBD": {
+        "name": "cbdMD Inc.",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ZDGE": {
+        "name": "Zedge Inc. Class B",
+        "currency": "USD",
+        "market": "AMEX"
+    },
+    "ZOM": {
+        "name": "Zomedica Corp.",
+        "currency": "USD",
+        "market": "AMEX"
+    }
+}

@@ -1,0 +1,11 @@
+/*!
+ * Stock Portfolio Tracker
+ * ------------------------------
+ * Version 2.1.0, built on Friday, August 11, 2023
+ * Copyright (c) Financial Apps and Plugins <info@financialplugins.com>. All rights reserved.
+ * Demo: https://financialplugins.com/products/stock-portfolio-tracker/
+ * Purchase (WordPress plugin): https://1.envato.market/ZQN1Zk
+ * Purchase (PHP plugin): https://1.envato.market/zN4376
+ * 
+ */
+(window.webpackJsonpspt210=window.webpackJsonpspt210||[]).push([[111],{27:function(t,s,e){"use strict";var i=function(){var t=this,s=t.$createElement;return(t._self._c||s)("button",{class:t.classes,on:{click:function(s){return t.$parent.action(t.action)}}},[t._t("default")],2)};i._withStripped=!0;var n={props:["action","submitted"],computed:{classes:function(){return["spt-button","spt-is-primary",{"spt-is-loading":this.submitted}]}}},o=e(20),a=Object(o.a)(n,i,[],!1,null,null,null);a.options.__file="assets/js/src/components/elements/submit-button.vue";s.a=a.exports},306:function(t,s,e){"use strict";e.r(s);var i=function(){var t=this,s=t.$createElement,e=t._self._c||s;return e("div",[e("top-nav"),t._v(" "),e("div",{staticClass:"spt-columns spt-is-centered"},[e("div",{staticClass:"spt-column spt-is-half"},[e("div",{staticClass:"spt-notification spt-is-danger"},[t._v("\n        "+t._s(t.__("Are you sure you want to delete this portfolio and all related data?"))+"\n      ")]),t._v(" "),e("div",{staticClass:"spt-control"},[e("submit-button",{staticClass:"spt-is-danger",attrs:{action:"submit",submitted:t.submitted}},[t._v(t._s(t.__("Delete")))]),t._v(" "),e("router-link",{staticClass:"spt-button spt-is-secondary",attrs:{to:{name:"home"}}},[t._v(t._s(t.__("Cancel")))])],1)])])],1)};i._withStripped=!0;var n=e(35),o=e(29),a=e(33),r=e(50),u=e(27),l={mixins:[o.a,a.a],components:{TopNav:r.a,SubmitButton:u.a},props:["pid"],computed:{portfolio:function(){return Object(n.d)(this.portfolios,this.pid)}},methods:{submit:function(){var t=this;return this.deletePortfolio(this.pid).then((function(){t.$router.push({name:"home"})}))},whenCreated:function(){var t=this;this.getPortfolio({pid:this.pid}).then((function(){t.portfolio?t.done():t.$router.replace({name:"home"})}))}}},p=e(20),c=Object(p.a)(l,i,[],!1,null,null,null);c.options.__file="assets/js/src/components/portfolios/delete.vue";s.default=c.exports}}]);

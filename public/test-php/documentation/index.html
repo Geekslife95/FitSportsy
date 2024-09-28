@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Portfolio Tracker - Documentation</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css"></link>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Stock Portfolio Tracker</h1>
+      <h2 class="subtitle">
+        PHP plugin Documentation
+      </h2>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="title">
+        About
+      </h2>
+      <div class="content">
+        <p>
+          <b>Stock Portfolio Tracker</b> is a plugin, which allows your website visitors to create and track their own stock portfolios.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="title">
+        Setup
+      </h2>
+      <h3 class="subtitle">Firebase</h3>
+      <div class="content">
+        <p>
+          The plugin uses
+          <a href="https://firebase.google.com/" target="_blank">Google Firebase</a> to store user portfolios and optionally authenticate users. Please follow these steps to set up a Firebase application:
+        </p>
+        <ol>
+          <li>
+            Log in to your Google account and open
+            <a href="https://console.firebase.google.com" target="_blank">Firebase console</a>.
+          </li>
+          <li>
+            Click <b>Add project</b>.
+          </li>
+          <li>Enter the project name (e.g. <i>My Portfolio Tracking App</i>).</li>
+          <li>Click <b>Continue</b> to save the project.</li>
+          <li>Click the cog icon next to <b>Project Overview</b> and select <b>Project settings</b>.</li>
+          <li>
+            You should see this message: <i>There are no apps in your project</i>. Click
+            <b>&lt;/&gt;</b> button next to this message to create a web app.
+          </li>
+          <li>
+            Choose app name and click <b>Register the app</b>.
+          </li>
+          <li>
+            After the app is created you will be provided with some configuration code. Select
+            <b>firebaseConfig</b> configuration object with your mouse as displayed below and copy it (you will need it later):
+          </li>
+          <img src="../assets/images/help/firebase-config.png">
+          <li>
+            Click <b>Authentication</b> in the main menu and open <b>Sign-in method</b> tab. Find
+            <b>Anonymous</b> provider in the table and click on it to enable. If you wish to use authentication with email and password then you also need to enable
+            <b>Email/Password</b> provider.
+          </li>
+          <li>
+            Click <b>Database</b> in the main menu and then click <b>Create database</b>. Choose
+            <b>Start in locked mode</b> and click <b>Enable</b>.
+          </li>
+          <li>
+            Open <b>Rules</b> tab, replace the editor content with the following and then click <b>Publish</b>:
+            <pre>
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        "portfolios": {
+          ".read": "$uid == auth.uid",
+          ".write": "$uid == auth.uid",
+          "$pid": {
+            ".read": "$uid == auth.uid || root.child('shared-portfolios/' + $pid).exists()",
+            ".write": "$uid == auth.uid"
+          }
+        },
+        "transactions": {
+          "$pid": {
+            ".read": "$uid == auth.uid || root.child('shared-portfolios/' + $pid).exists()",
+            ".write": "$uid == auth.uid"
+          }
+        }
+      }
+    },
+    "shared-portfolios": {
+      "$pid": {
+        ".read": true,
+        ".write": "data.val() == null && newData.val() == auth.uid || data.val() == auth.uid && newData.val() == null"
+      }
+    }
+  }
+}
+                          </pre>
+            You should see a message that rules are successfully published.
+          </li>
+        </ol>
+      </div>
+
+      <h3 class="subtitle">Plugin integration</h3>
+      <div class="content">
+        <ul>
+          <li>Download the plugin zip archive from CodeCanyon.</li>
+          <li>Unzip the contents of the archive to your project folder.</li>
+          <li>
+              Open <b>license/.license</b> file in a text editor and input the plugin purchase code and the licensee email
+              (<a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-" target="_blank">where is my purchase code?</a>).
+              The content of the file should look like this:
+            <pre>PURCHASE_CODE=abcdefgh-abcd-abcd-abcdefgh
+EMAIL=user@domain.com</pre>
+          </li>
+          <li>
+            Include the plugin CSS styles by adding the following line to the head section of your web page:
+            <pre>&lt;link rel="stylesheet" type="text/css" href="/assets/dist/scheme-purple.css"&gt;</pre>
+            You might want to replace
+            <b>scheme-purple.css</b> with another CSS file depending on the color scheme you would like to use.
+          </li>
+          <li>
+            Include the plugin settings by adding the following line to the
+            <b>bottom</b> of the body of your web page (ideally before the closing body tag):
+            <pre>&lt;script&gt;
+    var StockPortfolioTracker = {
+        color: 'purple',
+        pluginUrl: '',
+        firebase: {
+            auth: true,
+            settings: {
+              apiKey: "AIzaSyB9vUOdpfjYEJQFP61blRZcI1SC3MUWyv8",
+              authDomain: "my-portfolio-tracking-ap-20126.firebaseapp.com",
+              projectId: "my-portfolio-tracking-ap-20126",
+              storageBucket: "my-portfolio-tracking-ap-20126.appspot.com",
+              messagingSenderId: "103171211525",
+              appId: "1:1031712112825:web:e6458cecf17c9c1dd1c9b68"
+            }
+        }
+    }
+&lt;/script&gt;</pre>
+            Please note, that if the plugin files location is different from the web root folder of your domain you need to additionally specify the absolute relative path to the folder containing the plugin files by passing
+            <b>pluginUrl</b> variable. Example:
+            <pre>
+    ...
+    pluginUrl: '/sub-folder/extra',
+    ...</pre>
+          </li>
+          <li>
+            Include the plugin PHP code by adding the following line right <b>after</b> the plugin settings:
+            <pre>&lt;script src="/assets/dist/app.js"&gt;&lt;/script&gt;</pre>
+          </li>
+          <li>
+            Add the following HTML code to the part of your web page, where you want the Stock Portfolio Tracker app to display:
+            <pre>&lt;div id="stock-portfolio-tracker"&gt;&lt;/div&gt;</pre>
+          </li>
+        </ul>
+        <p>
+          For your convenience there is <b>example.php</b> file in the
+          <b>documentation</b> folder, which contains a boilerplate for quick start (you just need to add specific Firebase credentials).
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="title">
+        Frequently Asked Questions
+      </h2>
+      <h3 class="subtitle"><i class="fas fa-chevron-right"></i> How to install extra markets?</h3>
+      <div class="content">
+        <div class="content">
+          <p>
+            The following extra markets can be added to the plugin:
+          </p>
+          <ul>
+            <li>Australian Stock Exchange (<a href="https://bit.ly/spt-asx">purchase</a>)</li>
+            <li>Frankfurt Stock Exchange (<a href="https://bit.ly/spt-fse">purchase</a>)</li>
+            <li>Italian Stock Exchange (<a href="https://bit.ly/spt-ise">purchase</a>)</li>
+            <li>National Stock Exchange of India (<a href="https://bit.ly/spt-nse">purchase</a>)</li>
+            <li>Paris Stock Exchange (<a href="https://bit.ly/spt-pse">purchase</a>)</li>
+            <li>Toronto Stock Exchange (<a href="https://bit.ly/spt-tsx">purchase</a>)</li>
+            <li>TSX Venture (<a href="https://bit.ly/spt-tsxv">purchase</a>)</li>
+          </ul>
+          <p>
+            After purchasing download the archive and unzip its contents to the <b>assets/dist/markets</b> folder.
+          </p>
+          <p>
+            When adding any number of extra markets, you also need to list all markets (including default markets)
+            in <b>markets</b> property of the <b>StockPortfolioTracker</b> global variable as follows (list only those that you have):
+          </p>
+          <pre>markets: ['amex', 'nasdaq', 'nyse', 'asx', 'fse', 'ise', 'moex', 'nse', 'pse', 'tsx', 'tsxv']</pre>
+        </div>
+      </div>
+      <h3 class="subtitle"><i class="fas fa-chevron-right"></i> How to translate text strings into my native language?
+      </h3>
+      <div class="content">
+        <p>
+          You need to pass an extra <b>text</b> object via
+          <b>StockPortfolioTracker</b> global variable. This object should contain key - value pairs, where key is the original text string in English and value is the translated string.
+          For your convenience all text strings available for translation are listed in <b>example.php</b>.
+        </p>
+      </div>
+      <h3 class="subtitle"><i class="fas fa-chevron-right"></i> What is Firebase authentication for?</h3>
+      <div class="content">
+        <p>
+          Firebase authentication allows the plugin to identify users of the
+          <b>Stock Portfolio Tracker</b> plugin - either explicitly or implicitly. This is required for mapping stored user portfolios to specific user accounts, so that when a user visits your website again portfolios that the user created earlier can be loaded from the realtime database.
+        </p>
+        <p>
+          When Firebase authentication is
+          <b>enabled</b> users will be required to log in or sign up before creating any portfolios.
+        </p>
+        <p>
+          When Firebase authentication is
+          <b>disabled</b> users will be automatically authenticated using anonymous accounts when first accessing the app. Their sessions will be stored in a browser and remain active until browser cache / local data is cleared.
+        </p>
+        <p>
+          You can manage all users accounts by going to
+          <a href="https://console.firebase.google.com" target="_blank">Firebase console</a>, choosing your Firebase app and clicking
+          <b>Authentication</b> in the main menu.
+        </p>
+      </div>
+      <h3 class="subtitle"><i class="fas fa-chevron-right"></i> How to customize the password reset email template?</h3>
+      <div class="content">
+        <div class="content">
+          <p>
+            In the <a href="https://console.firebase.google.com" target="_blank">Firebase console</a> click
+            <b>Authentication</b> in the main menu and then switch to <b>Templates</b> tab. Choose
+            <b>Password Reset</b> from the list of templates and customize it as needed.
+          </p>
+        </div>
+      </div>
+      <h3 class="subtitle"><i class="fas fa-chevron-right"></i> How to translate text strings into my native language?
+      </h3>
+      <div class="content">
+        <p>
+          You need to pass an extra <b>text</b> object via
+          <b>StockPortfolioTracker</b> global variable. This object should contain key - value pairs, where key is the original text string in English and value is the translated string. For your convenience all text strings available for translation are listed in
+          <b>example.php</b>.
+        </p>
+      </div>
+      <h3 class="subtitle"><i class="fas fa-chevron-right"></i> How do I get support?</h3>
+      <div class="content">
+        <p>
+          If you need any further help submit a new support ticket at <a href="https://support.financialplugins.com/" target="_blank">support.financialplugins.com</a>.
+          Please note that you need to have a valid support period to be able to open new tickets
+          (<a href="https://help.market.envato.com/hc/en-us/articles/207886473-Extending-and-Renewing-Item-Support" target="_blank">how to renew my support?</a>).
+        </p>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="columns has-text-centered-mobile">
+        <div class="column">
+          &copy; <strong>Stock Portfolio Tracker</strong>
+        </div>
+        <div class="column has-text-right has-text-centered-mobile">
+          Built with <i class="fas fa-heart has-text-primary"></i> by
+          <a href="https://financialplugins.com" target="_blank">Financial Plugins</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

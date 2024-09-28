@@ -1,0 +1,31 @@
+Stock Portfolio Tracker
+-----------------------
+
+CHANGES HISTORY
+---------------
+v2.1.0 - 11 August 2023
+- The list of US stocks is updated.
+
+v2.0.1 - 2 August 2023
+- Long stock name display issue fixed.
+
+v2.0.0 - 26 July 2023
+- Bug fixes.
+
+v1.5.0 - 29 November 2021
+- Ability to purchase and install extra markets.
+
+v1.4.0 - 9 June 2021
+- List of stocks updated.
+
+v1.3.0 - 28 April 2021
+- Auto plugin update support (WordPress version).
+
+v1.2.0 - 22 February 2021
+- Firebase settings storage improved.
+
+v1.1.0 - 18 May 2020
+- Asset search dropdown improvements.
+
+v1.0.0 - 27 May 2019
+- Initial release

@@ -1,0 +1,11 @@
+/*!
+ * Stock Portfolio Tracker
+ * ------------------------------
+ * Version 2.1.0, built on Friday, August 11, 2023
+ * Copyright (c) Financial Apps and Plugins <info@financialplugins.com>. All rights reserved.
+ * Demo: https://financialplugins.com/products/stock-portfolio-tracker/
+ * Purchase (WordPress plugin): https://1.envato.market/ZQN1Zk
+ * Purchase (PHP plugin): https://1.envato.market/zN4376
+ * 
+ */
+(window.webpackJsonpspt210=window.webpackJsonpspt210||[]).push([[118],{27:function(t,s,i){"use strict";var n=function(){var t=this,s=t.$createElement;return(t._self._c||s)("button",{class:t.classes,on:{click:function(s){return t.$parent.action(t.action)}}},[t._t("default")],2)};n._withStripped=!0;var e={props:["action","submitted"],computed:{classes:function(){return["spt-button","spt-is-primary",{"spt-is-loading":this.submitted}]}}},a=i(20),o=Object(a.a)(e,n,[],!1,null,null,null);o.options.__file="assets/js/src/components/elements/submit-button.vue";s.a=o.exports},310:function(t,s,i){"use strict";i.r(s);var n=function(){var t=this,s=t.$createElement,i=t._self._c||s;return i("div",[i("top-nav"),t._v(" "),i("div",{staticClass:"spt-columns spt-is-centered"},[i("div",{staticClass:"spt-column spt-is-half"},[i("h2",{staticClass:"spt-title spt-is-2"},[t._v(t._s(t.__("Delete transaction")))]),t._v(" "),i("div",{staticClass:"spt-notification spt-is-danger"},[t._v("\n        "+t._s(t.__("Are you sure you want to delete this transaction?"))+"\n      ")]),t._v(" "),i("div",{staticClass:"spt-control"},[i("submit-button",{staticClass:"spt-is-danger",attrs:{action:"submit",submitted:t.submitted}},[t._v(t._s(t.__("Delete")))]),t._v(" "),i("router-link",{staticClass:"spt-button spt-is-secondary",attrs:{to:{name:"portfolio.view",params:{pid:t.pid}}}},[t._v(t._s(t.__("Cancel")))])],1)])])],1)};n._withStripped=!0;var e=i(29),a=i(33),o=i(50),p=i(27),r={mixins:[e.a,a.a],components:{TopNav:o.a,SubmitButton:p.a},props:["pid","tid"],methods:{submit:function(){var t=this;return this.deleteTransaction({pid:this.pid,tid:this.tid}).then((function(){t.$router.push({name:"portfolio.view",params:{pid:t.pid}})}))}}},c=i(20),u=Object(c.a)(r,n,[],!1,null,null,null);u.options.__file="assets/js/src/components/transactions/delete.vue";s.default=u.exports}}]);
