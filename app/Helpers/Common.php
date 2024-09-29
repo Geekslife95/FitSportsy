@@ -151,6 +151,16 @@ public static function statesAll(){
   return $cityData;
 }
 
+public static function sportAgeGroups($key=null){
+  $arr =  [
+    1=>'Kids',2=>'Teens',3=>'Adults',4=>'Open For All'
+  ];
+  if(!is_null($key)){
+    return isset($arr[$key]) ? $arr[$key] : '-';
+  }
+  return $arr;
+}
+
 
 
 }

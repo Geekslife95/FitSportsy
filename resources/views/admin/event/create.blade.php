@@ -3,15 +3,15 @@
 @section('content')
     <section class="section">
         @include('admin.layout.breadcrumbs', [
-            'title' => __('Add Event'),
-            'headerData' => __('Event'),
+            'title' => __('Add Sports Coaching Management'),
+            'headerData' => __('Sports Coaching Management'),
             'url' => 'events',
         ])
 
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-8">
-                    <h2 class="section-title"> {{ __('Add Event') }}</h2>
+                    <h2 class="section-title"> {{ __('Add Sports Coaching Management') }}</h2>
                 </div>
             </div>
 
@@ -41,25 +41,17 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>{{ __('Select Event Name') }} <span class="text-danger">*</span></label>
-                                            <select name="event_parent_id" class="form-control select2" required>
-                                                <option value="">{{ __('Select Event Name') }}</option>
-                                                @foreach ($eventsData as $item)
-                                                        <option value="{{$item->id}}">{{$item->event_name}}</option>
-                                                @endforeach
-                                            </select>
-                                            {{-- <input type="text" name="name" value="{{ old('name') }}"
-                                                placeholder="{{ __('Name') }}"
-                                                class="form-control @error('name')? is-invalid @enderror"> --}}
+                                            <label>{{ __('Coaching Title') }} <span class="text-danger">*</span></label>
+                                            <input type="text" name="event_parent_id" class="form-control" required>
                                             @error('event_parent_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>{{ __('Category') }} <span class="text-danger">*</span></label>
-                                            <select name="category_id" class="form-control select2">
-                                                <option value="">{{ __('Select Category') }}</option>
+                                            <label>{{ __('Select Sport') }} <span class="text-danger">*</span></label>
+                                            <select name="category_id" class="form-control select2" required>
+                                                <option value="">{{ __('Select Sport') }}</option>
                                                 @foreach ($category as $item)
                                                     <option value="{{ $item->id }}"
                                                         {{ $item->id == old('category') ? 'Selected' : '' }}>
@@ -167,6 +159,26 @@
                                 </div>
 
 
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="total_seats">Total Seats Available <span class="text-danger">*</span></label>
+                                            <input type="text" name="total_seats" id="total_seats" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="age_group">Age Group <span class="text-danger">*</span></label>
+                                            <select name="age_group" id="age_group" class="form-control select2" required>
+                                                <option value="">Select</option>
+                                                @foreach (Common::sportAgeGroups() as $k=> $item)
+                                                    <option value="{{$k}}">{{$item}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 @if (Auth::user()->hasRole('admin'))
                                     <div class="form-group">
@@ -201,17 +213,15 @@
                                 </div>
                             </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        {{-- <div class="form-group">
-                                            <label>{{ __('Maximum people will join in this event') }} <span class="text-danger">*</span></label>
-                                            <input type="number" min='1' name="people" id="people"
-                                                value="{{ old('people') }}"
-                                                placeholder="{{ __('Maximum people will join in this event') }}"
-                                                class="form-control @error('people')? is-invalid @enderror">
-                                            @error('people')
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>{{ __('Tags') }}</label>
+                                            <input type="text" name="tags" value="{{ old('tags') }}"
+                                                class="form-control inputtags @error('tags')? is-invalid @enderror">
+                                            @error('tags')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
-                                        </div> --}}
+                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
@@ -227,28 +237,12 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>{{ __('Tags') }}</label>
-                                            <input type="text" name="tags" value="{{ old('tags') }}"
-                                                class="form-control inputtags @error('tags')? is-invalid @enderror">
-                                            @error('tags')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>{{ __('Select Event Description') }} <span class="text-danger">*</span></label>
-                                            <select name="event_description_id" class="form-control select2" required>
-                                                <option value="">{{ __('Select Event Description') }}</option>
-                                                @foreach ($descriptionData as $item)
-                                                        <option value="{{$item->id}}">{{$item->title}}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('event_description_id')
+                                            <label>{{ __('Coaching Description') }} <span class="text-danger">*</span></label>
+                                            <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
+                                            @error('description')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
