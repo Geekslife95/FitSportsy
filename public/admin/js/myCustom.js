@@ -727,6 +727,17 @@ $(document).ready(function () {
         success_callback: null
     });
 
+    $.uploadPreview({
+        input_field: "#image-upload2",
+        preview_box: "#image-preview2",
+        label_field: "#image-label2",
+        label_default: "<i class='fas fa-plus'></i>",
+        label_selected: "<i class='fas fa-plus'></i>",
+        no_label: false,
+        success_callback: null
+    });
+
+
 
     $.uploadPreview({
         input_field: ".image-upload-n-0",

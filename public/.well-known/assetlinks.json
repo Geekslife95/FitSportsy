@@ -1,0 +1,26 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bookmypujaseva.twa",
+      "sha256_cert_fingerprints": ["C4:B0:E7:91:D9:F7:39:E9:C7:69:91:BF:A9:72:44:B3:50:3D:DA:F3:75:BB:E0:34:08:C7:57:DD:E9:1F:53:27"]
+    }
+  },
+  {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.bookmypujasevascanner.twa",
+        "sha256_cert_fingerprints": ["7B:AD:4F:41:B2:A1:8E:52:E3:FA:7C:C7:81:7E:49:48:94:70:12:DC:93:87:17:81:00:3E:42:83:45:2F:3C:21"]
+      }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bookmypujasevaorganizer.twa",
+      "sha256_cert_fingerprints": ["74:B0:40:71:F9:58:4B:C6:B5:06:F8:3A:5F:A9:73:3F:50:54:6D:AD:10:45:C7:C0:64:B8:15:B9:C8:BD:39:C0"]
+    }
+  }
+]

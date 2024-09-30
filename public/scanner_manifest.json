@@ -1,0 +1,60 @@
+{
+  "name": "Supershows",
+  "short_name": "Supershows",
+  "description": "Supershows is your go-to online platform for seamlessly booking tickets to a wide variety of events, from exciting music shows to thrilling cricket and football matches. Whether you're a sports fan looking to catch your favorite team in action or a music lover eager to attend live performances, Supershows makes it easy to find and book your preferred events. Enjoy a hassle-free experience with our simple and intuitive platform, allowing you to secure your tickets and be part of the action in no time.",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "education",
+    "entertainment",
+    "games",
+    "kids",
+    "news"
+  ],
+  "dir": "auto",
+  "lang": "en",
+  "display_override": [
+    "fullscreen",
+    "window-controls-overlay",
+    "standalone"
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#0F172A",
+  "start_url": "/scanner-login",
+  "display": "standalone",
+  "orientation": "portrait",
+  "screenshots": [
+    {
+      "src": "screenshot.JPG",
+      "sizes": "1280x720",
+      "type": "image/jpg",
+      "platform": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Home",
+      "url": "/",
+      "description": "Go To Homepage."
+    },
+    {
+      "name": "Contact Us ",
+      "url": "/contact-us",
+      "description": "Chat with our support"
+    }
+  ],
+  "scope": "/",
+  "prefer_related_applications": false
+}

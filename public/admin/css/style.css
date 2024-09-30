@@ -266,7 +266,7 @@ textarea.form-control {
 .form-control[type="color"],
 select.form-control:not([size]):not([multiple]) {
     height: calc(2.25rem + 6px);
-    width: auto;
+    width: 100%;
 }
 
 .form-control.creditcard {
@@ -846,7 +846,7 @@ select.form-control:not([size]):not([multiple]) {
 /* 3.5 Card */
 
 .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border-radius: 3px;
     border: none;
@@ -858,17 +858,14 @@ select.form-control:not([size]):not([multiple]) {
 .card .card-body,
 .card .card-footer {
     background-color: transparent;
-    padding: 20px 25px;
+    padding: 1.25rem;
 }
 
 .card .navbar {
     position: static;
 }
 
-.card .card-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+
 
 .card .card-body .section-title {
     margin: 30px 0 10px 0;
@@ -2539,6 +2536,8 @@ h6 .badge {
 .navbar .nav-link.nav-link-user img {
     width: 30px;
     height: 30px;
+    outline: 1px solid #fff;
+    outline-offset: 2px;
 }
 
 .navbar .nav-link.nav-link-img {
@@ -3548,12 +3547,12 @@ pre {
     content: ' ';
     border-radius: 5px;
     height: 8px;
-    width: 30px;
+    width: 26px;
     background-color: var(--primary_color);
     display: inline-block;
     float: left;
     margin-top: 25px;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .section .section-title+.section-lead {
@@ -4309,12 +4308,12 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
         display: block;
     }
     .main-content {
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
         width: 100% !important;
     }
     .main-footer {
-        padding-left: 30px;
+        padding-left: 20px;
     }
     body.search-show {
         overflow: hidden;

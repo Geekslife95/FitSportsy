@@ -97,7 +97,7 @@ a {
 }
 
 .table-img {
-    width: 100px;
+    width: 80px;
     height: 80px;
     border-radius: 10%;
 }
@@ -151,7 +151,7 @@ a {
 
 .card {
     border-radius: 8px;
-    box-shadow: rgb(16 25 40 / 8%) 1px 6px 7px 6px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     border: none;
 }
 
@@ -1362,6 +1362,7 @@ tfoot {
     font-size: 20px;
 }
 
+
 .popup_box{
     position: relative;
 }
@@ -1376,8 +1377,8 @@ tfoot {
     border-radius: 50%;
     color: #fff !important;
 }
-
-.popup_box a.delete_icon{
+/* 
+.popup_box a{
     position: absolute;
     line-height: 10px;
     right: -10px;
@@ -1386,5 +1387,27 @@ tfoot {
     padding: 10px;
     border-radius: 50%;
     color: #fff !important;
-}
+} */
 
+/* ==================== mobile css 768px ================== */
+@media(max-width:768px){
+    .background-walk-y.overlay-gradient-bottom{
+        display: none;
+    }
+
+    .login-card{
+      display: block;
+    }
+
+    .navbar {
+        padding: 0px;
+    }
+    .table-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 5%;
+    }
+    table.dataTable {
+       text-wrap: nowrap;
+    }
+}
