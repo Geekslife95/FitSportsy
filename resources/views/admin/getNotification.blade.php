@@ -6,9 +6,9 @@
             'title' => __('Send Notification'),
         ])
 
-        <div>
+        {{-- <div>
             <h2 class="section-title">{{ __('Send Notification') }}</h2>
-        </div>
+        </div> --}}
         <div class="row">
 
             <div class="col-12">

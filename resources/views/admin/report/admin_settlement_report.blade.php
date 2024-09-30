@@ -6,6 +6,10 @@
         'title' => __('Organizer Settlement Report'),            
     ]) 
 
+@php
+$currency = "₹";
+@endphp
+
     <div class="section-body">
         <div class="row">
             <div class="col-lg-8"><h2 class="section-title"> {{__('Organizer Settlement Report')}}</h2></div>            

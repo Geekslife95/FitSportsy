@@ -289,7 +289,7 @@
                                                                                                                     <span
                                                                                                                         style="font-size: 43px">Thanks
                                                                                                                         for
-                                                                                                                        book your ticket from BookMyAdventureQuest</span>
+                                                                                                                        book your ticket from Supershows</span>
                                                                                                                 </div>
                                                                                                                 <div>
                                                                                                                 </div>

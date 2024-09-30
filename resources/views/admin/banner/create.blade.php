@@ -68,10 +68,7 @@
                                             <label>{{ __('Redirect Link') }}</label>
                                             <input type="text" name="redirect_link" placeholder="{{ __('Redirect Link') }}"
                                             value="{{ old('redirect_link') }}"
-                                            class="form-control @error('redirect_link')? is-invalid @enderror">
-                                            @error('redirect_link')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                            class="form-control ">
                                         </div>
                                         <div class="form-group">
                                             <label>{{ __('status') }}</label>

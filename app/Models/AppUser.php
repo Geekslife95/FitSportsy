@@ -36,10 +36,9 @@ class AppUser extends Authenticatable
         'bio',
         'provider_token',
         'device_token',
+        'address_two',
         'language',
-        'deleted_at ',
-        'is_verify',
-        'address_two'
+        'deleted_at ','is_verify'
     ];
 
     protected $hidden = [

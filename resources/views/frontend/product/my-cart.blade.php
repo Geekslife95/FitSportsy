@@ -89,22 +89,21 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-lg-12 col-12 mt-3 ">
-                                <div class="row align-items-center bg-light">
-                                      <div class="col-lg-3 col-md-3 col-6 text-center border p-3">
+                                <div class="row align-items-center ">
+                                      <div class="col-lg-3 col-md-3 col-6 text-center border border-dark p-3">
                                         <img src="{{asset('images/shipping.png')}}" alt="" class="img-fluid mb-1" width="50">
                                         <p class="mb-0">Free Shipping</p>
                                     </div>
-                                        <div class="col-lg-3 col-md-3 col-6 text-center border p-3">
+                                        <div class="col-lg-3 col-md-3 col-6 text-center border border-dark p-3">
                                       <img src="{{asset('images/24hours.png')}}" alt="" class="img-fluid mb-1" width="50">
                                        <p class="mb-0">Within 24-48 hours Fast Dispatches</p>
                                     </div>
-                                        <div class="col-lg-3 col-md-3 col-6 text-center border p-3">
+                                        <div class="col-lg-3 col-md-3 col-6 text-center border border-dark p-3">
                                        <img src="{{asset('images/securepayment.png')}}" alt="" class="img-fluid mb-1" width="50">
                                          <p class="mb-0">Secure Payments</p>
                                     </div>
-                                          <div class="col-lg-3 col-md-3 col-6 text-center border p-3">
+                                          <div class="col-lg-3 col-md-3 col-6 text-center border border-dark p-3">
                                          <img src="{{asset('images/holistics.png')}}" alt="" class="img-fluid mb-1" width="50">
                                         <p class="mb-0">Holistic Well-being</p>
                                     </div>

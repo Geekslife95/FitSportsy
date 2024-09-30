@@ -179,7 +179,7 @@
             var razorpay_options = {
                 key: "<?php echo $key_id; ?>",
                 amount: Math.round(totalAmount),
-                name: "BookMyPujaSeva",
+                name: "Supershows",
                 description: "Order #<?php echo $merchant_order_id; ?>",
                 netbanking: true,
                 currency: "INR",

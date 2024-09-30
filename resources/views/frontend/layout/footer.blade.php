@@ -18,12 +18,6 @@
                 <li class="mt-2">
                     <a href="{{ url('/privacy_policy') }}"
                         class="md:px-3 capitalize font-poppins font-normal text-base leading-6 text-white flex">{{ __('Privacy Policy') }}
-
-                    </a>
-                </li>
-                <li class="mt-2">
-                    <a href="{{ url('/cancellation-policy') }}"
-                        class="md:px-3 capitalize font-poppins font-normal text-base leading-6 text-white flex">{{ __('Cancellation Policy') }}
                     </a>
                 </li>
                 <li class="mt-2">
@@ -46,7 +40,6 @@
                     {{ __('Language') }}<img src="{{ asset('images/downwhite.png') }}"
                         class="w-3 h-2 mx-2 mt-2 language" alt="">
                 </a>
-
                 <div
                     class="languageClass hidden rigin-top-left absolute left-0 w-44 rounded-md shadow-2xl z-10 bottom-12">
                     <div class="rounded-md bg-white shadow-lg p-3">

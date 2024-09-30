@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Popups;
 
 class PopupController extends Controller
@@ -70,5 +69,4 @@ class PopupController extends Controller
         return redirect()->back()->with('success','Popup Deleted Successfully!!');
     }
 
-    //
 }

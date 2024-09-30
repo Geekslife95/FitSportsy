@@ -24,4 +24,7 @@ class OrderChild extends Model
         $order  = Order::with(['customer:id,name,last_name,email,image'])->find($this->attributes['tax_id']);
     }
 
+    public function ticket(){
+        return $this->hasOne('App\Models\Ticket', 'id', 'ticket_id');
+    }
 }

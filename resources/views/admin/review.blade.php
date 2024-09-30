@@ -7,9 +7,8 @@
         ])
 
         <div class="section-body">
-            <h2 class="section-title">{{ __('Reviews') }}</h2>
-            <p class="section-lead"></p>
-            <div class="row mt-sm-4">
+            
+            <div class="row ">
                 <div class="col-12">
                     @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">

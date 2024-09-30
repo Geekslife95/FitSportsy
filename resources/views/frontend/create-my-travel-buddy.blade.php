@@ -3,6 +3,7 @@
 @section('content')
 @push('styles')
 <link rel="stylesheet" href="{{asset('f-css/ion.rangeSlider.min.css')}}">
+<link rel="stylesheet" href="{{asset('f-css/croppie.css')}}">
 @endpush
 <section class="section-area buddy-section">
     <div class="container">
@@ -19,10 +20,10 @@
            
             <div class="col-lg-12 col-md-12 col-12">
                 @include('messages')
-                <form method="post" enctype="multipart/form-data" action="/create-my-travel-buddy">
+                <form method="post" enctype="multipart/form-data" action="/create-spiritual-volunteers">
                     @csrf
                     
-                    <div class="form-card card">
+                    <div class="form-card card mb-4">
                         <div class="card-header">
                             <h4 class="card-title">Personal Details</h4>
                         </div>
@@ -41,14 +42,14 @@
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
                                         <label>Name<span class="text-danger">*</span></label>
-                                        <input type="text" name="name" placeholder="Name" value="{{old('name')}}" class="form-control">
+                                        <input type="text" name="name" placeholder="Name" value="{{old('name')}}" class="form-control" required>
                                         @error('name') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
                                         <label>Gender<span class="text-danger">*</span></label>
-                                        <select name="gender" id="" class="form-control w-100">
+                                        <select name="gender" id="" class="form-control w-100" required>
                                             <option value="{{old('gender')}}" disable>Select Gender</option>
                                             <option value="1">Male</option>
                                             <option value="2">Female</option>
@@ -64,26 +65,22 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-12">
-                                    <div class="form-group">
-                                        <label>Language Spoken</label>
-                                        <select name="language" value="{{old('language')}}" id="" class="form-control w-100">
-                                            <option value="" selected disabled>Choose Here</option>
-                                            <option value="Hindi">Hindi</option>
-                                            <option value="English">English</option>
-                                        </select>
-                                        @error('language') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-12">
-                                    <div class="form-group">
-                                        <label>Hobbies/Interest</label>
-                                        <input type="text" name="hobbies" placeholder="Hobbies/Interest" value="{{old('hobbies')}}" class="form-control">
-                                    </div>
+                                    <label>Languages Spoken: <span class="text-danger">*</span></label>
+                                    <select name="language" value="{{old('language')}}" id="" class="form-control w-100" required>
+                                        <option value="" selected disabled>Choose Here</option>
+                                        <option value="English">English</option>
+                                        <option value="Hindi">Hindi</option>
+                                        <option value="Spanish">Spanish</option>
+                                        <option value="Mandarin">Mandarin</option>
+                                        <option value="Tamil">Tamil</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    @error('language') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-card card">
+                    <div class="form-card card mb-4">
                         <div class="card-header">
                             <h4 class="card-title">Contact Details</h4>
                         </div>
@@ -92,117 +89,108 @@
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
                                         <label>Email<span class="text-danger">*</span></label>
-                                        <input type="email" name="email" placeholder="Email" value="{{old('email')}}" class="form-control">
+                                        <input type="email" name="email" placeholder="Email" value="{{old('email')}}" class="form-control" required>
                                         @error('email') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-12">
                                     <label>Phone No.<span class="text-danger">*</span></label>
-                                    <input type="text" name="number" placeholder="Phone" value="{{old('number')}}" class="form-control">
+                                    <input type="text" name="number" placeholder="Phone" value="{{old('number')}}" class="form-control" required>
                                     @error('number') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-card card">
+                    <div class="form-card card mb-4">
                         <div class="card-header">
-                            <h4 class="card-title">Travel Details</h4>
+                            <h4 class="card-title">Additional Information</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
-                                        <label>Travel Date</label>
-                                        <input type="date" name="travel_date" placeholder="Travel Date" value="{{old('travel_date')}}" class="form-control">
-                                        @error('travel_date') <span class="text-danger">{{$message}}</span> @enderror
+                                        <label>Location <span class="text-danger">*</span></label>
+                                        <input type="text" name="location" placeholder="Location" value="{{old('Location')}}" class="form-control" required>
+                                        @error('Location') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
-                                        <label>Travel Style</label>
-                                        <input type="text" name="travel_style" placeholder="Travel Style" value="{{old('travel_style')}}" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-12">
-                                    <label>Travel Interest</label>
-                                    <select name="travel_interest" value="{{old('travel_interest')}}" id="" class="form-control w-100">
-                                        <option value="" selected disabled>Choose Here</option>
-                                        <option value="Nature">Nature</option>
-                                        <option value="City Exploration">City Exploration</option>
-                                        <option value="Relaxation">Relaxation</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    @error('travel_interest') <span class="text-danger">{{$message}}</span> @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-card card">
-                        <div class="card-header">
-                            <h4 class="card-title">Trip Details</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-12 col-12">
-                                    <div class="form-group">
-                                        <label>Current Location<span class="text-danger">*</span></label>
-                                        <input type="text" name="location" placeholder="Current Location" value="{{old('location')}}" class="form-control">
-                                        @error('location') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-12">
-                                    <div class="form-group">
-                                        <label>Destination<span class="text-danger">*</span></label>
-                                        <input type="text" name="destination" placeholder="Destination" value="{{old('destination')}}" class="form-control">
-                                        @error('destination') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-12">
-                                    <div class="form-group">
-                                        <label>Budget</label>
-                                        <input type="number" name="budget" placeholder="Budget" value="{{old('budget')}}" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-12">
-                                    <div class="form-group">
-                                        <label>Travel Preference</label>
-                                        <select name="travel_preference" value="{{old('travel_preference')}}" id="" class="form-control w-100">
+                                        <label>Availability <span class="text-danger">*</span></label>
+                                        <select name="availability" value="{{old('availability')}}" id="" class="form-control w-100" required>
                                             <option value="" selected disabled>Choose Here</option>
-                                            <option value="Hotels">Hotels</option>
-                                            <option value="Airbnb">Airbnb</option>
-                                            <option value="Camping">Camping</option>
+                                            <option value="Full-Time">Full-Time</option>
+                                            <option value="Part-Time">Part-Time</option>
+                                            <option value="Weekends">Weekends</option>
+                                            <option value="Evenings">Evenings</option>
                                         </select>
+                                        @error('availability') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-12 mb-2">
+                                    <label>Areas of Interest: <span class="text-danger">*</span></label>
+                                    <select name="interest" value="{{old('interest')}}" id="" class="form-control w-100" required>
+                                        <option value="" selected disabled>Choose Here</option>
+                                        <option value="Event Coordination">Event Coordination</option>
+                                        <option value="Rituals and Ceremonies">Rituals and Ceremonies</option>
+                                        <option value="Teaching and Education">Teaching and Education</option>
+                                        <option value="Other">Community Outreach</option>
+                                        <option value="Other">Administrative Support</option>
+                                        <option value="Other">Others </option>
+                                    </select>
+                                    @error('interest') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
+                                <div class="col-lg-12 col-12 mb-2">
+                                    <label>Skills and Expertise: <span class="text-danger">*</span></label>
+                                    <select name="skills" value="{{old('skills')}}" id="" class="form-control w-100" required>
+                                        <option value="" selected disabled>Choose Here</option>
+                                        <option value="Ritual Knowledge">Ritual Knowledge</option>
+                                        <option value="Communication">Communication</option>
+                                        <option value="Leadership">Leadership</option>
+                                        <option value="Teaching">Teaching</option>
+                                        <option value="Event Planning">Event Planning</option>
+                                        <option value="Languages Spoken">Languages Spoken</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    @error('skills') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
+                                <div class="col-lg-12 col-12 mb-2">
+                                    <label>Preferred Spiritual Tradition:<span class="text-danger">*</span></label>
+                                    <select name="tradition" value="{{old('tradition')}}" id="" class="form-control w-100" required>
+                                        <option value="" selected disabled>Choose Here</option>
+                                        <option value="Hinduism">Hinduism</option>
+                                        <option value="Buddhism">Buddhism</option>
+                                        <option value="Christianity">Christianity</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Sikhism">Sikhism</option>
+                                        <option value="Jainism">Jainism</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    @error('tradition') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
+                                <div class="col-lg-12 col-12">
+                                    <div class="form-group">
+                                        <label>Volunteer Experience:</label>
+                                        <input type="text" name="experience" placeholder="Volunteer Experience" value="{{old('experience')}}" class="form-control">
+                                        @error('experience') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
-                                        <label>Trip Description</label>
-                                        <textarea name="travel_description" placeholder="Travel Description" value="{{old('travel_description')}}" class="form-control" style="height:100px"></textarea>
+                                        <label>References:</label>
+                                        <input type="text" name="references" placeholder="References" value="{{old('references')}}" class="form-control">
+                                        @error('references') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-card card">
-                        <div class="card-header">
-                            <h4 class="card-title">Additional Comments</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-12 col-12">
-                                    <div class="form-group">
-                                        {{-- <label>Additional Comments</label> --}}
-                                        <textarea name="additional_comments" placeholder="write an additional comments" value="{{old('additional_comments')}}" class="form-control" style="height: 100px;"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-success w-100 demo-button">Submit</button>
+                    <button type="submit" class="btn btn-danger w-100 demo-button">Submit</button>
                 </form>
             </div>
         </div>
     </div>
+ </div>
 </section>
 
 {{-- model --}}

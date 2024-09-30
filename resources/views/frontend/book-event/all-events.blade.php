@@ -14,17 +14,18 @@
         </div>
         <div class="row">
             <div class="col-xl-3 col-lg-4">
-                <div class="filters shadow-sm rounded bg-white mb-3">
+                <div class="filters shadow-sm rounded mb-3">
                     <div class="filters-header border-bottom p-3">
-                        <h5 class="m-0 text-dark">Filter By</h5>
+                        <h5 class="m-0 text-light">Filter By</h5>
                     </div>
                     <div class="filters-body">
                         <div id="accordion">
+
                             <div class="filters-card border-bottom p-3">
                                 <div class="filters-card-header" id="categoryheading">
                                     <h6 class="mb-0">
                                         <a href="#" class="btn-link" data-toggle="collapse" data-target="#organisationcollapse" aria-expanded="true" aria-controls="organisationcollapse">
-                                            Adventures
+                                            Events
                                             <i class="fas fa-angle-down float-right"></i>
                                         </a>
                                     </h6>
@@ -32,11 +33,12 @@
                                 <div id="organisationcollapse" class="collapse show" aria-labelledby="headingTwo" >
                                     <div class="filters-card-body card-shop-filters">
                                         <div class="form-group">
-                                            <input type="text" id="organisation_name" class="form-control" value="{{$searchStr}}" placeholder="seach adventure">
+                                            <input type="text" id="organisation_name" class="form-control" value="{{$searchStr}}" placeholder="seach events">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="filters-card border-bottom p-3">
                                 <div class="filters-card-header" id="categoryheading">
                                     <h6 class="mb-0">
@@ -46,7 +48,7 @@
                                         </a>
                                     </h6>
                                 </div>
-                                <div id="categorycollapse" class="collapse show" aria-labelledby="headingTwo">
+                                <div id="categorycollapse" class="collapse show" aria-labelledby="headingTwo" >
                                     {{-- <div class="filters-card-body card-shop-filters">
                                         @foreach (Common::allEventCategories() as $cat)
                                             <div class="custom-control custom-checkbox">
@@ -55,6 +57,7 @@
                                             </div>
                                         @endforeach
                                     </div> --}}
+
                                     <div class="filters-card-body card-shop-filters">
                                         <div class="radio-pannel d-flex flex-wrap">
                                             @foreach (Common::allEventCategories() as $cat)
@@ -65,6 +68,8 @@
                                             @endforeach
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                             <div class="filters-card border-bottom p-3">
@@ -145,92 +150,126 @@
             </div>
             <div class="col-xl-9 col-lg-8">
                 <div class="row list-bp">
+
+                    
                    
                    @if($events->total() > 0)
                         @foreach ($events as $item)
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="card m-card shadow-sm border-0 listcard">
-                                    <div>
-                                        <div class="m-card-cover">
-                                            <img src="{{asset('images/upload/'.$item->image)}}" class="card-img-top" alt="...">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                            <div class="card m-card shadow-sm border-0 listcard">
+                                <div>
+                                    <div class="m-card-cover">
+                                        <img src="{{asset('images/upload/'.$item->image)}}" class="card-img-top" alt="{{$item->name}}">
+                                    </div>
+                                    <div class="card-body">
+                                        @php
+                                        $num = rand(3,5);
+                                        @endphp
+                                        <div class="rating-star mb-1">
+                                                @for($i=1;$i<=5;$i++) <small><i class="fas fa-star {{$i<=$num ? 'active':''}}"></i></small>
+                                                @endfor
+                                                <span class="text-dark"> ({{$num}}) Ratings</span>
                                         </div>
-                                        <div class="card-body">
+                                        <h5 class="card-title mb-2"><u>{{$item->name}}</u></h5>
+                                          <p class="card-text mb-0">
+                                            <small class="text-dark" title="{{ $item->temple_name }}"><i class="fas fa-map-marker-alt pr-2"></i>
+                                              {{ strlen($item->temple_name) > 50 ? substr($item->temple_name, 0, 50) . '...' : $item->temple_name }}
+                                            </small>
+                                          </p>
+                
+                                          @if ($item->event_type == "Recurring")
                                             @php
-                                            $num = rand(3,5);
+                                                $days = explode(',', $item->recurring_days);
+                                                $slotTime =  explode(',', $item->slot_time);
+                                                $currentDaySlot = array_search(date('l'), $days);
                                             @endphp
-                                            <div class="rating-star mb-1">
-                                                    @for($i=1;$i<=5;$i++) <small><i class="fas fa-star {{$i<=$num ? 'active':''}}"></i></small>
-                                                    @endfor
-                                                    <span class="text-dark"> ({{$num}}) Ratings</span>
-                                            </div>
-                                            <h5 class="card-title mb-0">{{$item->name}}</h5>
-                                             <p class="card-text mb-0"><small class="text-dark">{{$item->temple_name}}</small></p>
-                                             <div class="mt-2">
-                                                <p class="font-weight-bold h6 text-dark mb-0">
-                                                     <small>
-                                                        <del class="mr-1 text-muted "> 
-                                                            @if ($item->discount_amount > 0)
-                                                            ₹{{$item->price}}
-                                                            @endif    
-                                                        </del>
-                                                    </small>
-                                                </p>
-                                                <p class=" h6 text-dark mb-1">
-                                                    <span class="font-weight-bold pr-2">
-                                                        @if ($item->discount_type == "FLAT")
-                                                        ₹{{($item->price) - ($item->discount_amount) }}
-                                                        @elseif($item->discount_type == "DISCOUNT")
-                                                        ₹{{($item->price) - ($item->price * $item->discount_amount)/100 }}
-                                                        @else
+                                            <p class="my-1 text-light"><small><i class="fas fa-calendar-alt pr-2"></i> {{$currentDaySlot}}</small></p>
+                                          @else
+                                            <p class="my-1 text-light"><small style="font-size: 12px !important;"><i class="fas fa-calendar-alt pr-2"></i> {{date('F d | H:i A',strtotime($item->start_time))}} - {{date('F d | H:i A',strtotime($item->end_time))}}</small></p>
+                                          @endif
+                
+                                         
+                
+                                          <span class="text-warning">{{$item->event_cat}}</span>
+                                         <div class="mt-2 d-flex justify-content-between align-items-center">
+                                            @if ($item->discount_amount > 0)
+                                            {{-- <p class="font-weight-bold h6 text-dark mb-0">
+                                                 
+                                            </p> --}}
+                                            @endif 
+                                            <p class=" h6 text-dark mb-1">
+                                                <small>
+                                                    <del class="mr-1 text-muted "> 
                                                         ₹{{$item->price}}
-                                                        @endif
-                                                    </span>
-                                                    @if ($item->discount_amount > 0)
-                                                    <small class="text-danger">
-                                                        @if ($item->discount_type == "FLAT")
-                                                        {{$item->discount_type}} ₹{{$item->discount_amount}} OFF
-                                                        @endif 
-                                                        @if ($item->discount_type == "DISCOUNT")
-                                                        {{$item->discount_amount}}% OFF
-                                                        @endif 
-                                                    </small>
+                                                    </del>
+                                                </small>
+                                                <span class="font-weight-bold pr-2">
+                                                    @if ($item->discount_type == "FLAT")
+                                                    ₹{{($item->price) - ($item->discount_amount) }}
+                                                    @elseif($item->discount_type == "DISCOUNT")
+                                                    ₹{{($item->price) - ($item->price * $item->discount_amount)/100 }}
+                                                    @else
+                                                    ₹{{$item->price}}
                                                     @endif
-                                                </p>
-                                                <a href="{{url('event/'.$item->id.'/'.Str::slug($item->name))}}" class="btn btn-success btn-sm w-100">Book Ticket</a>
-                                             
-                                               
-                                            </div>
-                                        
+                                                </span>
+                                                @if ($item->discount_amount > 0)
+                                                <small class="text-danger">
+                                                    @if ($item->discount_type == "FLAT")
+                                                    {{$item->discount_type}} ₹{{$item->discount_amount}} OFF
+                                                    @endif 
+                                                    @if ($item->discount_type == "DISCOUNT")
+                                                    {{$item->discount_amount}}% OFF
+                                                    @endif     
+                                                </small>
+                                                @endif     
+                                            </p>
+                                            <a href="{{url('event/'.$item->id.'/'.Str::slug($item->name))}}" class="mt-1 btn btn-success btn-sm mb-1 ">Book {{$item->category->name}}</a>
                                         </div>
+                                    
                                     </div>
                                 </div>
-                                
-                                {{-- <div class="card m-card shadow-sm border-0">
-                                    <a href="{{url('event/'.$item->id.'/'.Str::slug($item->name))}}">
-                                        <div class="m-card-cover">
-                                            <img src="{{asset('images/upload/'.$item->image)}}" class="card-img-top" alt="...">
+                            </div>
+
+
+
+
+                            {{-- <div class="card m-card shadow-sm border-0 listcard">
+                                <div>
+                                    <div class="m-card-cover">
+                                        <img src="{{asset('images/upload/'.$item->image)}}" class="card-img-top" alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        @php
+                                        $num = rand(3,5);
+                                        @endphp
+                                        <div class="rating-star mb-1">
+                                                @for($i=1;$i<=5;$i++) <small><i class="fas fa-star {{$i<=$num ? 'active':''}}"></i></small>
+                                                @endfor
+                                                <span class="text-light"> ({{$num}}) Ratings</span>
                                         </div>
-                                        <div class="card-body p-3">
-                                            <h5 class="card-title text-dark mb-1">{{$item->name}}</h5>
-                                            <p class="card-text"><small class="text-dark">{{$item->temple_name}}</small> </p>
-                                            <div class="d-flex justify-content-between mt-2">
-                                                <small class="font-weight-bold h6 text-dark">
-                                                   <span>
-                                                        @if ($item->discount_type == "FLAT")
-                                                        ₹{{($item->price) - ($item->discount_amount) }}
-                                                        @elseif($item->discount_type == "DISCOUNT")
-                                                        ₹{{($item->price) - ($item->price * $item->discount_amount)/100 }}
-                                                        @else
+                                        <h5 class="card-title mb-0">{{$item->name}}</h5>
+                                         <p class="card-text mb-0"><small class="text-light">{{$item->temple_name}}</small></p>
+                                         <div class="mt-2">
+                                            <p class="font-weight-bold h6 text-light mb-0">
+                                                 <small>
+                                                    <del class="mr-1 text-muted "> 
+                                                        @if ($item->discount_amount > 0)
                                                         ₹{{$item->price}}
-                                                        @endif
-                                                    </span>
-                                                    <del class="ml-1 text-muted">
-                                                        @if ($item->discount_type != null)
-                                                        ₹{{$item->price}}
-                                                        @endif                                   
+                                                        @endif    
                                                     </del>
-                                                    
                                                 </small>
+                                            </p>
+                                            <p class=" h6 text-light mb-1">
+                                                <span class="font-weight-bold pr-2">
+                                                    @if ($item->discount_type == "FLAT")
+                                                    ₹{{($item->price) - ($item->discount_amount) }}
+                                                    @elseif($item->discount_type == "DISCOUNT")
+                                                    ₹{{($item->price) - ($item->price * $item->discount_amount)/100 }}
+                                                    @else
+                                                    ₹{{$item->price}}
+                                                    @endif
+                                                </span>
+                                                @if ($item->discount_amount > 0)
                                                 <small class="text-danger">
                                                     @if ($item->discount_type == "FLAT")
                                                     {{$item->discount_type}} ₹{{$item->discount_amount}} OFF
@@ -239,20 +278,19 @@
                                                     {{$item->discount_amount}}% OFF
                                                     @endif 
                                                 </small>
-                                                
-                                            </div>
-                                            @php
-                                                $num = rand(3,5);
-                                                @endphp
-                                                <div class="rating-star">
-                                                @for($i=1;$i<=5;$i++) <small><i class="fas fa-star {{$i<=$num ? 'active':''}}"></i></small>
-                                                    @endfor
-                                                    ({{$num}})
-                                            </div>
+                                                @endif 
+                                            </p>
+                                            <a href="{{url('event/'.$item->id.'/'.Str::slug($item->name))}}" class="btn btn-success btn-sm w-100">Book {{$item->category->name}}</a>
+                                         
+                                           
                                         </div>
-                                    </a>
-                                </div> --}}
-                            </div>
+                                    
+                                    </div>
+                                </div>
+                            </div> --}}
+                            
+                           
+                        </div>
                         @endforeach
                         <div class="col-lg-12 col-md-12">
                             <div class="w-100 mt-3 num_pagination">
@@ -310,12 +348,9 @@
             })
             type = typeArr.join(",");
         }
-
         if($("#organisation_name").val()!=''){
             org_name = $("#organisation_name").val();
         }
-
-
 
         var a = $(".js-range-slider").data("ionRangeSlider");
         var price = a.result.from+'-'+a.result.to;

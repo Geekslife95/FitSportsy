@@ -7,8 +7,8 @@
 <section class="section-area all-event-area">
     <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between  mb-3 overflow-hidden">
-            <h1 class="h3 mb-0 float-left">Find My Buddy</h1>
-            <a href="/create-my-travel-buddy" class="cstm_btn btn btn-dark px-4">Create My Travel Buddy</a>
+            <h1 class="h3 mb-0 float-left">Find Spiritual Volunteers</h1>
+            <a href="/create-spiritual-volunteers" class="cstm_btn btn btn-dark px-4">Create Spiritual Volunteers</a>
         </div>
         <div class="row">
             <div class="col-xl-3 col-lg-4">
@@ -16,7 +16,7 @@
                     <div class="filters-header border-bottom p-3">
                         <h5 class="m-0 text-dark">Filter By</h5>
                     </div>
-                    <form action="/filter-buddy" method="POST">
+                    <form action="/filter-spiritual-volunteers" method="POST">
                         @csrf
                         <div class="filters-body">
                             <div id="accordion">
@@ -24,7 +24,7 @@
                                     <div class="filters-card-header" id="categoryheading">
                                         <h6 class="mb-0">
                                             <a href="#" class="btn-link" data-toggle="collapse" data-target="#categorycollapse" aria-expanded="true" aria-controls="categorycollapse">
-                                                Travel Interest
+                                                Areas of Interest
                                                 <i class="fas fa-angle-down float-right"></i>
                                             </a>
                                         </h6>
@@ -33,33 +33,65 @@
                                         <div class="filters-card-body card-shop-filters">
                                             <div class="radio-pannel d-flex flex-wrap">
                                                 <label class="radio-label" for="cat_1">
-                                                    <input type="checkbox" value="Nature" name="locationcheckbox[]" id="cat_1" class="categories">
-                                                    <span>Nature</span>
+                                                    <input type="checkbox" value="Event Coordination" name="locationcheckbox[]" id="cat_1" class="categories">
+                                                    <span>Event Coordination</span>
                                                 </label>
                                                 <label class="radio-label" for="cat_2">
-                                                    <input type="checkbox" value="City Exploration" name="locationcheckbox[]" id="cat_2" class="categories">
-                                                    <span>City Exploration</span>
+                                                    <input type="checkbox" value="Teaching and Education" name="locationcheckbox[]" id="cat_2" class="categories">
+                                                    <span>Teaching and Education</span>
                                                 </label>
                                                 <label class="radio-label" for="cat_3">
-                                                    <input type="checkbox" value="Relaxation" name="locationcheckbox[]" id="cat_3" class="categories">
-                                                    <span>Relaxation</span>
+                                                    <input type="checkbox" value="Community Outreach" name="locationcheckbox[]" id="cat_3" class="categories">
+                                                    <span>Community Outreach</span>
+                                                </label>
+                                                <label class="radio-label" for="cat_4">
+                                                    <input type="checkbox" value="Administrative Support" name="locationcheckbox[]" id="cat_4" class="categories">
+                                                    <span>Administrative Support</span>
+                                                </label>
+                                                <label class="radio-label" for="cat_5">
+                                                    <input type="checkbox" value="Rituals and Ceremonies" name="locationcheckbox[]" id="cat_5" class="categories">
+                                                    <span>Rituals and Ceremonies</span>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="filters-card border-bottom p-3">
-                                    <div class="filters-card-header" id="priceheading">
+                                    <div class="filters-card-header" id="categoryheading2">
                                         <h6 class="mb-0">
-                                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#pricecollapse" aria-expanded="true" aria-controls="pricecollapse">
-                                                Budget <i class="fas fa-angle-down float-right"></i>
+                                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#categorycollapse2" aria-expanded="true" aria-controls="categorycollapse2">
+                                                Preferred Spiritual Tradition
+                                                <i class="fas fa-angle-down float-right"></i>
                                             </a>
                                         </h6>
                                     </div>
-                                    <div id="pricecollapse" class="collapse show" aria-labelledby="headingOne" >
+                                    <div id="categorycollapse2" class="collapse show" aria-labelledby="headingTwo">
                                         <div class="filters-card-body card-shop-filters">
-                                            <div class="form-group">
-                                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                            <div class="radio-pannel d-flex flex-wrap">
+                                                <label class="radio-label" for="tradition_1">
+                                                    <input type="checkbox" value="Hinduism" name="spritualTradition[]" id="tradition_1" class="categories">
+                                                    <span>Hinduism</span>
+                                                </label>
+                                                <label class="radio-label" for="tradition_2">
+                                                    <input type="checkbox" value="Buddhism" name="spritualTradition[]" id="tradition_2" class="categories">
+                                                    <span>Buddhism</span>
+                                                </label>
+                                                <label class="radio-label" for="tradition_3">
+                                                    <input type="checkbox" value="Christianity" name="spritualTradition[]" id="tradition_3" class="categories">
+                                                    <span>Christianity</span>
+                                                </label>
+                                                <label class="radio-label" for="tradition_4">
+                                                    <input type="checkbox" value="Islam" name="spritualTradition[]" id="tradition_4" class="categories">
+                                                    <span>Islam</span>
+                                                </label>
+                                                <label class="radio-label" for="tradition_5">
+                                                    <input type="checkbox" value="Sikhism" name="spritualTradition[]" id="tradition_5" class="categories">
+                                                    <span>Sikhism</span>
+                                                </label>
+                                                <label class="radio-label" for="tradition_6">
+                                                    <input type="checkbox" value="Jainism" name="spritualTradition[]" id="tradition_6" class="categories">
+                                                    <span>Jainism</span>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -97,19 +129,6 @@
                 <div class="row list-bp">
                    @if(!$buddys->isEmpty())
                         @foreach ($buddys as $item)
-                            {{-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12 mb-4">
-                                <div class="card m-card shadow-sm border-0">
-                                    <a href="/buddy-details/{{$item->id}}">
-                                        <div class="m-card-cover">
-                                            <img width="100%" height="300px" src="" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <h5 class="card-title text-dark mb-1">{{$item->name}}</h5>
-                                            <p class="card-text"><small class="text-dark">{{$item->trip_desc}}</small> </p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div> --}}
 
                             <div class="col-xl-3 mb-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-6">
                                 <div class="card buddy-card shadow-sm border-0">
@@ -130,7 +149,7 @@
                                             <p class="card-text mb-1 mx-1 bg-dark text-white rounded-pill px-2" title="Hobbies"><small style="font-size:9px;" ><i class="fas fa-trophy"></i> {{$item->hobbies}}</small> </p>
                                             <p class="card-text mb-1 mx-1 bg-dark text-white rounded-pill px-2" title="Travel Style"><small style="font-size:9px;" ><i class="fas fa-suitcase-rolling"></i> {{$item->travel_style}}</small> </p>
                                         </div>
-                                        <a href="/buddy-details/{{$item->id}}" class="mt-2 cstm_btn btn btn-outline-light text-white btn-sm btn-block">I'm interested!</a>
+                                        <a href="/spiritual-volunteers-details/{{$item->id}}" class="mt-2 cstm_btn btn btn-outline-light text-white btn-sm btn-block">I'm interested!</a>
                                     </div>
                                 </div>
                             </div>
@@ -201,15 +220,5 @@
         var price = a.result.from+'-'+a.result.to;
         window.location.href = '{{url("all-events")}}?category='+categories+'&city='+cities+'&price='+price+'&type='+type+'&s='+org_name
     })
-</script>
-<script>
-      $(".js-range-slider").ionRangeSlider({
-        type: "double",
-        min: {{$min == $max ? 0 : $min}},
-        max: {{$max}},
-        from: "0",
-        to: "{{$max}}",
-        grid: true
-    });
 </script>
 @endpush

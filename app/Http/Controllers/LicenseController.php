@@ -113,7 +113,15 @@ class LicenseController extends Controller
                     Auth::logout();
                     return Redirect::back()->with('error_msg', 'Only authorized person can login.');
                 }
-            } else {
+            } elseif (Auth::user()->hasRole('scanner')) {
+                if (Auth::user()->status == 1) {
+                    $this->setLanguage(Auth::user());
+                    return redirect('scanner/home');
+                } else {
+                    Auth::logout();
+                    return Redirect::back()->with('error_msg', 'Only authorized person can login.');
+                }
+            }else {
                 Auth::logout();
                 return Redirect::back()->with('error_msg', 'Only authorized person can login.');
             }
@@ -121,13 +129,60 @@ class LicenseController extends Controller
             return Redirect::back()->with('error_msg', 'Invalid Username or Password');
         }
     }
+
+    public function postScannerLogin(Request $request)
+    {
+
+        $request->validate([
+            'email' => 'bail|required|email',
+            'password' => 'bail|required',
+        ]);
+        $userdata = array(
+            'email' => $request->email,
+            'password' => $request->password,
+        );
+        $remember = $request->get('remember');
+        if (Auth::attempt($userdata, $remember)) {
+            if (Auth::user()->hasRole('scanner')) {
+                if (Auth::user()->status == 1) {
+                    $this->setLanguage(Auth::user());
+                    return redirect('scanner/home');
+                } else {
+                    Auth::logout();
+                    return Redirect::back()->with('error_msg', 'Only authorized person can login.');
+                }
+            }else {
+                Auth::logout();
+                return Redirect::back()->with('error_msg', 'Only authorized person can login.');
+            }
+        } else {
+            return Redirect::back()->with('error_msg', 'Invalid Username or Password');
+        }
+    }
+
     public function adminLogout(Request $request)
     {
+
+        if (Auth::user()->hasRole('scanner')) {
+            Auth::logout();
+            return redirect('/scanner-login');
+        }
+
         if (Auth::check()) {
             Auth::logout();
             return redirect('/login');
         }
     }
+
+    public function scannerLogin(){
+        if (Auth::check()) {
+            return redirect('/scanner/home');
+        }
+        return view('auth.scanner-login');
+    }
+
+   
+
     public function licenseSetting()
     {
         $setting = Setting::find(1);

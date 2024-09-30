@@ -62,7 +62,7 @@
     
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Upload Image</h5>
@@ -90,8 +90,15 @@
 <script>
 $(document).ready(function() {
     var preview = new Croppie($('#image-preview')[0], {
-        boundary: { width: 1100, height: 500 },
-        viewport: { width: 960, height: 300, type: 'rectangle' },
+        boundary: {
+                width: 250,
+                height: 250
+        },
+        viewport: {
+            width: 200,
+            height: 200,
+            type: 'circle'
+        },
         // enableResize: true,
         // enableOrientation: true,
         // enableExif: true,

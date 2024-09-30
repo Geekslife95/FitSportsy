@@ -2,7 +2,7 @@
 <div class="row">
     @forelse ($galleryData as $val)
         <div class="col-md-3">
-            <img src="/images/upload/{{$val->image}}" data-id="{{$val->image}}" class="img-fluid img_gallery" style="cursor: pointer;">
+            <img src="{{asset('images/upload/'.$val->image)}}" data-id="{{$val->image}}" class="img-fluid img_gallery" style="cursor: pointer;">
         </div> 
     @empty    
         <div class="col-md-12">

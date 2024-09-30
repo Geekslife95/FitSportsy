@@ -31,9 +31,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => '879173125469-cb6prdheieuqjsedia1bbvjva7qh4fn6.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'https://bookmyadventurequest.com/google-auth-login',
+        'client_id' => '353694442485-p21njj8t70fjvbo48ie5c72vjke8aai2.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://bookmypujaseva.com/google-auth-login',
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),

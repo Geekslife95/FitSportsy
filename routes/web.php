@@ -25,6 +25,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\EventGalleryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOrderController;
+use App\Http\Controllers\SubscriptionController;
 use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Artisan;
@@ -54,6 +55,9 @@ Route::get('/login',function(){
 })->name('login');
 
 Route::post('/admin/login', [LicenseController::class, 'adminLogin']);
+Route::get('/scanner-login', [LicenseController::class, 'scannerLogin']);
+Route::post('/scanner-login', [LicenseController::class, 'postScannerLogin']);
+
 Route::get('/logout', [LicenseController::class, 'adminLogout'])->name('logout123');
 Route::post('/saveEnvData', [LicenseController::class, 'saveEnvData']);
 Route::post('/saveAdminData', [LicenseController::class, 'saveAdminData']);
@@ -68,32 +72,40 @@ Route::any('get-event-galleries', [EventController::class, 'getEventGalleries'])
 
 Route::group(['middleware' => ['auth']], function () {
 
+
     Route::get('/location-wise-popup',[PopupController::class,'allData']);
     Route::get('/add-popup',[PopupController::class,'createPopup']);
     Route::post('/add-popup',[PopupController::class,'addNew']);
     Route::get('/delete-popup/{id}',[PopupController::class,'destroy']);
 
-    Route::get('/admin/weekend-traveller', [UserController::class, 'weekendTraveller']);
-    Route::get('/create-weekend-traveller', [UserController::class, 'createTraveller']);
-    Route::post('/create-weekend-traveller', [UserController::class, 'insertTravelerData']);
-    Route::get('/update-weekend/{id}',[UserController::class,'showSingleTraveller']);
-    Route::post('/update-weekend',[UserController::class,'updateTranveller']);
-    Route::post('/upload-Image',[UserController::class],'uploadImage');
+    Route::get('/update-volunteer/{id}',[UserController::class,'showSingleRecord']);
+    Route::post('/update-spiritualVolunteers',[UserController::class,'updatespiritualVolunteers']);
+    Route::get('/create-volunteer',[UserController::class, 'viewspiritualVolunteers']);
+    Route::post('/create-volunteer',[UserController::class, 'createspiritualVolunteers']);
+    Route::get('/admin/spiritual-volunteers', [UserController::class, 'spiritualVolunteers']);
 
-    
-    Route::get('/update-buddy/{id}',[UserController::class,'showSingleRecord']);
-    Route::post('/update-buddy',[UserController::class,'updateBuddyDetails']);
-    Route::get('/create-buddy',[UserController::class, 'viewbuddy']);
-    Route::post('/create-buddy',[UserController::class, 'createBuddy']);
-    Route::get('/admin/find-my-buddy', [UserController::class, 'findmybuddy']);
 
     Route::get('/organizer-bank-details',[OrganizationApiController::class,'bankDetailShow']);
     Route::post('/submit-organizer-bank-details',[OrganizationApiController::class,'submitBankDetails']);
     Route::get('/organizer-bank-details/{id}',[OrganizationApiController::class,'getOrgBankDetails']);
 
-    
     Route::get('/admin/home', [UserController::class, 'adminDashboard']);
+
+    Route::get('/admin/create-subscription', [SubscriptionController::class, 'createSubscription']);
+    Route::post('/admin/create-subscription', [SubscriptionController::class, 'postcreateSubscription']);
+    Route::get('/admin/edit-subscription', [SubscriptionController::class, 'editSubscription']);
+    Route::post('/admin/edit-subscription', [SubscriptionController::class, 'posteditSubscription']);
+    Route::get('/admin/update-status-subscription', [SubscriptionController::class, 'updateStatusSubscription']);
+    Route::get('/admin/view-subscription', [SubscriptionController::class, 'viewAllSubscription']);
+
+
     Route::get('/organization/home', [UserController::class, 'organizationDashboard']);
+    Route::get('/scanner/home', [UserController::class, 'scannerDashboard']);
+    Route::get('/scanner/scan/', [UserController::class, 'scanQrCode']);
+
+    Route::post('/scan-order-details', [UserController::class,'showTicketDetails']);
+    Route::get('/update-scaned-user',[UserController::class,'updateScanDetails']);
+
     Route::get('/{id}/{name}/tickets', [TicketController::class, 'index']);
     Route::get('/book-ticket', [UserController::class, 'bookTicket']);
     Route::get('/organizer/{id}/{name}', [UserController::class, 'organizerEventDetails']);
@@ -216,4 +228,6 @@ Route::get('/rave/callback/{id}', [UserController::class, 'callback'])->name('ca
 
 Route::get('FlutterWavepayment/{id}', [UserController::class, 'FlutterWavepayment']);
 Route::get('transction_verify/{id}', [UserController::class, 'transction_verify']);
+
+Route::get('all-products', [ProductController::class, 'allProducts']);
 

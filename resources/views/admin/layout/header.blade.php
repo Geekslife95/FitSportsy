@@ -5,7 +5,8 @@
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li style="font-size:21px;color:#fff;">GeeksLife Technology Solutions PVT LTD</li>
+            <li class="d-lg-inline-block d-md-inline-block d-none" style="font-size:18px;color:#fff;">GeeksLife Technology Solutions PVT LTD</li>
+            <li class="d-lg-none d-md-none d-inline-block" style="font-size:18px;color:#fff;">GeeksLife</li>
         </ul>
     </form>
 

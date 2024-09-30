@@ -1,6 +1,6 @@
 @extends('master')
 @php
-    $currency = 'INR';
+    $currency = '₹';
 @endphp
 @section('content')
     <section class="section">
@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="invoice-title">
-                                <h3>{{ __('Order') }} {{ $order->order_id }}</h3>
+                                <h5>{{ __('Order') }} {{ $order->order_id }}</h5>
                                 <div class="invoice-number">
                                     <a class="btn btn-primary" target="_blank"
                                         href="{{ url('order-invoice-print/' . $order->id) }}"><i class="fas fa-download"
@@ -69,14 +69,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-
                                     <address>
                                         <strong>{{ __('Attendee') }}:</strong><br>
-                                        {{ $userData['prasada_name']}}<br>
-                                        {{ $userData['prasada_email'] }}<br>
+                                        @isset($orderChild[0]->devotee_persons)
+                                            @php  $details = json_decode($orderChild[0]->devotee_persons,true);  @endphp
+                                            <p class="mb-0"><b>Name : </b> {{$details['prasada_name']}}</p>
+                                            <p class="mb-0"><b>Email : </b> {{$details['prasada_email']}}</p>
+                                        @endisset
                                     </address>
-
-
                                 </div>
                                 <div class="col-md-6 text-md-right">
                                     <address>
@@ -97,15 +97,22 @@
                                         <th>#</th>
                                         <th class="text-center">{{ __('Ticket Name') }}</th>
                                         <th class="text-center">{{ __('Ticket Number') }}</th>
+                                        @if ($order->event->ticket_type == 1)
+                                        <th class="text-center">{{ __('Seat Number') }}</th>                                            
+                                        @endif
                                         <th class="text-center">{{ __('Price') }}</th>
                                         <th class="text-center">{{ __('Code') }}</th>
                                     </tr>
-                                    @foreach ($order->ticket_data as $item)
+                                    
+                                    @foreach ($orderChild as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td class="text-center">{{ $order->ticket->name }}</td>
-                                            <td class="text-center">{{ $item->ticket_number }}</td>
-                                            <td class="text-center">{{ $currency . $order->ticket->price }}</td>
+                                            <td class="text-center">{{ $item->ticket->name }}</td>
+                                            <td class="text-center">{{ $item->ticket->ticket_number}}</td>
+                                            @if ($order->event->ticket_type == 1)
+                                            <td class="text-center">{{ $item->prasada_address }}</td>
+                                            @endif
+                                            <td class="text-center">{{ $currency . $item->ticket->price }}</td>
                                             <td class="text-center"><a href="{{ url('get-code/' . $item->id) }}"><i
                                                         class="fas fa-print"></i></a></td>
                                         </tr>

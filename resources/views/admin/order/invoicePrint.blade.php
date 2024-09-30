@@ -98,14 +98,16 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-
                                         <address>
                                             <strong>{{ __('Attendee') }}:</strong><br>
-                                            {{ $userData['prasada_name'] }}<br>
-                                            {{ $userData['prasada_email'] }}<br>
+                                            @isset($userData['prasada_name'])
+                                            {{ $userData['prasada_name']}}
+                                            @endisset
+                                            <br>
+                                            @isset($userData['prasada_email'])
+                                            {{ $userData['prasada_email']}}
+                                            @endisset
                                         </address>
-
-
                                     </div>
                                     <div class="col-md-6 text-md-right">
                                         <address>
@@ -194,8 +196,8 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary" type="button"><a class="text-decoration-none text-white"
-                                    href="{{ url('/send-mail' . '/' . $order->id) }}">Email PDF</a></button>
+                            {{-- <button class="btn btn-primary" type="button"><a class="text-decoration-none text-white"
+                                    href="{{ url('/send-mail' . '/' . $order->id) }}">Email PDF</a></button> --}}
 
                         </div>
                     </div>

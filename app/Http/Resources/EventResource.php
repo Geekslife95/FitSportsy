@@ -20,16 +20,23 @@ class EventResource extends JsonResource
         $inputObjT->url = url('get-tickets-d-events');
         $inputObjT->params = 'id='.$this->id;
         $this->encLink = Common::encryptLink($inputObjT);
-        return [
 
+        $date1=strtotime(date("Y-m-d",strtotime($request->date)));
+        $date2=strtotime(date("Y-m-d"));
+        $showSlots = 0;
+        if($date1 > $date2){
+            $showSlots = 1;
+        }
+        return [
             'ticket_link' => $this->encLink,
             'name' => $this->name,
             'temple_name' => $this->temple_name,
             'address' => $this->address,
             'event_type' => $this->event_type,
             'time_slots' => $this->time_slots,
-            'start_time' => $this->start_time ? Carbon::parse($this->start_time)->format('H:i:s') : null,
-            'end_time' => $this->end_time ? Carbon::parse($this->end_time)->format('H:i:s') : null,
+            'start_time' => $this->start_time ? Carbon::parse($this->start_time)->format('H:i') : null,
+            'end_time' => $this->end_time ? Carbon::parse($this->end_time)->format('H:i') : null,
+            'dateS'=>$showSlots
 
         ];
     }

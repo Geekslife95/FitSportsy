@@ -34,18 +34,23 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <div class="row mb-4 mt-2">
-                                <div class="col-lg-8">
-                                    <h2 class="section-title mt-0"> {{ __('View Tickets') }}</h2>
-                                </div>
-                                <div class="col-lg-4 text-right">
-                                    @can('ticket_create')
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h2 class="section-title mt-0"> {{ __('View Tickets') }}</h2>
+                                @can('ticket_create')
+                                    @if($event->ticket_type == 1)
+                                        @if (count($ticket) < 3)
                                         <button class="btn btn-primary add-button"><a
-                                                href="{{ url($event->id . '/ticket/create') }}"><i class="fas fa-plus"></i>
-                                                {{ __('Add New') }}</a></button>
-                                    @endcan
-                                </div>
+                                            href="{{ url($event->id . '/ticket/create') }}"><i class="fas fa-plus"></i>
+                                            {{ __('Add New') }}</a></button>
+                                        @endif
+                                    @else
+                                        <button class="btn btn-primary add-button"><a
+                                            href="{{ url($event->id . '/ticket/create') }}"><i class="fas fa-plus"></i>
+                                            {{ __('Add New') }}</a></button>
+                                    @endif
+                                @endcan
                             </div>
+                           
                             <div class="table-responsive">
                                 <table class="table" id="report_table">
                                     <thead>
@@ -84,13 +89,6 @@
                                                             class="badge {{ $item->status == '1' ? 'badge-success' : 'badge-warning' }}  m-1">{{ $item->status == '1' ? 'Active' : 'Inactive' }}</span>
                                                     </h5>
                                                 </td>
-                                                {{-- <td>
-                                                    @if ($item->maximum_checkins == null)
-                                                        {{ __('Unlimited') }}
-                                                    @else
-                                                    {{$item->maximum_checkins}}
-                                                    @endif
-                                                </td> --}}
                                                 @if (Gate::check('ticket_edit') || Gate::check('ticket_delete'))
                                                     <td>
                                                         @can('ticket_edit')

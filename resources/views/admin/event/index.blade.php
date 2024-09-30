@@ -7,7 +7,6 @@
         ])
 
         <div class="section-body">
-
             <div class="row">
                 <div class="col-12">
                     @if (session('status'))
@@ -23,7 +22,7 @@
                     <div class="card">
                         
                         <div class="card-body">
-                            <div class="row mb-4 mt-2">
+                            <div class="row mb-3">
                                
 
                                 <div class="col-lg-3">
@@ -49,8 +48,10 @@
                                 </div>
                                 <div class="col-lg-6 text-right">
                                     @can('event_create')
-                                        <button class="btn btn-primary add-button"><a href="{{ url('event/create') }}"><i
+                                        <button class="btn btn-primary add-button mt-3"><a href="{{ url('event/create') }}"><i
                                                     class="fas fa-plus"></i> {{ __('Add New') }}</a></button>
+                                        {{-- <button class="btn btn-primary add-button mt-3"><a href="{{ url('/dashboard') }}"><i
+                                            class="fas fa-plus"></i> {{ __('Add New') }}</a></button> --}}
                                     @endcan
                                 </div>
                             </div>
@@ -60,7 +61,8 @@
                                         <tr>
                                             <th>{{ __('Image') }}</th>
                                             <th>{{ __('Name') }}</th>
-                                            <th>{{ __('Total Ticket') }}</th>
+                                            <th>{{ __('Total Tickets') }}</th>
+                                            <th>{{ __('Tickets Type') }}</th>
                                             {{-- <th>{{ __('Number of People') }}</th> --}}
                                             <th>{{ __('Category') }}</th>
                                             @if (Auth::user()->hasRole('admin'))
@@ -92,6 +94,9 @@
                                                     <p class="mb-0">
                                                         {{$item->ticket_count}}
                                                     </p>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-0">{{ $item->ticket_type == 1 ? "Advance" : "Basic" }}</p>
                                                 </td>
                                                 {{-- <td>{{ $item->people }}</td> --}}
                                                 <td>{{ $item->category->name }}</td>
@@ -130,7 +135,7 @@
                                                 @if (Gate::check('ticket_access'))
                                                     <td>
                                                         <a href="{{ url($item->id . '/' . Str::slug($item->name) . '/tickets') }}"
-                                                            class=" btn btn-primary">{{ ($item->ticket_count > 0) ? "Manage Tickets" : "Add Tickets"}}</a>
+                                                            class=" btn btn-primary">{{ ($item->ticket_count > 0) ? "Manage Tickets"  : "Add Tickets"}}</a>
                                                     </td>
                                                 @endif
                                             </tr>
@@ -160,7 +165,7 @@
             }
         })
     </script>
-    <script>
+     <script>
         $("#select_city").on('change',function(){
             var vl = $('#select_city').val();
             if(vl!=''){

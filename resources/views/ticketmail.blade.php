@@ -1,3 +1,7 @@
+@php
+    $currency = "₹";
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,7 +66,7 @@
                                                 <div class="col-md-12">
 
                                                     <img alt="image" class="mr-3"
-                                                        src="{{ public_path('images/upload/' . $order->event->image) }}"
+                                                        src="{{ public_path('/images/upload/' . $order->event->image) }}"
                                                         width="80" height="80">
                                                     {{-- <?php
                                                     $tickets = [];
@@ -86,7 +90,13 @@
                                                 {{ $order->event->name }}
                                             </div>
                                             <div class="media-description text-muted">
-                                                {{ $order->event->start_time->format('l') . ', ' . $order->event->start_time->format('d M Y') }}
+                                                @if ($order->event->start_time != null)
+                                                    {{$order->event->start_time->format('l')}}
+                                                @endif
+                                                ,
+                                                @if ($order->event->start_time)
+                                                   {{$order->event->start_time->format('d M Y') }}
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -114,8 +124,17 @@
                                     <address>
                                         <strong>{{ __('Attendee') }}:</strong><br>
                                         <div style="color: #6c757d">
-                                            {{ $order->customer->name . ' ' . $order->customer->last_name }}<br>
-                                            {{ $order->customer->email }}<br>
+                                            @isset($order->customer->name)
+                                                {{$order->customer->name}}
+                                            @endisset
+                                            @isset($order->customer->last_name)
+                                            {{ ' '.$order->customer->last_name}}
+                                             @endisset
+                                             <br>
+                                             @isset($order->customer->email)
+                                            {{ $order->customer->email}}
+                                             @endisset
+                                             <br>
                                         </div>
                                     </address>
                                 </div>

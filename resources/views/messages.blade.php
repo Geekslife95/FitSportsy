@@ -1,6 +1,6 @@
 
 
-<div class="col-md-12">
+<div class="col-md-12 p-0">
     @if($errors->any())
         <div class="alert alert-danger alert-dismissible fade show glbl-cust-message">
             <ul style="margin:0;padding:0;list-style:none;">

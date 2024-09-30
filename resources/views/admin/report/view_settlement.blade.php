@@ -5,6 +5,9 @@
     @include('admin.layout.breadcrumbs', [
         'title' => __('Organizer Settlement Detail'),            
     ]) 
+    @php
+        $currency = "₹";
+    @endphp
 
     <div class="section-body">
         <div class="row">

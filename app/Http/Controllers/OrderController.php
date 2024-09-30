@@ -35,19 +35,21 @@ class OrderController extends Controller
     public function index(Request $request)
     {
 
-         if (Auth::user()->hasRole('admin')) {
-            $orders = Order::with(['event','orderchildC','organization'])->OrderBy('id', 'DESC');
+        if (Auth::user()->hasRole('admin')) {
+            $orders = Order::with(['event','orderchildC','organization'])->OrderBy('created_at', 'DESC');
             if(!empty($request->search)){
                 $orders->where('order_id','like','%'.$request->search.'%');
             }
             $orders = $orders->paginate(50);
         } elseif (Auth::user()->hasRole('Organizer')) {
-            $orders = Order::with(['event','orderchildC','organization'])->where('organization_id', Auth::user()->id)->OrderBy('id', 'DESC');
+            $orders = Order::with(['event','orderchildC','organization'])->where('organization_id', Auth::user()->id)->OrderBy('created_at', 'DESC');
             if(!empty($request->search)){
                 $orders->where('order_id','like','%'.$request->search.'%');
             }
            $orders = $orders->paginate(50);
         }
+
+        // dd($orders);
         return view('admin.order.index', compact('orders'));
     }
 
@@ -63,11 +65,38 @@ class OrderController extends Controller
 
     public function orderInvoice($id)
     {
-        $order = Order::with(['customer', 'event', 'organization', 'ticket'])->find($id);
+        $order = Order::with(['customer', 'event', 'organization'])->find($id); 
         $order->tax_data = OrderTax::where('order_id', $id)->get();
-        $order->ticket_data = OrderChild::where('order_id', $order->id)->get();
-        $userData = json_decode($order->ticket_data[0]['prasada_address'],true);
-        return view('admin.order.invoice', compact('order','userData'));
+        $orderChild = OrderChild::select('devotee_persons','prasada_address','ticket_id','id')->where('order_id', $order->id)->with('ticket')->get();
+        // dd($orderChild);
+        return view('admin.order.invoice', compact('order','orderChild'));
+
+
+        // $order = Order::find($id);
+        // if($order->ticket_id == NULL){
+        //     $ticket = Ticket::whereIN('id',json_decode($order->seat_details,true))->get();
+        //     $order = Order::with(['customer', 'event', 'organization'])->find($id);
+        //     $order->tax_data = OrderTax::where('order_id', $id)->get();
+        //     $order->ticket_data = OrderChild::where('order_id', $order->id)->get();
+        //     if($order->ticket_data->count() > 0){
+        //         $userData = json_decode(($order->ticket_data)[0]['prasada_address'],true);
+        //     }else{
+        //         $userData=[];
+        //     }
+        //     return view('admin.order.invoice', compact('order','userData','ticket'));
+        // }else{
+            // $order = Order::with(['customer', 'event', 'organization', 'ticket'])->find($id); 
+            // $order->tax_data = OrderTax::where('order_id', $id)->get();
+            // $order->ticket_data = OrderChild::where('order_id', $order->id)->get();
+            // if($order->ticket_data->count() > 0){
+            //     $userData = json_decode(($order->ticket_data)[0]['prasada_address'],true);
+            // }else{
+            //     $userData=[];
+            // }
+            // return view('admin.order.invoice', compact('order','userData'));
+        // }
+
+       
     }
 
     public function userReview()
@@ -291,7 +320,12 @@ class OrderController extends Controller
         $order = Order::with(['customer', 'event', 'organization', 'ticket'])->find($order_id);
         $order->tax_data = OrderTax::where('order_id', $order->id)->get();
         $order->ticket_data = OrderChild::where('order_id', $order->id)->get();
-        $userData = json_decode($order->ticket_data[0]['prasada_address'],true);
+        // $userData = json_decode($order->ticket_data[0]['prasada_address'],true);
+        if($order->ticket_data->count() > 0){
+            $userData = json_decode(($order->ticket_data)[0]['prasada_address'],true);
+        }else{
+            $userData=[];
+        }
         $order->maintax = array();
         foreach ($order->tax_data as $item) {
             $tax = Tax::find($item->tax_id)->get();
@@ -308,8 +342,10 @@ class OrderController extends Controller
         $order->ticket_data = OrderChild::where('order_id', $order->id)->get();
         $customPaper = array(0, 0, 720, 1440);
         $pdf = FacadePdf::loadView('ticketmail', compact('order'))->save(public_path("ticket.pdf"))->setPaper($customPaper, $orientation = 'portrait');
+        if(!isset($order->customer->email)){
+            return redirect()->back()->with('error','This User Doesn\'t Have Email Id');
+        }
 
-        
         $data["email"] = $order->customer->email;
         $data["title"] = "Ticket PDF";
         $data["body"] = "";

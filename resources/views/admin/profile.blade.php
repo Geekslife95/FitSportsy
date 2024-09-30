@@ -7,7 +7,7 @@
         ])
 
         <div class="section-body">
-            <h2 class="section-title">{{ __('Hi,') }} {{ Auth::user()->name }}!</h2>
+            <h2 class="section-title">{{ __('Hi,') }} {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}!</h2>
             <p class="section-lead">
                 {{ __('Change information about yourself on this page.') }}
             </p>
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="profile-widget-description">
-                            <div class="profile-widget-name">{{ Auth::user()->name }}</div>
+                            <div class="profile-widget-name">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
                             <b>{{ Auth::user()->email }}</b>
                             <p>{{ Auth::user()->bio }}</p>
                         </div>
@@ -101,7 +101,7 @@
 
                                 @csrf
                                 <div class="text-muted d-inline">
-                                    <h6>{{ __(Auth::user()->name . ' Information') }}</h6>
+                                    <h6>{{ __(Auth::user()->first_name .  Auth::user()->last_name. ' Information') }}</h6>
                                 </div>
                                 <div class="form-group col-md-12 col-12">
                                     <label>{{ __('Profile Image') }}</label>
@@ -115,10 +115,18 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-md-12 col-12">
-                                        <label>{{ __('Name') }}</label>
-                                        <input type="text" name="name" class="form-control"
-                                            value="{{ Auth::user()->name }}" required>
+                                    <div class="form-group col-md-6 col-6">
+                                        <label>{{ __('First Name') }}</label>
+                                        <input type="text" name="first_name" class="form-control"
+                                            value="{{ Auth::user()->first_name	 }}" required>
+                                        @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-6 col-6">
+                                        <label>{{ __('Last Name') }}</label>
+                                        <input type="text" name="last_name" class="form-control"
+                                            value="{{ Auth::user()->last_name }}" required>
                                         @error('name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 use App\Models\Category;
+use Auth;
 class Common
 {
   public static function encryptLink($inputObj){
@@ -61,14 +62,33 @@ class Common
     });
     return $catData;
   }
-
   
+  public static function abhisheka(){
+    $selectedCity = \Session::has('CURR_CITY') ? \Session::get('CURR_CITY') : 'All';
+    $date = date("Y-m-d H:i:s");
+    $category = Category::select('id','name','slug','image','banner_image','redirect_link')->with(['events'=>function($query) use($date,$selectedCity){
+      $query->select('events.name as name','events.id','category_id','events.image','temple_name','t.price','t.discount_type','t.discount_amount')->where([['events.status', 1], ['events.is_deleted', 0], ['event_status', 'Pending']])->where(function($q) use($date){
+          $q->where('events.end_time', '>', $date)->orWhereIn('event_type',[2,3]);
+      });
+      if($selectedCity!='All'){
+          $query->where('city_name',$selectedCity);
+      }
+      $query->leftJoin('tickets as t','t.event_id','events.id');
+      $query->orderBy('event_type','ASC')->orderBy('events.start_time', 'desc')->groupBy('events.id')->take(20);
+    }])->where('status', 1)->orderBy('order_num', 'ASC')->get();
+    // dd($category);
+    return $category;
+
+  }
+
   public static function allEventCities(){
     $catData = \Cache::rememberForever('event-cities',function(){
       return \App\Models\City::select('city_name','id')->groupBy('city_name')->has('selectCity')->get();
     });
     return $catData;
   }
+
+
 
   public static function nextTwoWeeks(){
     $days   = [];
@@ -88,24 +108,6 @@ class Common
   public static function generateUniqueUserTicketNumber($ticket){
     $checkData = \App\Models\OrderChild::where('ticket_number',$ticket)->count();
     return $ticket.($checkData+1);
-  }
-
-  public static function abhisheka(){
-    $selectedCity = \Session::has('CURR_CITY') ? \Session::get('CURR_CITY') : 'All';
-    $date = date("Y-m-d H:i:s");
-    $category = Category::select('id','name','slug','image','banner_image','redirect_link')->with(['events'=>function($query) use($date,$selectedCity){
-      $query->select('events.name as name','events.id','category_id','events.image','temple_name','t.price','t.discount_type','t.discount_amount')->where([['events.status', 1], ['events.is_deleted', 0], ['event_status', 'Pending']])->where(function($q) use($date){
-          $q->where('events.end_time', '>', $date)->orWhereIn('event_type',[2,3]);
-      });
-      if($selectedCity!='All'){
-          $query->where('city_name',$selectedCity);
-      }
-      $query->leftJoin('tickets as t','t.event_id','events.id');
-      $query->orderBy('event_type','ASC')->orderBy('events.start_time', 'desc')->groupBy('events.id')->take(20);
-    }])->where('status', 1)->orderBy('order_num', 'ASC')->get();
-    // dd($category);
-    return $category;
-
   }
 
   public static function paymentKeysAll(){
@@ -129,7 +131,7 @@ class Common
     $ivalue = substr(hash('sha256', $secretKey), 0, 16); // sha256 is hash_hmac_algo
     $result = openssl_encrypt($string, $encryptMethod, $key, 0, $ivalue);
     return base64_encode($result);  // output is a encripted value
-} 
+}
 
 public static function decryptId($stringEncrypt){
     $privateKey 	= 'NXYvSqE96kxiF5rJPn'; // user define key
@@ -138,7 +140,7 @@ public static function decryptId($stringEncrypt){
     $key    = hash('sha256', $privateKey);
     $ivalue = substr(hash('sha256', $secretKey), 0, 16); // sha256 is hash_hmac_algo
     return  openssl_decrypt(base64_decode($stringEncrypt), $encryptMethod, $key, 0, $ivalue);
-} 
+}
 
 public static function shippingCharge(){
   return 100;
@@ -151,16 +153,34 @@ public static function statesAll(){
   return $cityData;
 }
 
-public static function sportAgeGroups($key=null){
-  $arr =  [
-    1=>'Kids',2=>'Teens',3=>'Adults',4=>'Open For All'
-  ];
-  if(!is_null($key)){
-    return isset($arr[$key]) ? $arr[$key] : '-';
-  }
-  return $arr;
+public static function checkstepCount(){
+  $userID = Auth::id();
+  $checkData = \App\Models\TempEvent::select('step_count')->where('user_id',$userID)->orderBy('id','DESC')->first();
+  return $checkData;
 }
 
+public static function allAgeGroup(){
+  return [
+    '18+',
+    'Teens',
+    'Anyone'
+  ];
+}
 
+public static function demoOptions(){
+  return ['No','Yes'];
+}
+
+public static function equipmentOptions(){
+  return ['No','Yes'];
+}
+
+public static function allSkillsArr(){
+  return ['Beginer','Intermediate','Advanced','Professional'];
+}
+
+public static function sessionPlanArr(){
+  return ['Monthly','Weekly Batch','Summer Batch','Special Batch','Quarterly','Half-Yearly','Yearly'];
+}
 
 }

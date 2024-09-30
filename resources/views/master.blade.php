@@ -7,9 +7,11 @@
     @endphp
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="google" content="notranslate"/>
     <title>{{ $favicon->app_name }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- General CSS Files -->
+    <link rel="manifest" href="{{ asset('scanner_manifest.json') }}">
     <link href="{{ $favicon->favicon ? url('images/upload/' . $favicon->favicon) : asset('/images/logo.png') }}" rel="icon" type="image/png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         crossorigin="anonymous">
@@ -30,11 +32,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
     <link href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet" />
-
+   
     <link rel="stylesheet" href="{{ url('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ url('admin/css/components.css') }}">
     <link rel="stylesheet" href="{{ url('admin/css/custom.css') }}">
-    <link href="{{ asset('f-css/croppie.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('admin/css/croppie.css') }}">
     @if (session('direction') == 'rtl')
         <link rel="stylesheet" href="{{ url('admin/css/rtl.css') }}">
     @endif
@@ -46,7 +48,7 @@
 </head>
 
 <body>
-    <?php $primary_color = "#42A660"; ?>
+    <?php $primary_color = "#323545"; ?>
 
     <style>
         :root {
@@ -66,8 +68,6 @@
         @if (Auth::check())
             <div class="main-wrapper">
                 @include('admin.layout.header')
-
-
                 @include('admin.layout.sidebar')
                 <div class="main-content">
                     @if (Auth::user()->hasRole('admin'))
@@ -161,9 +161,37 @@
     <script src="{{ url('admin/js/myCustom.js') }}"></script>
     <script src="{{ url('frontend/js/jquery.validate.min.js') }}"></script>
     <script src="{{ url('admin/js/custom.js') }}"></script>
-    <script src="{{ asset('f-vendor/croppie.js') }}" type="text/javascript"></script>
-
+    
+<script>
+    document.getElementById("check2").addEventListener('click', function() {
+        Swal.fire({
+            title: 'Are you sure to logout!!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location = "/logout";
+            }
+        })
+    });
+</script>
     @stack('scripts')
+
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker
+                .register("/sw.js")
+                .then(res => console.log("service worker registered"))
+                .catch(err => console.log("service worker not registered", err))
+            })
+        }
+    </script>
 </body>
 
 </html>

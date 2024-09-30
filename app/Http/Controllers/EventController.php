@@ -35,7 +35,7 @@ class EventController extends Controller
             $events->with(['scanner:id,name,last_name'])->where('user_id',Auth::user()->id);
         }else{
             $events->with(['user:id,name,last_name']);
-        }    
+        }
 
         if(!empty($request->search)){
             $search = $request->search;
@@ -54,9 +54,10 @@ class EventController extends Controller
             $events->where('events.city_name','=',$city);
         }
 
-        $events->where([['is_deleted', 0], ['event_status', 'Pending']]);  
+        $events->where([['is_deleted', 0], ['event_status', 'Pending']]);
         $events = $events->orderBy('status','DESC')->orderBy('event_type', 'ASC')->orderBy('start_time','ASC')->withCount('ticket')->paginate(50);
         $citys = City::get();
+        // dd($events);
         return view('admin.event.index', compact('events','citys'));
     }
 
@@ -96,6 +97,7 @@ class EventController extends Controller
         if(empty($request->temple_name)){
             return redirect()->back()->withStatus('add one or more temples');
         }
+
         $mainImage = null;
         if ($request->hasFile('image')) {
             $mainImage = (new AppHelper)->saveImage($request);
@@ -104,6 +106,17 @@ class EventController extends Controller
         }else{
             $mainImage = $request->img_name;
         }
+
+        $bannerImage = null;
+        if ($request->hasFile('banner')) {
+            // (new AppHelper)->deleteFile($event->image);
+            $image = $request->file('banner');
+            $name = time().'-'.uniqid() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images/upload');
+            $image->move($destinationPath, $name);
+            $bannerImage = $name;
+        }
+
         $userId = $request->user_id;
         if (!Auth::user()->hasRole('admin')) {
             $userId = Auth::user()->id;
@@ -168,10 +181,11 @@ class EventController extends Controller
                 'url'=>null,
                 'scanner_id'=>$request->scanner_id,
                 'image'=>$mainImage,
-                'people'=>$request->people,
+                'banner_img'=>$bannerImage,
+                // 'people'=>$request->people,
                 'address'=>$request->address[$k],
                 'category_id'=>$request->category_id,
-                'city_name'=>$request->city_name,
+                'city_name'=>$request->city_name[$k],
                 'start_time'=>$startTime,
                 'end_time'=>$endTime,
                 'recurring_days'=>$days,
@@ -179,6 +193,8 @@ class EventController extends Controller
                 'description'=>$eventDescription,
                 'tags'=>$request->tags,
                 'status'=>$request->status,
+                'ticket_type'=>$request->ticket_type,
+                'event_cat'=>$request->event_type_cat,
                 'event_type'=>$request->event_type,
                 'event_status'=>"Pending",
                 'event_parent_id'=>$request->event_parent_id,
@@ -187,11 +203,27 @@ class EventController extends Controller
                 'updated_at'=>date("Y-m-d H:i:s"),
             ];
         }
-        $cityData = City::where('city_name',$request->city_name)->first();
-        if(!$cityData){
+
+        $cityUniq = array_unique($request->city_name);
+
+        $cityData = City::whereIn('city_name',$cityUniq)->pluck('city_name')->toArray();
+        // if($cityData){
             \Cache::forget('event-cities');
-            City::create(['city_name'=>$request->city_name,'created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s")]);
-        }
+            $insCity = [];
+            foreach($cityUniq as $vl){
+                if(!in_array($vl,$cityData)){
+                    $insCity[] = [
+                        'city_name'=>$vl,
+                        'created_at'=>date("Y-m-d H:i:s"),
+                        'updated_at'=>date("Y-m-d H:i:s")
+                    ];
+                }
+            }
+            if($insCity){
+                City::insert($insCity);
+            }
+            // City::create(['city_name'=>$request->city_name,'created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s")]);
+        // }
         Event::insert($dataInsert);
         return redirect()->route('events.index')->withStatus(__('Event has added successfully.'));
     }
@@ -229,6 +261,8 @@ class EventController extends Controller
             $descriptionData->where('user_id',Auth::user()->id);
         }
         $descriptionData = $descriptionData->get();
+        // dd($event);
+
         return view('admin.event.edit', compact('event', 'category', 'users', 'scanner','eventsData','descriptionData'));
     }
 
@@ -248,10 +282,20 @@ class EventController extends Controller
             EventGallery::insert($dtImg);
         }
 
+        if ($request->hasFile('banner')) {
+            // (new AppHelper)->deleteFile($event->image);
+            $image = $request->file('banner');
+            $name = time().'-'.uniqid() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images/upload');
+            $image->move($destinationPath, $name);
+            $data['banner_img'] = $name;
+        }
+
         $eventPData = EventParent::select('event_name')->where('id',$request->event_parent_id)->first();
         $eventDData = EventDescription::select('description')->where('id',$request->event_description_id)->first();
         $eventName = $eventPData->event_name;
         $eventDescription = $eventDData->description;
+        // $data['event_parent_id'] = $eventPData->id;
         $data['name'] = $eventName;
         $data['description'] = $eventDescription;
 
@@ -278,6 +322,8 @@ class EventController extends Controller
             \Cache::forget('event-cities');
             City::create(['city_name'=>$request->city_name,'created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s")]);
         }
+
+        // dd($data);
         $event = Event::find($event->id)->update($data);
         return redirect()->route('events.index')->withStatus(__('Event has updated successfully.'));
     }
@@ -323,6 +369,20 @@ class EventController extends Controller
         return view('admin.event.gallery', compact('data'));
     }
 
+    // public function addEventGallery(Request $request)
+    // {
+    //     $event = array_filter(explode(',', Event::find($request->id)->gallery));
+    //     if ($request->hasFile('file')) {
+    //         $image = $request->file('file');
+    //         $name = uniqid() . '.' . $image->getClientOriginalExtension();
+    //         $destinationPath = public_path('/images/upload');
+    //         $image->move($destinationPath, $name);
+    //         array_push($event, $name);
+    //         Event::find($request->id)->update(['gallery' => implode(',', $event)]);
+    //     }
+    //     return true;
+    // }
+
     public function addEventGallery(Request $request)
     {
         $event = array_filter(explode(',', Event::find($request->id)->gallery));
@@ -344,7 +404,6 @@ class EventController extends Controller
 
     public function removeEventImage($image, $id)
     {
-
         $gallery = array_filter(explode(',', Event::find($id)->gallery));
         if (count(array_keys($gallery, $image)) > 0) {
             if (($key = array_search($image, $gallery)) !== false) {
@@ -411,6 +470,16 @@ class EventController extends Controller
             }else{
                 $mainImage = $request->img_name;
             }
+            $bannerImage = null;
+            if ($request->hasFile('banner')) {
+                // (new AppHelper)->deleteFile($event->image);
+                $image = $request->file('banner');
+                $name = time().'-'.uniqid() . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('/images/upload');
+                $image->move($destinationPath, $name);
+                $bannerImage = $name;
+            }
+
             $userId = $request->user_id;
             // ent parent and desc data
             $eventPData = EventParent::select('event_name')->where('id',$request->event_parent_id)->first();
@@ -428,7 +497,7 @@ class EventController extends Controller
                 }
                 $galleryImages = implode(",",$gallImage);
             }
-    
+
             $days = null;
             $slotArr = null;
             $startTime = $request->start_time;
@@ -445,11 +514,11 @@ class EventController extends Controller
                         ];
                     }
                 }
-    
+
                 $startTime = null;
                 $endTime = null;
             }
-    
+
             if($request->event_type==3){
                 $startTime = null;
                 $endTime = null;
@@ -465,12 +534,13 @@ class EventController extends Controller
                             'temple_name'=>$val[0],
                             'gallery'=>$galleryImages,
                             'user_id'=>$userId,
+                            'banner_img'=>$bannerImage,
                             'name'=>$eventName,
                             'type'=>null,
                             'url'=>null,
                             'scanner_id'=>$request->scanner_id,
                             'image'=>$mainImage,
-                            'people'=>100,
+                            // 'people'=>100,
                             'address'=>$val[1],
                             'category_id'=>$request->category_id,
                             'city_name'=>$val[2],
@@ -481,6 +551,8 @@ class EventController extends Controller
                             'description'=>$eventDescription,
                             'tags'=>'temples',
                             'status'=>0,
+                            'ticket_type'=>$request->ticket_type,
+                            'event_cat'=>$request->event_type_cat,
                             'event_type'=>$request->event_type,
                             'event_status'=>"Pending",
                             'event_parent_id'=>$request->event_parent_id,
@@ -516,11 +588,31 @@ class EventController extends Controller
                 }
 
                 \DB::commit();
-            } 
+            }
             return redirect('events')->with('success','Data uploaded successfully!!');
-        }  
+        }
         return redirect('events-bulk-upload');
 
+    }
+
+    public function setULocation(Request $request){
+        $lat = $request->latx;
+        $long = $request->lonx;
+        $latlong = "latlng=$lat,$long";
+        $geocode=file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?'.$latlong.'&sensor=false&key=AIzaSyCOXDqUNe7kQ1Dezz5YkHNG8JJATJ01otU');
+        $output= json_decode($geocode);
+        foreach($output->results[0]->address_components as $val){
+            if($val->types[0]=='locality'){
+                $cityName =  $val->long_name;
+                // check city has any events
+                $data = Event::where('city_name',$cityName)->first();
+                if($data){
+                    \Session::put('CURR_CITY',$cityName);
+                    return response()->json(['s'=>1,'name'=>$cityName]);
+                }
+            }   
+        }
+        return response()->json(['s'=>0]);
     }
 
 }

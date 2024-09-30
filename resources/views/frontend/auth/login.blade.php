@@ -54,7 +54,7 @@
                             <div
                                 class="border border-gray-light py-3.5 px-5 rounded-lg text-gray-100 w-full font-normal font-poppins text-base leading-6 flex">
                                 <input id="default-radio-1" type="radio" value="user" checked name="type"
-                                    class="h-5 w-5 mr-2 border border-gray-light  hover:border-gray-light focus:outline-none">
+                                    class="type_user h-5 w-5 mr-2 border border-gray-light  hover:border-gray-light focus:outline-none">
                                 {{ __('User') }}
                             </div>
                         </label>
@@ -62,7 +62,7 @@
                             <div
                                 class="border border-gray-light py-3.5 px-5 rounded-lg text-gray-100  w-full font-normal font-poppins text-base leading-6 flex">
                                 <input id="default-radio-2" type="radio" value="org" name="type"
-                                    class="select w-5 h-5 mr-2 border border-gray-light hover:border-gray-light focus:outline-none">
+                                    class="type_user select w-5 h-5 mr-2 border border-gray-light hover:border-gray-light focus:outline-none">
                                 {{ __('Organizer') }}
                             </div>
                         </label>
@@ -136,6 +136,12 @@
             // toggle the eye / eye slash icon
             this.classList.toggle("fa-eye-slash");
         });
+    });
+</script>
+<script>
+    let radio = document.getElementsByClassName('.type_user');
+    Array.from(radio).forEach(element => {
+        console.log(element.target.value);
     });
 </script>
 

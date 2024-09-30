@@ -13,9 +13,8 @@ use App\Models\AppUser;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Setting;
+use App\Models\OrderChild;
 use App\Models\Tax;
-use App\Models\findmybuddy;
-use App\Models\WeekendTravel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\App;
@@ -35,10 +34,13 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\JsonLd;
+use Common;
+
 use Exception;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Models\SpiritualVolunteers;
 
 use function GuzzleHttp\Promise\all;
 
@@ -296,6 +298,7 @@ class UserController extends Controller
         }
         return redirect('orders');
     }
+
     public function adminDashboard(Request $request)
     {
 
@@ -428,6 +431,19 @@ class UserController extends Controller
         return view('admin.org_dashboard', compact('events', 'monthEvent', 'master'));
     }
 
+    public function scannerDashboard(Request $request)
+    {
+
+        if(Auth::user()->hasRole('scanner')){
+            $scannerId = Auth::id(); 
+            $scannerEvent  = Event::where('scanner_id',$scannerId)->Where('is_deleted',0)->orderBy('id','DESC')->get();
+            // dd($scannerEvent);      
+            return view('admin.scanner_dashboard',compact('scannerEvent'));
+        }else{
+            return redirect('/login');
+        }
+    }
+
     public function viewProfile()
     {
         $languages = Language::where('status', 1)->get();
@@ -470,7 +486,6 @@ class UserController extends Controller
             return Redirect::back()->with('error_msg', 'Current Password is wrong!');
         }
     }
-
 
 
     public function makePayment($id)
@@ -614,39 +629,39 @@ class UserController extends Controller
     }
     public function orgincome()
     {
-        $data = Order::with(['customer:id,name,last_name,email', 'event:id,name'])->where('payment_status', 1);
+        $data = Order::with(['customer:id,name,last_name,email','event:id,name'])->where('payment_status', 1);
         $data->where('organization_id', Auth::user()->id);
         $data = $data->orderBy('id', 'DESC')->get();
         return view('admin.organizer.revenue', compact('data'));
     }
 
-
-    public function findmybuddy(){
-        $buddy = findmybuddy::get();
-        return view('admin.find-my-buddy',['buddys'=>$buddy]);
+    // Spiritual Volunteers 
+    public function spiritualVolunteers(){
+        $buddy = SpiritualVolunteers::get();
+        return view('admin.spiritual-volunteers',['buddys'=>$buddy]);
     }
 
-    public function viewbuddy(){
-        return view('admin.create-buddy');
+    public function viewspiritualVolunteers(){
+        return view('admin.create-spiritual-volunteers');
     }
 
-    public function createBuddy(Request $req){
+    public function createspiritualVolunteers(Request $req){
         $req->validate([
             'name'=>'required',
             'email'=>'required | email',
             'number'=>'required',
             'gender'=>'required',
             'location'=>'required',
-            // 'destination'=>'required',
-            // 'travel_date'=>'required',
-            // 'budget'=>'required',
-            // 'language'=>'required',
-            // 'travel_description'=>'required',
-            'profile_img'=>'required'
+            'profile_img'=>'required',
+            'availability'=>'required',
+            'interest'=>'required',
+            'skills'=>'required',
+            'tradition'=>'required',
+            'language'=>'required'
         ]);
 
 
-        $buddy = new findmybuddy;
+        $buddy = new SpiritualVolunteers;
         if(isset($req->profile_img)){
 
             $base64_image         = $req->profile_img;
@@ -656,15 +671,7 @@ class UserController extends Controller
             $thumb_name         = "thumb_".date('YmdHis').'.png';
             $thumb_path         = public_path("upload/buddy/" . $thumb_name);
             file_put_contents($thumb_path, $data);
-
-            // $imageName =  "WEEKEND-".rand().".".$req->profile_img->extension();
-            // $req->profile_img->move(public_path('') , $imageName);  
             $buddy->profile_photo  = $thumb_name; 
-
-
-            // $imageName =  "BUDDY-".rand().".".$req->profile_img->extension();
-            // $req->profile_img->move(public_path('upload/buddy/') , $imageName);  
-            // $buddy->profile_photo  = $imageName; 
         }
 
         $buddy->name =  $req->name;
@@ -673,16 +680,12 @@ class UserController extends Controller
         $buddy->gender =  $req->gender;
         $buddy->dob =  $req->dob;
         $buddy->location =  $req->location;
-        $buddy->destination =  $req->destination;
-        $buddy->travel_dates =  $req->travel_date;
-        $buddy->travel_interests =  $req->travel_interest;
-        $buddy->budget =  $req->budget;
-        $buddy->travel_preference =  $req->travel_preference;
-        $buddy->lang =  $req->language;
-        $buddy->hobbies =  $req->hobbies;
-        $buddy->travel_style =  $req->travel_style;
-        $buddy->trip_desc =  $req->travel_description;
-        $buddy->Additional_comment =  $req->additional_comments;
+        $buddy->availability = $req->availability;
+        $buddy->areas_of_interest = $req->interest;
+        $buddy->skills = $req->skills;
+        $buddy->spiritual_tradition = $req->tradition;
+        $buddy->experience = $req->experience;
+        $buddy->refer = $req->references;
         $buddy->save();
 
         // return view('admin.create-buddy');
@@ -690,33 +693,29 @@ class UserController extends Controller
     }
 
     public function showSingleRecord($id){
-        $buddyDetails = findmybuddy::WHERE('id','=',$id)->first();
-        return view('admin.update-buddy-details',['buddyDetails'=>$buddyDetails]);
+        $buddyDetails = SpiritualVolunteers::WHERE('id','=',$id)->first();
+        return view('admin.update-spiritual-volunteers-details',['buddyDetails'=>$buddyDetails]);
     }
 
-    public function updateBuddyDetails(Request $req){
+    public function updatespiritualVolunteers(Request $req){
         $req->validate([
             'name'=>'required',
             'email'=>'required | email',
             'number'=>'required',
             'gender'=>'required',
             'location'=>'required',
-            // 'destination'=>'required',
-            // 'travel_date'=>'required',
-            // 'budget'=>'required',
-            // 'language'=>'required',
-            // 'travel_description'=>'required',
-            // 'profile_img'=>'required',
-            'status'=>'required'
+            'availability'=>'required',
+            'interest'=>'required',
+            'skills'=>'required',
+            'tradition'=>'required',
+            'language'=>'required'
         ]);
 
 
-        $buddy = findmybuddy::WHERE('id','=',$req->id)->first();
+        $buddy = SpiritualVolunteers::WHERE('id','=',$req->id)->first();
         if($buddy != null){
 
-            if(isset($req->profile_img)){
-
-                
+            if(isset($req->profile_img)){                
                 $base64_image         = $req->profile_img;
                 list($type, $data)  = explode(';', $base64_image);
                 list(, $data)       = explode(',', $data);
@@ -724,9 +723,6 @@ class UserController extends Controller
                 $thumb_name         = "thumb_".date('YmdHis').'.png';
                 $thumb_path         = public_path("upload/buddy/" . $thumb_name);
                 file_put_contents($thumb_path, $data);
-
-                // $imageName =  "WEEKEND-".rand().".".$req->profile_img->extension();
-                // $req->profile_img->move(public_path('') , $imageName);  
                 $buddy->profile_photo  = $thumb_name; 
             }
     
@@ -734,159 +730,75 @@ class UserController extends Controller
             $buddy->email =  $req->email;
             $buddy->phone =  $req->number;
             $buddy->gender =  $req->gender;
-            $buddy->dob =  $req->dob;
-            $buddy->location =  $req->location;
-            $buddy->destination =  $req->destination;
-            $buddy->travel_dates =  $req->travel_date;
-            $buddy->travel_interests =  $req->travel_interest;
-            $buddy->budget =  $req->budget;
-            $buddy->travel_preference =  $req->travel_preference;
             $buddy->lang =  $req->language;
-            $buddy->hobbies =  $req->hobbies;
-            $buddy->travel_style =  $req->travel_style;
-            $buddy->trip_desc =  $req->travel_description;
-            $buddy->Additional_comment =  $req->additional_comments;
+            $buddy->dob = $req->dob;
+            $buddy->location = $req->location;
+            $buddy->availability = $req->availability;
+            $buddy->areas_of_interest = $req->interest;
+            $buddy->skills = $req->skills;
+            $buddy->spiritual_tradition = $req->tradition;
+            $buddy->experience = $req->experience;
+            $buddy->refer = $req->references;
             $buddy->status =  $req->status;
             $buddy->save();
     
-            return Redirect::back()->with('success', 'Buddy Updated!!');
+            return Redirect::back()->with('success', 'Spiritual Volunteers Updated!!');
         }else{
             return Redirect::back()->with('error', 'Something Went Wrong!!');
         }
     }
+
+    public function scanQrCode(Request $req){
+        $eventId = Common::decryptLink($req->eq);
+        $eventData = Event::select('name','id')->Where('id',$eventId)->first();
+        if($eventData){
+            return view('admin.scan-qr',compact('eventData'));
+        }
+
+        return redirect()->back()->with('error','Something Went Wrong');
+    }
+
+    public function showTicketDetails(Request $request){
+        $scannerId = Auth::id();
+
+        $checkQrValid =  Order::where('order_id',$request->orderCode)->where('event_id',$request->event_id)->first();
+        
+        if(!$checkQrValid){
+            return response()->json([
+                'status'=>0,
+                'message'=>'This is Invalid Qr'
+            ]);
+        }
+
+        $checkQr = Order::where('order_id',$request->orderCode)->where('event_id',$request->event_id)->first();
+        if(isset($checkQr)){
+            if($checkQr->order_status == "Complete"){
+                return response()->json([
+                    'status'=>2,
+                    'message'=>'This Qr is already Used'
+                ]);
+            }
+        }
+
+        $order = Order::where('order_id',$request->orderCode)->where('event_id',$request->event_id)->with('customer','event','ticket')->first();
+        $childOrder = OrderChild::where('order_id',$order->id)->first();
+        if($order){
+            return response()->json([
+                'status'=>1,
+                'orderDetails'=>$order,
+                'childOrder'=>$childOrder
+            ]);
+        }
+
+    }
+
+    public function updateScanDetails(Request $req){
+        $orderId = $req->id;
+        $updateOrder = Order::Where('id',$orderId)->first();
+        $updateOrder->order_status = "Complete";
+        $updateOrder->save();
+
+        return redirect('/scanner/home')->with('success','Order Completed');
+    }
     
-    // Weekend Travellers
-    public function weekendTraveller(){
-        $weekend = WeekendTravel::get();
-        return view('admin.weekend-traveller',['weekends'=>$weekend]);
-    }
-
-    public function createTraveller(){
-        return view('admin.create-weekend-traveller');
-    }
-
-    public function insertTravelerData(Request $req){
-        $req->validate([
-            'name'=>'required',
-            'email'=>'required | email',
-            'phone'=>'required',
-            'location'=>'required',
-            // 'budget'=>'required',
-            // 'language'=>'required',
-            // 'weekend_avability'=>'required',
-            // 'travel_interest'=>'required',
-            // 'budget'=>'required',
-            // 'transportation'=>'required',
-            // 'accod_prefered'=>'required',
-            // 'comp_preference'=>'required',
-            // 'travel_style'=>'required',
-            // 'language'=>'required',
-            'profile_img'=>'required'
-        ]);
-
-
-        $weekend = new WeekendTravel;
-        if(isset($req->profile_img)){
-
-            $base64_image         = $req->profile_img;
-            list($type, $data)  = explode(';', $base64_image);
-            list(, $data)       = explode(',', $data);
-            $data               = base64_decode($data);
-            $thumb_name         = "thumb_".date('YmdHis').'.png';
-            $thumb_path         = public_path("upload/weekend/" . $thumb_name);
-            file_put_contents($thumb_path, $data);
-
-            // $imageName =  "WEEKEND-".rand().".".$req->profile_img->extension();
-            // $req->profile_img->move(public_path('') , $imageName);  
-            $weekend->profile_photo  = $thumb_name; 
-
-
-            // $imageName =  "WEEKEND-".rand().".".$req->profile_img->extension();
-            // $req->profile_img->move(public_path('upload/weekend/') , $imageName);  
-            // $weekend->profile_photo  = $imageName; 
-        }
-
-        $weekend->name =  $req->name;
-        $weekend->email =  $req->email;
-        $weekend->phone =  $req->phone;
-        $weekend->location =  $req->location;
-        $weekend->prefered_destinations =  $req->prefered_dest;
-        $weekend->weekend_avability =  $req->weekend_avability;
-        $weekend->travel_interest =  $req->travel_interest;
-        $weekend->budget =  $req->budget;
-        $weekend->transportation =  $req->transportation;
-        $weekend->accomodation_prefered =  $req->accod_prefered;
-        $weekend->companionship_preference =  $req->comp_preference;
-        $weekend->travel_style =  $req->travel_style;
-        $weekend->lang =  $req->language;
-        $weekend->hobbies =  $req->hobbies;
-        $weekend->additional_comments =  $req->additional_comments;
-        $weekend->save();
-
-        // return view('admin.create-buddy');
-        return Redirect::back()->with('success', 'Weekend Traveller Created!!');
-    }
-
-    public function showSingleTraveller($id){
-        $travellerDetails = WeekendTravel::WHERE('id','=',$id)->first();
-        return view('admin.update-weekend-traveller',['travellerDetails'=>$travellerDetails]);
-    }
-
-    public function updateTranveller(Request $req){
-        $req->validate([
-            'name'=>'required',
-            'email'=>'required | email',
-            'phone'=>'required',
-            'location'=>'required',
-            // 'budget'=>'required',
-            // 'language'=>'required',
-            // 'weekend_avability'=>'required',
-            // 'travel_interest'=>'required',
-            // 'budget'=>'required',
-            // 'transportation'=>'required',
-            // 'accod_prefered'=>'required',
-            // 'comp_preference'=>'required',
-            // 'travel_style'=>'required',
-            // 'language'=>'required',
-            'status'=>'required',
-            // 'profile_img'=>'required'
-        ]);
-
-
-        $weekend = WeekendTravel::WHERE('id','=',$req->id)->first();
-        if(isset($req->profile_img)){
-
-            $base64_image         = $req->profile_img;
-            list($type, $data)  = explode(';', $base64_image);
-            list(, $data)       = explode(',', $data);
-            $data               = base64_decode($data);
-            $thumb_name         = "thumb_".date('YmdHis').'.png';
-            $thumb_path         = public_path("upload/weekend/" . $thumb_name);
-            file_put_contents($thumb_path, $data);
-            $weekend->profile_photo  = $thumb_name; 
-        }
-
-        $weekend->name =  $req->name;
-        $weekend->email =  $req->email;
-        $weekend->phone =  $req->phone;
-        $weekend->location =  $req->location;
-        $weekend->prefered_destinations =  $req->prefered_dest;
-        $weekend->weekend_avability =  $req->weekend_avability;
-        $weekend->travel_interest =  $req->travel_interest;
-        $weekend->budget =  $req->budget;
-        $weekend->transportation =  $req->transportation;
-        $weekend->accomodation_prefered =  $req->accod_prefered;
-        $weekend->companionship_preference =  $req->comp_preference;
-        $weekend->travel_style =  $req->travel_style;
-        $weekend->lang =  $req->language;
-        $weekend->hobbies =  $req->hobbies;
-        $weekend->additional_comments =  $req->additional_comments;
-        $weekend->status =  $req->status;
-        $weekend->save();
-
-        // return view('admin.create-buddy');
-        return Redirect::back()->with('success', 'Weekend Traveller Updated!!');
-    }
-
 }
-

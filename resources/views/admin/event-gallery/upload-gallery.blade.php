@@ -9,11 +9,7 @@
     ])
 
     <div class="section-body">
-        <div class="row">
-            <div class="col-lg-8">
-                <h2 class="section-title"> {{ __('Add Event Post Card') }}</h2>
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col-12">
                 <div class="card">

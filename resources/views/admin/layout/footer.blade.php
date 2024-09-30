@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="footer-left">
-    Book My Puja
+    Supershows
     </div>
     <div class="footer-right">
       1.1

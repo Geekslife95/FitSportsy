@@ -7,7 +7,6 @@
         'headerData' => __('Orders') ,
         'url' => 'orders' ,
         ])
-
         <div class="section-body">
             <div class="invoice">
                 <div class="invoice-print">
@@ -16,7 +15,7 @@
                     </div>
                     <div class="row ticket-header pb-3 mb-3">
                         <div class="col-lg-6 print-left">
-                            <h5 class="mb-3 text-dark">{{ $ticket->order->event->name }}</h5>
+                            {{-- <h5 class="mb-3 text-dark">{{ $ticket->order->event->name }}</h5> --}}
 
                             @if($ticket->order->event->event_type=='Particular')
                                 <p><span>{{ __('Start Date:') }} </span>{{ $ticket->order->event->start_time->format('d F Y') . ', ' . $ticket->order->event->start_time->format('h:i a') }}
@@ -38,11 +37,15 @@
                         <div class="col-lg-3 print-left print-right text-right ">
                             <h5 class="text-dark">{{ __('Ticket:') }} {{ $ticket->ticket_number }}</h5>
                             <h5 class="text-dark">
-                                {{ $ticket->order->customer->name . ' ' . $ticket->order->customer->last_name }}</h5>
+                                <?php 
+                                if($ticket->order->customer->name != null){
+                                    echo $ticket->order->customer->name;
+                                }
+                                ?>
+                                {{ $ticket->order->customer->last_name }}</h5>
                             <p><span>{{ __('Payment method:') }}</span>{{ $ticket->order->payment_type }}</p>
                             @if ($ticket->status == 1)
                                 <img src="{{ url('images/scan.png') }}" alt="Qr">
-                               
                             @endif
                         </div>
                         <div class="col-lg-3 text-center">

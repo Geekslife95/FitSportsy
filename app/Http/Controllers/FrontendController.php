@@ -16,7 +16,6 @@ use App\Models\Blog;
 use App\Models\Faq;
 use Twilio\Rest\Client;
 use App\Models\Order;
-use App\Models\Popups;
 use App\Models\Setting;
 use App\Models\PaymentSetting;
 use App\Models\NotificationTemplate;
@@ -42,6 +41,7 @@ use App\Models\Banner;
 use App\Models\ContactUs;
 use App\Models\Country;
 use App\Models\Product;
+use App\Models\Popups;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -51,20 +51,18 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Permission\Guard;
 use Illuminate\Auth\Events\Registered;
 use Throwable;
 use App\Helpers\Common;
 class FrontendController extends Controller
-{   
+{
 
     public function home()
     {
-
-        if (env('DB_DATABASE') == null) {
-            return view('admin.frontpage');
-        } else {
+        
             $setting = Common::siteGeneralSettings();
             SEOMeta::setTitle($setting->app_name . ' - Home' ?? env('APP_NAME'))
                 ->setDescription('This is home page')
@@ -100,7 +98,7 @@ class FrontendController extends Controller
             $banner = Banner::select('title','description','image','redirect_link')->where('status', 1)->get();
             $products = Product::select('image','product_name','product_price','rating','product_slug','quantity')->where('status',1)->inRandomOrder()->limit(10)->get();
             // $user = Auth::guard('appuser')->user();
-            
+
             $cityName = session()->get('CURR_CITY');
             if($cityName != 'All'){
                 $popup = Popups::Where('city',$cityName)->orderBy('id','DESC')->first();
@@ -109,7 +107,7 @@ class FrontendController extends Controller
             }
 
             return view('frontend.home', compact('category', 'blog', 'banner','products','popup'));
-        }
+        
     }
     public function login()
     {
@@ -287,6 +285,71 @@ class FrontendController extends Controller
             return redirect('/');
         }
     }
+
+    public function orgForgetPass(Request $req){
+        $setting = Setting::first(['app_name', 'logo']);
+        SEOMeta::setTitle($setting->app_name . ' - reset password' ?? env('APP_NAME'))
+            ->setDescription('This is reset password page')
+            ->setCanonical(url()->current())
+            ->addKeyword([
+                'reset password page', $setting->app_name, $setting->app_name . ' reset password',
+                'forgot password page', $setting->app_name . ' forgot password'
+            ]);
+
+        OpenGraph::setTitle($setting->app_name . ' - reset password' ?? env('APP_NAME'))
+            ->setDescription('This is reset password page')
+            ->setUrl(url()->current());
+
+        JsonLdMulti::setTitle($setting->app_name . ' - reset password' ?? env('APP_NAME'));
+        JsonLdMulti::setDescription('This is reset password page');
+        JsonLdMulti::addImage($setting->imagePath . $setting->logo);
+
+        SEOTools::setTitle($setting->app_name . ' - reset password' ?? env('APP_NAME'));
+        SEOTools::setDescription('This is reset password page');
+        SEOTools::opengraph()->addProperty(
+            'keywords',
+            [
+                'reset password page', $setting->app_name,
+                $setting->app_name . ' reset password',
+                'forgot password page', $setting->app_name . ' forgot password'
+            ]
+        );
+        SEOTools::opengraph()->addProperty('image', $setting->imagePath . $setting->logo);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(url()->current());
+        SEOTools::jsonLd()->addImage($setting->imagePath . $setting->logo);
+        return view('frontend.auth.forgot-password');
+    }
+
+    public function postOrgForgetPass(Request $request)
+    {
+        $request->validate([
+            'email' => 'bail|required|email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        $password = rand(100000, 999999);
+
+        if ($user) {
+            $content = NotificationTemplate::where('title', 'Reset Password')->first()->mail_content;
+            $detail['user_name'] = $user->name;
+            $detail['password'] = $password;
+            $detail['app_name'] = Setting::find(1)->app_name;
+            $user->update(['password' => Hash::make($password)]);
+
+            try {
+                Mail::to($user->email)->send(new ResetPassword($content, $detail));
+            } catch (\Throwable $th) {
+                Log::info($th->getMessage());
+            }
+            return Redirect::back()->with('success', 'New password will send in your mail, please check it.');
+        } else {
+            return Redirect::back()->with('warning', 'Invalid Email Id, Please try another.');
+        }
+        
+    }
+
+
     public function resetPassword()
     {
         $setting = Setting::first(['app_name', 'logo']);
@@ -506,14 +569,14 @@ class FrontendController extends Controller
     {
         $setting = Common::siteGeneralSettings();
         $currency = $setting->currency_sybmol;
-        $data = Event::select('id','category_id','user_id','name','event_type','description','tags','temple_name','address','city_name','recurring_days','start_time','end_time','gallery','image')->with(['category:id,name,image','organization:id,first_name,name,bio,last_name,image'])->find($id);
-
+        $data = Event::select('id','category_id','user_id','name','event_type','description','tags','temple_name','address','city_name','recurring_days','start_time','end_time','gallery','image','banner_img')->with(['category:id,name,image','organization:id,first_name,name,bio,last_name,image'])->find($id);
+        // dd($data);
         $categoryId = $data->category_id;
 
         $imgOg = $data->image;
         if($data->gallery!=null){
             $imgarr = explode(',',$data->gallery);
-            $imgOg = $imgarr[0];
+            // $imgOg = $imgarr[0];
         }
 
         $desctSubstr = \Str::substr(strip_tags($data->description), 0, 250);
@@ -541,6 +604,29 @@ class FrontendController extends Controller
             'address' => $data->address,
             'tag' => $data->tags,
         ]);
+
+        // Twitter::setTitle($data->name.'-'.$data->temple_name)
+        // ->setDescription($desctSubstr)
+        // ->setUrl(url()->current())
+        // ->addImage(asset('images/upload/'. $imgOg))
+        // ->setArticle([
+        //     'start_time' => $data->created_at,
+        //     'end_time' => $data->updated_at,
+        //     'organization' => $data->organization->name,
+        //     'catrgory' => $data->category->name,
+        //     'type' => "offline",
+        //     'address' => $data->address,
+        //     'tag' => $data->tags,
+        // ]);
+
+        TwitterCard::setType('summary_large_image');
+        TwitterCard::setTitle($data->name.'-'.$data->temple_name);
+        TwitterCard::setSite('@BookmyPujaSeva');
+       
+        TwitterCard::addValue('creator','@BookmyPujaSeva');
+        TwitterCard::setUrl(url()->current());
+        TwitterCard::setImage("asset('images/upload/'. $imgOg)");
+
         JsonLd::setTitle($data->name.'-'.$data->temple_name)
             ->setDescription($desctSubstr)
             ->setType('Article')
@@ -563,13 +649,15 @@ class FrontendController extends Controller
             $date = Carbon::now($timezone);
             $data->ticket_data = Ticket::select('name','id','type','description','start_time','end_time','quantity','maximum_checkins','price','ticket_sold')->withSum('total_orders','quantity')->where([['event_id', $data->id], ['is_deleted', 0], ['status', 1], ['end_time', '>=', $date->format('Y-m-d H:i:s')], ['start_time', '<=', $date->format('Y-m-d H:i:s')]])->orderBy('id', 'DESC')->get();
         }else{
-            $data->ticket_data = Ticket::select('name','id','type','description','start_time','end_time','quantity','maximum_checkins','price','ticket_sold','discount_amount','discount_type')->withSum('total_orders','quantity')->where([['event_id', $data->id], ['is_deleted', 0], ['status', 1]])->orderBy('id', 'DESC')->get();
+            $data->ticket_data = Ticket::select('name','id','type','description','start_time','end_time','quantity','maximum_checkins','price','ticket_sold','discount_type','discount_amount')->withSum('total_orders','quantity')->where([['event_id', $data->id], ['is_deleted', 0], ['status', 1]])->orderBy('id', 'DESC')->get();
         }
         $images = explode(",", $data->gallery);
         $date = date("Y-m-d H:i:s");
         $relatedEvents= Event::select('events.name as name','events.id','events.image','temple_name')->where([['events.status', 1], ['events.is_deleted', 0], ['event_status', 'Pending']])->where(function($q) use($date){
             $q->where('events.end_time', '>', $date)->orWhereIn('event_type',[2,3]);
         })->limit(10)->where('category_id',$categoryId)->where('events.id','!=',$id)->get();
+
+        // dd($data);
         return view('frontend.eventDetail', compact('currency', 'data', 'images','relatedEvents'));
     }
 
@@ -1546,14 +1634,9 @@ class FrontendController extends Controller
         return view('frontend.privacy-policy');
     }
 
-    public function cancellationPolicy()
-    {
-        return view('frontend.cancellation-policy');
-    }
-    
     public function termsAndConditions ()
     {
-        return view('frontend.terms-and-conditions');
+       return view('frontend.terms-and-conditions');
     }
 
     public function appuserPrivacyPolicyShow(Request $request)
@@ -1654,5 +1737,12 @@ class FrontendController extends Controller
     {
         $data = Faq::where('status', 1)->get();
         return view('frontend.show_faq', compact('data'));
+    }
+
+    public function cancellatioPolicy(){
+        return view('frontend.cancellation-policy');
+    }
+    public function listYourEvent(){
+        return view('frontend.list-your-event');
     }
 }

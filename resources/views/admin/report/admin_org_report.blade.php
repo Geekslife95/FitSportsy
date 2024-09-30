@@ -51,9 +51,8 @@
                                 <th>{{__('Phone')}}</th>  
                                 <th>{{__('Total Events')}}</th> 
                                 <th>{{__('Tickets')}}</th>                                
-                                <th>{{__('Registered at')}}</th>        
-                                <th>{{__('Bank Details')}}</th>  
-                                                                                                                        
+                                <th>{{__('Registered at')}}</th>              
+                                <th>{{__('Bank Details')}}</th>                                                                                  
                             </tr>
                         </thead>
                         <tbody>
@@ -67,8 +66,8 @@
                                     <td>{{$item->phone==null?'-':$item->phone}}</td>  
                                     <td>{{$item->total_events}}</td>                                            
                                     <td>{{$item->total_tickets.'/'.$item->sold_tickets}}</td>                                                                                
-                                    <td>{{$item->created_at->format('Y-m-d')}}</td>     
-                                    <td><a class="btn btn-primary btn-sm" href="/organizer-bank-details/{{$item->id}}">Details</a></td>                                   
+                                    <td>{{$item->created_at->format('Y-m-d')}}</td> 
+                                    <td><a class="btn btn-primary btn-sm" href="/organizer-bank-details/{{$item->id}}">Details</a></td>                                     
                                 </tr>
                             @endforeach                           
                         </tbody>

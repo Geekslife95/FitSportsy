@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        Commands\WhatsAppCron::class,
     ];
 
     /**
@@ -24,7 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $file = 'command1_output.log';
+        $schedule->command('whatsapp:cron')->dailyAt('18:37')->sendOutputTo($file);
     }
 
     /**

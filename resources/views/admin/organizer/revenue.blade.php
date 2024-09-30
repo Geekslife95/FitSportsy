@@ -1,14 +1,10 @@
 @extends('master')
-
 @section('content')
 <section class="section">
     @include('admin.layout.breadcrumbs', [
         'title' => __('Revenue Report'),
     ])
-
     <div class="section-body">
-        
-
         <div class="row">
             <div class="col-12">
                 @if (session('status'))
@@ -36,22 +32,29 @@
                                 <th>{{__('Event Name')}}</th>
                                 <th>{{__('Quantity')}}</th>
                                 <th>{{__('Payment Gateway')}}</th>
-                                <th>{{__('Total order tax')}}</th>
+                                <th>{{__('GST')}}</th>
                                 <th>{{__('Total Payment')}}</th>
                                 <th>{{__('Organizer Commission')}}</th>
                                 <th>{{__('Admin Revenue')}}</th>
+                                <th>{{__('Convenience Fee')}}</th>
+                                <th>{{__('Discount Amount')}}</th>
                                 <th>{{__('Created at')}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
+                            @php
+                                $currency = "₹";
+                            @endphp
                                 <?php $org =$item->org_commission+$item->tax;  ?>
                                 <tr>
                                     <td></td>
                                     <td>{{$item->order_id}}</td>
                                     <td>
-                                       <h6>{{$item->customer->name.' '.$item->customer->last_name}}</h6>
-                                       <p>{{$item->customer->email}}</p>
+                                        @isset($item->customer->name)
+                                            <h6>{{$item->customer->name.' '.$item->customer->last_name}}</h6>
+                                            <p>{{$item->customer->email}}</p>
+                                        @endisset
                                     </td>
                                     <td>{{$item->event->name}}</td>
                                     <td>{{$item->quantity.' tickets'}}</td>
@@ -60,26 +63,12 @@
                                     <td>{{$currency.$item->payment}}</td>
                                     <td>{{$currency.$org}}</td>
                                     <td>{{$currency.($item->payment - $org)}}</td>
+                                    <td>{{$currency.$item->convenience_amount}}</td>
+                                    <td>{{$currency.$item->discount_amount}}</td>
                                     <td>{{$item->created_at->format('Y-m-d')}}</td>
                                 </tr>
                             @endforeach
-
                         </tbody>
-                        {{-- <tfoot class="">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>{{ __('Page Total:') }} <br><br>{{ __('Main Total:') }} </th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </tfoot> --}}
                     </table>
                   </div>
                 </div>

@@ -56,11 +56,13 @@
                                 <th>{{__('Customer Mobile')}}</th>
                                 <th>{{__('Organiser')}}</th>
                                 <th>{{__('Event Name')}}</th>
-                                <th>{{__('Date')}}</th>
+                                <th>{{__('Slot Time')}}</th>
+                                <th>{{__('Slot Date')}}</th>
                                 <th>{{__('Sold Ticket')}}</th>
                                 <th>{{__('Payment')}}</th>
                                 <th>{{__('Payment Gateway')}}</th>
                                 <th>{{__('Payment ID')}}</th>
+                                <th>{{__('Order Date')}}</th>
                                 <th class="d-none">{{ __('Order Status') }}</th>{{-- for print and pdf only --}}
                                 <th>{{__('Order Status')}}</th>
                                 <th class="d-none">{{ __('Payment Status') }}</th>{{-- for print and pdf only --}}
@@ -69,14 +71,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i=0 ?>
+                            @php
+                                $i=1;
+                            @endphp
                             @foreach ($orders as $item)
                                 <tr>
-                                    <td>{{++$i}}</td>
+                                    <td>{{$i}}</td>
                                     <td>{{$item->order_id}} </td>
-                                    @isset($item->orderchildC->prasada_address)
+                                    @isset($item->orderchildC->devotee_persons)
                                     @php
-                                        $pData = json_decode($item->orderchildC->prasada_address);
+                                        $pData = json_decode($item->orderchildC->devotee_persons);
                                     @endphp
                                     @endisset
                                     <td>@isset ($pData->prasada_name) {{$pData->prasada_name}} @endisset</td>
@@ -84,16 +88,18 @@
                                     <td>{{$item->organization->first_name.' '.$item->organization->last_name}}</td>
                                     <td>
                                         <h6 class="mb-0">{{$item->event->name}}</h6>
-                                        <p class="mb-0">{{$item->event->start_time}}</p>
+                                        {{-- <p class="mb-0">{{$item->event->start_time}}</p> --}}
                                     </td>
-                                    <td>
-                                        <p class="mb-0">{{$item->created_at->format('Y-m-d')}}</p>
-                                        <p class="mb-0">{{$item->created_at->format('h:i a')}}</p>
-                                    </td>
+                                    <td>{{$item->ticket_slot}}</td>
+                                    <td>{{$item->ticket_date}}</td>
                                     <td>{{$item->quantity.' ticket'}}</td>
                                     <td>{{$currency.$item->payment}}</td>
                                     <td>{{$item->payment_type}}</td>
                                     <td>{{$item->payment_token}}</td>
+                                    <td>
+                                        <p class="mb-0">{{$item->created_at->format('Y-m-d')}}</p>
+                                        <p class="mb-0">{{$item->created_at->format('h:i a')}}</p>
+                                    </td>
                                     <td class="d-none">{{ $item->order_status }}</td>{{-- for print and pdf only --}}
                                     <td>
                                          <select name="order_status" id="status-{{ $item->id }}" class="form-control p-2" onchange="changeOrderStatus({{$item->id}})" {{ $item->order_status == "Complete" || $item->order_status == "Cancel"? 'disabled':'' }}>
@@ -118,6 +124,9 @@
                                         <a href="{{url('order-invoice/'.$item->id)}}" class="btn-icon text-primary"><i class="far fa-eye"></i></a>
                                     </td>
                                 </tr>
+                                @php
+                                    $i++;
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>

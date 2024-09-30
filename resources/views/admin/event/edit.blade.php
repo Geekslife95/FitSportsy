@@ -23,9 +23,9 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-3">
                                         <div class="form-group center">
-                                            <label>{{ __('Image') }}</label>
+                                            <label>{{ __('Post Card') }} (400 x 250)</label>
                                             <div id="image-preview" class="image-preview"
                                                 style="background-image: url({{ url('images/upload/' . $event->image) }})">
                                                 <label for="image-upload" id="image-label"> <i
@@ -37,26 +37,53 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group center">
+                                            <label>{{ __('Banner Image') }} (1280 x 500)</label>
+                                            <div id="image-preview2" class="image-preview"
+                                                style="background-image: url({{ url('images/upload/' . $event->banner_img) }})">
+                                                <label for="image-upload2" id="image-label2"> <i
+                                                        class="fas fa-plus"></i></label>
+                                                <input type="file" name="banner" id="image-upload2" />
+                                            </div>
+                                            @error('image')
+                                                <div class="invalid-feedback block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>{{ __('Event Category') }}</label>
+                                            <input type="text" name="" id="ticket_type" value="{{ ucFirst($event->event_cat)}} Event" class="form-control" disabled readonly> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('Ticket Type') }}</label>
+                                            <input type="text" name="" id="ticket_type"
+                                                value="{{ $event->ticket_type == 1 ? "Advance" : "Basic" }}"
+                                                placeholder="{{ __('Choose Start time') }}"
+                                                class="form-control  @error('ticket_type')? is-invalid @enderror" disabled readonly>
+                                            @error('ticket_type')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>{{ __('Select Event Name') }} <span class="text-danger">*</span></label>
                                             <select name="event_parent_id" class="form-control select2" required>
-                                                <option value="">{{ __('Select Event Name') }}</option>
+                                                <option >{{ __('Select Event Name') }}</option>
+                                                
                                                 @foreach ($eventsData as $item)
-                                                        <option value="{{$item->id}}" {{$item->id==$event->event_parent_id ? 'selected':''}}>{{$item->event_name}}</option>
+                                                    <option value="{{$item->id}}" {{$item->id == $event->event_parent_id ? 'selected' : '' }}>{{$item->event_name}}</option>
                                                 @endforeach
+                                                
                                             </select>
-                                            {{-- <input type="text" name="name" value="{{ old('name') }}"
-                                                placeholder="{{ __('Name') }}"
-                                                class="form-control @error('name')? is-invalid @enderror"> --}}
                                             @error('event_parent_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
-
-
-
-
+                                    </div>
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>{{ __('Category') }}</label>
                                             <select name="category_id" class="form-control select2">
@@ -73,7 +100,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row my-3">
                                     <div class="col-md-12 form-group">
                                         <label class="form-label">{{ __('Event Type') }} <span class="text-danger">*</span></label>
@@ -94,8 +120,6 @@
                                           <div id="event_type_err"></div>
                                     </div>
                                 </div>
-
-
                                 <div class="row" id="event_particular"  style="display: {{$event->event_type=='Particular' ? 'flex':'none'}};">
                                     <div class="col-lg-6">
                                         <div class="form-group">
@@ -121,7 +145,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div id="event_recurring" style="display: {{$event->event_type=='Recurring' ? 'block':'none'}};">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -195,8 +218,6 @@
                                                 </div>
                                             @endif
                                         @endforeach
-                                        
-
                                     @else
                                         <div class="row">
                                             <div class="col-lg-4">
@@ -220,16 +241,9 @@
                                             </div>
                                         </div>
                                     @endif
-
-
-
                                     <div id="slot_dv">
-
                                     </div>
                                 </div>
-
-
-
                                 @if (Auth::user()->hasRole('admin'))
                                     <div class="form-group">
                                         <label>{{ __('Organization') }}</label>
@@ -249,7 +263,7 @@
                                 <div class="scanner {{ $event->type == 'online' ? 'hide' : 'demo' }}">
                                     <div class="form-group">
                                         <label>{{ __('Scanner') }}</label>
-                                        <select name="scanner_id" class="form-control scanner_id select2">
+                                        <select name="scanner_id" class="form-control  select2" id="scanner_id">
                                             <option value="">{{ __('Choose Scanner') }}</option>
                                             @foreach ($scanner as $item)
                                                 <option value="{{ $item->id }}"
@@ -263,8 +277,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        {{-- <div class="form-group">
+                                    {{-- <div class="col-lg-6">
+                                        <div class="form-group">
                                             <label>{{ __('Maximum people will join in this event') }}</label>
                                             <input type="number" name="people" id="people"
                                                 value="{{ $event->people }}"
@@ -273,8 +287,8 @@
                                             @error('people')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
-                                        </div> --}}
-                                    </div>
+                                        </div>
+                                    </div> --}}
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>{{ __('status') }}</label>
@@ -290,13 +304,18 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{ __('Tags') }}</label>
-                                            <input type="text" name="tags" value="{{ $event->tags }}"
+                                            @if (json_decode($event->tags) != NULL)
+                                                <input type="text" name="tags" value="{{ implode(',', json_decode($event->tags)) }}"
+                                                class="form-control inputtags @error('tags') ? is-invalid @enderror">
+                                            @else
+                                                <input type="text" name="tags" value="{{$event->tags}}"
                                                 class="form-control inputtags @error('tags')? is-invalid @enderror">
+                                            @endif
+                                            
                                             @error('tags')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -317,23 +336,20 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <h6 class="text-muted mt-4 mb-4">{{ __('Location Detail') }}</h6>
-                                
                                 <div class="location-detail">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>{{ __('Organiser') }} <span class="text-danger">*</span></label>
-                                                <input type="text" name="temple_name" value="{{$event->temple_name}}" id="temple_name"  placeholder="{{ __('Organiser') }}"
+                                                <label>{{ __('Temple Name') }} <span class="text-danger">*</span></label>
+                                                <input type="text" name="temple_name" value="{{$event->temple_name}}" id="temple_name"  placeholder="{{ __('Temple Name') }}"
                                                     class="form-control @error('temple_name')? is-invalid @enderror">
                                                 @error('temple_name')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="location-detail">
                                                 <div class="form-group">
                                                     <label>{{ __('Event Address') }} <span class="text-danger">*</span></label>
@@ -346,7 +362,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="location-detail">
                                                 <div class="form-group">
                                                     <label>{{ __('City Name') }} <span class="text-danger">*</span></label>
@@ -361,7 +377,6 @@
                                         </div>
                                     </div>
                                 </div>
-                               
                                 <div class="form-group">
                                     <button type="submit"
                                         class="btn btn-primary demo-button" id="continue_btn">{{ __('Submit') }}</button>

@@ -15,5 +15,4 @@ class City extends Model
     public function selectCity(){
         return $this->hasMany('App\Models\Event', 'city_name', 'city_name')->where('status',1)->where('is_deleted',0);
     }
-    
 }

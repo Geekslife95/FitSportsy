@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         @include('admin.layout.breadcrumbs', [
-            'title' => __('Events'),
+            'title' => __('Events Title'),
         ])
 
         <div class="section-body">
@@ -66,7 +66,7 @@
                                             <tr>
                                                 <td>{{$cnt}}</td>
                                                 <td>
-                                                    <h6 class="mb-0">{{ $item->event_name }}</h6>
+                                                    <span class="mb-0">{{ $item->event_name }}</span>
                                                 </td>
 
                                                 @if (Gate::check('event_edit') || Gate::check('event_delete'))

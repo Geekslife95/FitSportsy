@@ -11,6 +11,8 @@ class Event extends Model
     use HasFactory;
     use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'user_id',
@@ -23,6 +25,7 @@ class Event extends Model
         'gallery',
         'people',
         'lat',
+        'event_parent_id',
         'lang',
         'description',
         'security',
@@ -36,13 +39,16 @@ class Event extends Model
         'recurring_days',
         'time_slots',
         'city_name',
-        'temple_name'
+        'temple_name',
+        'ticket_type',
+        'banner_img'
     ];
 
     protected $table = 'events';
     protected $dates = ['start_time', 'end_time'];
     // protected $appends = ['imagePath', 'rate', 'totalTickets', 'soldTickets'];
     protected $appends = ['imagePath'];
+
 
     public function category()
     {

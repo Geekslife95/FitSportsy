@@ -6,11 +6,14 @@
     <section class="section">
         <div class="d-flex flex-wrap align-items-stretch">
             <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
-                <div class="p-4 m-3 w-10 h-10">
-                    <img src="{{ $logo ? asset('/images/upload/' . $logo) : asset('/images/logo.png') }}" alt="logo"
-                         height="50px" class="mb-4 mt-2 object-contain w-auto">
-                    <h4 class="text-dark font-weight-normal mb-4">{{ __('Welcome to ') }}<span
-                            class="font-weight-bold">{{ \App\Models\Setting::find(1)->app_name }}</span></h4>
+                <div class="p-lg-3 p-0 m-3  login-card">
+                    <div class="text-center">
+                        <img src="{{ $logo ? asset('/images/upload/' . $logo) : asset('/images/logo.png') }}" alt="logo"
+                        class="mb-2 mt-2 object-contain w-auto img-thumbnail" style="height: 100px;">
+                   <h4 class="text-dark font-weight-normal mb-4">{{ __('Welcome to ') }}<span
+                           class="font-weight-bold">{{ \App\Models\Setting::find(1)->app_name }}</span></h4>
+                    </div>
+               
                     <form method="POST" action="{{ url('admin/login') }}" class="needs-validation" novalidate="">
                         @csrf
                         <div class="form-group">
@@ -51,15 +54,15 @@
                         </div>
 
                         <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg btn-icon icon-right" tabindex="4">
                                 {{ __('Login') }}
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100  position-relative overlay-gradient-bottom"
-                data-background="{{ url('/images/auth_login.jpg') }}">
+            <div class="col-lg-8 col-md-6 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom"
+                data-background="{{ asset('images/login.png') }}">
                 <div class="absolute-bottom-left index-2">
                     <div class="text-light p-5 pb-2">
                         <div class="mb-5 pb-3">

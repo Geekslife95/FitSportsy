@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Popups extends Model
 {
     use HasFactory;
+
     protected $table = 'popups_details';
 }

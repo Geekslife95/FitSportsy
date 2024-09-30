@@ -90,16 +90,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card mb-4">
-                                <div class="card-header pt-0 pb-0">
-                                    <div class="row w-100">
-                                        <div class="col-lg-8">
-                                            <h2 class="section-title"> {{ __('Upcoming Event') }}</h2>
-                                        </div>
-                                        <div class="col-lg-4 text-right mt-2">
-                                            <a href="{{ url('events') }}"><button
-                                                    class="btn btn-sm btn-primary ">{{ __('See all') }}</button> </a>
-                                        </div>
-                                    </div>
+                                <div class="card-header d-flex justify-content-between">
+                                    <h2 class="section-title"> {{ __('Upcoming Event') }}</h2>
+                                    <a href="{{ url('events') }}"><button
+                                        class="btn btn-sm btn-primary ">{{ __('See all') }}</button> </a>
+                                 
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -168,13 +163,13 @@
                                 @else
                                     @foreach ($monthEvent as $item)
                                         <div class="row mb-4">
-                                            <div class="col-3">
+                                            <div class="col-lg-3 col-4">
                                                 <div class="date-left">
                                                     <h3 class="mb-0">{{ $item->start_time->format('d') }}</h3>
                                                     <p class="mb-0">{{ $item->start_time->format('D') }}</p>
                                                 </div>
                                             </div>
-                                            <div class="col-9 event-right">
+                                            <div class="col-lg-9 col-8 event-right">
                                                 <p class="mb-0 name">{{ $item->name }}</p>
                                                 <p class="mb-0">{{ __('Ticket Sold') }}
                                                     <span>{{ $item->sold_ticket }}/{{ $item->tickets }}</span></p>

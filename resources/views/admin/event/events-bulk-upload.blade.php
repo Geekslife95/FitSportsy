@@ -7,7 +7,6 @@
             'headerData' => __('Event'),
             'url' => 'events',
         ])
-
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-8">
@@ -17,7 +16,6 @@
                     <a href="{{asset('images/bulk-upload-temples.csv')}}" class="btn btn-primary">Download Excel File</a>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -27,8 +25,8 @@
                                 @csrf
                                 <input type="hidden" name="img_name" id="img_name">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="hidden" name="img_name" id="img_name">
+                                    <div class="col-lg-3">
+                                        {{-- <input type="hidden" name="img_name" id="img_name"> --}}
                                         <div class="form-group center">
                                             <label>{{ __('Image') }} <span class="text-danger">*</span></label>
                                             <div id="image-preview" class="image-preview">
@@ -42,6 +40,19 @@
                                         </div>
                                         <div class="text-center">
                                             <button type="button" class="btn btn-sm btn-primary" id="openGallery">Pick From Gallery</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group center">
+                                            <label>{{ __('Banner Image') }}</label>
+                                            <div id="image-preview2" class="image-preview">
+                                                <label for="image-upload2" id="image-label2"> <i
+                                                        class="fas fa-plus"></i></label>
+                                                <input type="file" name="banner" id="image-upload2" />
+                                            </div>
+                                            @error('image')
+                                                <div class="invalid-feedback block">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -61,8 +72,33 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-md-6 mt-3">
+                                        <div class="form-group">
+                                            <label>{{ __('Select Event Category') }} <span class="text-danger">*</span></label>
+                                            <select onchange="checkTicket(this.value);" name="event_type_cat" class="form-control select2" required>
+                                                <option value="">{{ __('Select Event Category') }}</option>
+                                                <option value="online">Online Event</option>
+                                                <option value="physical">Physical Event</option>
+                                                <option value="virtual">Virtual Event</option>
+                                            </select>
+                                            @error('event_type_cat')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <div class="form-group">
+                                            <label>{{ __('Event Ticket Type') }} <span class="text-danger">*</span></label>
+                                            <select name="ticket_type" class="form-control" required>
+                                                <option value="0">Basic</option>
+                                                <option value="1" id="advance" style="display:none;">Advance</option>
+                                            </select>
+                                            @error('ticket_type')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="row my-3">
                                     <div class="col-md-12 form-group">
                                         <label class="form-label">{{ __('Event Type') }} <span class="text-danger">*</span></label>
@@ -176,7 +212,7 @@
                                         <div class="scanner">
                                             <div class="form-group">
                                                 <label>{{ __('Scanner') }}</label>
-                                                <select name="scanner_id"  class="form-control scanner_id select2">
+                                                <select name="scanner_id"  class="form-control  select2" id="scanner_id">
                                                     <option value="">{{ __('Choose Scanner') }}</option>
                                                     @foreach ($scanner as $item)
                                                         <option value="{{ $item->id }}"
@@ -488,6 +524,18 @@
     })
 </script>
 
+<script>
+    function checkTicket(val){
+        console.log(val);
+        let advance = document.getElementById('advance');
+        if(val == "physical"){
+            advance.style.display = "block";
+        }else{
+            advance.style.display = "none";
+        }
+
+    }
+</script>
 
 
 

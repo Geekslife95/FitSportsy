@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Ticket;
 
 class Order extends Model
 {
@@ -17,6 +18,7 @@ class Order extends Model
         'coupon_id',
         'quantity',
         'coupon_discount',
+        'seat_details',
         'payment',
         'tax',
         'org_commission',
@@ -51,7 +53,6 @@ class Order extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'organization_id');
     }  
-    
       public function orderchild()
     {
         return $this->hasOne('App\Models\OrderChild', 'id', 'organization_id');
@@ -70,7 +71,10 @@ class Order extends Model
         return $this->hasOne('App\Models\OrderChild');
     }
 
-
+    public function scannerEvent(){
+        $scannerId = Auth::id();
+        return $this->hasOne('App\Models\Event', 'id', 'event_id')->where('scanner_id',$scannerId);
+    }
    
 
 }

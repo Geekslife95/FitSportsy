@@ -7,12 +7,39 @@ use App\Models\AppUser;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Session,Auth;
-
+use Stancer;
+require app_path('Libraries/stancer/autoload.php');
 class SocialLoginController extends Controller
 {
     public function loginWithGoogle(){
         return Socialite::driver('google')->redirect();
     }
+
+
+     public function payment(){
+           $config = Stancer\Config::init(['ptest_zkVeBMdpjLlbCbWZHcvBALzn', 'stest_kKqhpWurkgQjwRb4Z1LE2ixf']);
+
+          $config->setMode(Stancer\Config::TEST_MODE); 
+
+            $payment = new Stancer\Payment();
+            $payment->setAmount(100);
+            $payment->setReturnUrl("https://bookmypujaseva.com/stancer-payment-success");
+            $payment->setCurrency('eur');
+            $payment->setDescription('Test Payment Company');
+            $a = $payment->send();
+             \Session::put('PIID',$a->id);
+
+            return redirect("https://payment.stancer.com/ptest_zkVeBMdpjLlbCbWZHcvBALzn/".$a->id."?lang=en");
+
+    }
+
+    public function paymentSuccess(Request $request){
+        $config = Stancer\Config::init(['ptest_zkVeBMdpjLlbCbWZHcvBALzn', 'stest_kKqhpWurkgQjwRb4Z1LE2ixf']);
+        $config->setMode(Stancer\Config::TEST_MODE); 
+        $payment = new Stancer\Payment(\Session::get('PIID'));
+        dd($payment);
+    }
+    
 
     public function googleAuthLogin(){
         $user = Socialite::driver('google')->user();

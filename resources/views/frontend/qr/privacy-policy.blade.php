@@ -1,5 +1,5 @@
 @extends('frontend.master', ['activePage' => 'event'])
-@section('title', 'BookMyPujaSeva Privacy Policy')
+@section('title', 'Supershows Privacy Policy')
 @section('content')
 <section class="policy-area section-area">
     <div class="container">
@@ -7,9 +7,9 @@
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow-sm rounded border-0">
                     <div class="card-body policy-content">
-                        <h1 class="h3">Privacy Note for BookmyPujaSeva Website</h1>
+                        <h1 class="h3">Privacy Note for Supershows Website</h1>
                         <hr>
-                        <p>At BookmyPujaSeva, we are committed to safeguarding your privacy and ensuring that your personal information is handled responsibly. This Privacy Note explains how we collect, use, disclose, and protect your personal data when you use our website and services. By accessing or using our website, you agree to the practices described in this Privacy Note.</p>
+                        <p>At Supershows, we are committed to safeguarding your privacy and ensuring that your personal information is handled responsibly. This Privacy Note explains how we collect, use, disclose, and protect your personal data when you use our website and services. By accessing or using our website, you agree to the practices described in this Privacy Note.</p>
                         <h5>1. Information We Collect:</h5>
                         <p>We may collect various types of information, including:</p>
                         <ul>
@@ -22,7 +22,7 @@
                         <h5>2. How We Use Your Information:</h5>
                         <p>We use your information for various purposes, including:</p>
                         <ul>
-                            <li><b>Providing Services:</b> Fulfilling your orders, processing payments, and delivering Puja Seva tickets.</li>
+                            <li><b>Providing Services:</b> Fulfilling your orders, processing payments, and delivering Supershows tickets.</li>
                             <li><b>Communication:</b> Sending you transactional emails, updates, and responding to your inquiries.</li>
                             <li><b>Personalization:</b> Customizing your experience on our website based on your preferences.</li>
                             <li><b>Analytics:</b> Understanding how you use our website to improve its functionality and performance.</li>
@@ -32,7 +32,7 @@
                         <p>We may share your information with:</p>
                         <ul>
                             <li><b>Service Providers:</b> Third-party partners who help us operate our website and provide services.</li>
-                            <li><b>Temple Partners:</b>  Sharing relevant information to facilitate the Puja Seva experience.</li>
+                            <li><b>Temple Partners:</b>  Sharing relevant information to facilitate the Supershows experience.</li>
                             <li><b>Legal Authorities:</b> When required by law or to protect our rights and the rights of others.</li>
                         </ul>
                         <h5>4. Data Security:</h5>

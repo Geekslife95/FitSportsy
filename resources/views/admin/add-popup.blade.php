@@ -73,13 +73,13 @@
     $(document).ready(function() {
         var preview = new Croppie($('#image-preview')[0], {
             boundary: {
-                width: 900,
-                height: 700
+                width: 600,
+                height: 600
             },
             viewport: {
-                width: 800,
-                height: 650,
-                type: 'rectangle'
+                width: 550,
+                height: 550,
+                type: 'square'
             },
             // enableResize: true,
             // enableOrientation: true,

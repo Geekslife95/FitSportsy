@@ -32,4 +32,10 @@ class Category extends Model
     public function events(){
         return $this->hasMany('App\Models\Event', 'category_id', 'id');
     }
+
+    public function events2(){
+        return $this->hasMany('App\Models\Event', 'category_id', 'id');
+    }
+
+
 }

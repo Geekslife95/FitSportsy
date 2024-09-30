@@ -21,17 +21,14 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row mb-4 mt-2">
-                                <div class="col-lg-8">
-                                    <h2 class="section-title mt-0"> {{ __('View Scanner') }}</h2>
-                                </div>
-                                <div class="col-lg-4 text-right">
-                                    @can('scanner_create')
-                                        <button class="btn btn-primary add-button"><a href="{{ url('scanner/create') }}"><i
-                                                    class="fas fa-plus"></i> {{ __('Add New') }}</a></button>
-                                    @endcan
-                                </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h2 class="section-title mt-0"> {{ __('View Scanner') }}</h2>
+                                @can('scanner_create')
+                                <button class="btn btn-primary add-button"><a href="{{ url('scanner/create') }}"><i
+                                            class="fas fa-plus"></i> {{ __('Add New') }}</a></button>
+                            @endcan
                             </div>
+                          
                             <div class="table-responsive">
                                 <table class="table" id="report_table">
                                     <thead>

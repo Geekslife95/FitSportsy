@@ -33,7 +33,6 @@ class BannerController extends Controller
             'title' => 'bail|required',
             'description' => 'bail|required',
             'image' => 'bail|required|image|mimes:jpeg,png,jpg,gif|max:3048',
-            
         ]);
         $data = $request->all();
         if ($request->hasFile('image')) {
@@ -54,7 +53,6 @@ class BannerController extends Controller
         $request->validate([
             'title' => 'bail|required',
             'description' => 'bail|required',
-            
         ]);
         $data = $request->all();
         if ($request->hasFile('image')) {

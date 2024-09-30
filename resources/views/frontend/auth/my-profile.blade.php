@@ -48,7 +48,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Address 1 <span class="text-danger">*</span></label>
-                                            <textarea class="form-control" placeholder="Enter Address here" style="height:100px;" name="address" required>{{$userData->address}}</textarea>
+                                            <textarea class="form-control" placeholder="Enter Address here" style="height:100px;" name="address">{{$userData->address}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

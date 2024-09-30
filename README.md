@@ -1,2 +1,1 @@
-# FitSportsy
-FitSportsy web app
+# bookmypuja

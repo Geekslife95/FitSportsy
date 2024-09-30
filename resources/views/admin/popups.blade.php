@@ -3,13 +3,13 @@
 @section('content')
 <section class="section">
     @include('admin.layout.breadcrumbs', [
-    'title' => __('Reviews'),
+    'title' => __('Location Wise Popup'),
     ])
 
     <div class="section-body">
-        <div class="row mb-4 mt-2">
+        <div class="d-flex justify-content-between mb-3">
             <div class="col-lg-8">
-                <h2 class="section-title mt-0">{{ __('Location Wise Popup') }}</h2>
+                <h2 class="section-title mt-0">{{ __('Location Wise') }}</h2>
             </div>
             <div class="col-lg-4 text-right">
                 <button class="btn btn-primary add-button"><a href="/add-popup"><i class="fas fa-plus"></i> Add New</a></button>

@@ -14,19 +14,20 @@
         <div class="container">
             <div class="slot-details shadow-sm">
                 <div class="d-flex justify-content-between">
-                    <h5 class="mb-3">Participant Details
+                    <h5 class="mb-3">Devotee Details
                     </h5>
-                    <button type="button" class="btn btn-primary btn-sm mb-3" id="add_devotee">+ Add
-                        Participant</button>
+                    <button type="button" class="btn btn-primary btn-sm mb-3" id="add_devotee">+ Add Devotee</button>
                 </div>
                 <div class="table-responsive mb-3">
                     <table class="table slot-table">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name <span class="text-danger">*</span></th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Gender <span class="text-danger">*</span></th>
-                               <th></th>
+                                <th scope="col">Gotra</th>
+                                <th scope="col">Rashi</th>
+                                <th scope="col">Nakshtra</th>
+                                <th scope="col">Occassion <span class="text-danger">*</span></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="pst_hre">
@@ -38,27 +39,50 @@
                                             placeholder="" required>
                                     </div>
                                 </td>
-                                <td data-label="Age">
+                                <td data-label="Gotra">
                                     <div class="form-group mb-0">
-                                        <input type="text" class="form-control" name="gotra[0]" placeholder="">
+                                        <input type="text" class="form-control" name="gotra[0]"
+                                            placeholder="">
                                     </div>
                                 </td>
-                                <td data-label="Gender">
+                                <td data-label="Rashi">
+                                    <div class="form-group mb-0">
+                                        <input type="text" class="form-control" name="rashi[0]"
+                                            placeholder="">
+                                    </div>
+                                </td>
+                                <td data-label="Nakshtra">
+                                    <div class="form-group mb-0">
+                                        <input type="text" class="form-control" name="nakshatra[0]"
+                                            placeholder="">
+                                    </div>
+                                </td>
+                                <td data-label="Occassion">
                                     <select class="form-control default-select" name="occasion[0]" required>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
+                                        <option value="" selected>Choose occasion</option>
+                                        <option value="Festivals">Festivals</option>
+                                        <option value="Birthdays">Birthdays</option>
+                                        <option value="Anniversaries">Anniversaries</option>
+                                        <option value="New Home or Business">New Home or Business</option>
+                                        <option value="Graduation or Educational Achievements">Graduation or Educational Achievements</option>
+                                        <option value="Naming Ceremony">Naming Ceremony</option>
+                                        <option value="Vehicle Puja">Vehicle Puja</option>
+                                        <option value="Weddings">Weddings</option>
+                                        <option value="Harvest or Agricultural Celebrations">Harvest or Agricultural Celebrations</option>
+                                        <option value="Death Anniversaries">Death Anniversaries</option>
+                                        <option value="Astrologically Auspicious Days">Astrologically Auspicious Days</option>
+                                        <option value="Special Personal Intentions">Special Personal Intentions</option>
                                     </select>
                                 </td>
-                                <td></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-12 mb-3">
-                        <div style="background: #EFE4B0;width:fit-content;" class="py-1 px-3 mb-2">
-                            <p class="m-0">Emergency contact details</p>
+
+                        <div style="background: #efe4b0;width:fit-content;color:#000;" class="py-1 px-3 mb-2">
+                            <p class="m-0">Tickets and event-related materials will be couriered to this address only for online Supershows bookings.</p>
                         </div>
                         <div class="table-responsive">
                             <table class="table border mb-0">
@@ -67,8 +91,8 @@
                                         <td scope="row" class="w-25">Name <span class="text-danger">*</span></td>
                                         <td class="w-75">
                                             <div class="form-group mb-0">
-                                                <input type="text" class="form-control" name="prasada_name"
-                                                    placeholder="" required>
+                                                <input type="text" class="form-control"
+                                                    name="prasada_name" placeholder="" required>
                                             </div>
                                         </td>
                                     </tr>
@@ -76,8 +100,8 @@
                                         <td scope="row" class="w-25">Address </td>
                                         <td class="w-75">
                                             <div class="form-group mb-0">
-                                                <input type="text" class="form-control" name="prasada_address"
-                                                    placeholder="">
+                                                <input type="text" class="form-control"
+                                                    name="prasada_address" placeholder="">
                                             </div>
                                         </td>
                                     </tr>
@@ -85,8 +109,7 @@
                                         <td scope="row" class="w-25">City </td>
                                         <td class="w-75">
                                             <div class="form-group mb-0">
-                                                <input type="text" class="form-control" name="prasada_city"
-                                                    placeholder="">
+                                                <input type="text" class="form-control" name="prasada_city" placeholder="">
                                             </div>
                                         </td>
                                     </tr>
@@ -95,18 +118,21 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12  mb-3">
-                        <div style="background: #EFE4B0;width:fit-content;" class="py-1 px-3 mb-2">
+                        <div style="background: #efe4b0;width:fit-content;color:#000;" class="py-1 px-3 mb-2">
                             <p class="m-0">Your ticket will be sent to these details</p>
                         </div>
                         <div class="table-responsive">
                             <table class="table border mb-0">
                                 <tbody>
+
+
                                     <tr>
                                         <td scope="row" class="w-25">Mobile No. <span class="text-danger">*</span></td>
                                         <td class="w-75">
                                             <div class="form-group mb-0">
-                                                <input type="number" class="form-control" name="prasada_mobile"
-                                                    placeholder="" required>
+
+                                                <input type="number" class="form-control"
+                                                    name="prasada_mobile" placeholder="" required>
                                             </div>
                                         </td>
                                     </tr>
@@ -114,32 +140,29 @@
                                         <td scope="row" class="w-25">Email <span class="text-danger">*</span></td>
                                         <td class="w-75">
                                             <div class="form-group mb-0">
-                                                <input type="email" class="form-control" name="prasada_email"
-                                                    placeholder="" required>
+                                                <input type="email" class="form-control"
+                                                    name="prasada_email" placeholder="" required>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+
                         </div>
                         <div class="form-check my-2">
-                            <input type="checkbox" name="whattsapp_subscribe" class="form-check-input"
-                                id="whattsapp_subscribe" value="1">
-                            <label class="form-check-label" for="whattsapp_subscribe"><i class="fab fa-whatsapp-square"
-                                    style="color:#25d366;font-size:18px;"></i> Subscribe to Whatsapp messages.</label>
+                            <input type="checkbox" name="whattsapp_subscribe" class="form-check-input" id="whattsapp_subscribe" value="1" checked>
+                            <label class="form-check-label" for="whattsapp_subscribe"><i class="fab fa-whatsapp-square" style="color:#25d366;font-size:18px;"></i> Subscribe to Whatsapp messages.</label>
                         </div>
                         <div class="mt-3">
-                            <div style="background: #EFE4B0;width:fit-content;" class="py-1 px-3 mb-2">
-                                <p class="m-0">BookMyAdventureQuest Cares : Your contribution makes a difference!</p>
+                            <div style="background: #efe4b0;width:fit-content;color:#000;" class="py-1 px-3 mb-2">
+                                <p class="m-0">Supershows : Your contribution makes a difference!</p>
                             </div>
+
                             <div class="form-check mb-2">
-                                <input type="checkbox" name="donate_checked" class="form-check-input"
-                                    id="donate_checked" value="5">
-                                <label class="form-check-label" for="donate_checked"><i class="fas fa-heart"
-                                        style="color:#e64c31;"></i> Donate Rs.5 to support.</label>
+                                <input type="checkbox" name="donate_checked" class="form-check-input" id="donate_checked" value="5">
+                                <label class="form-check-label" for="donate_checked"><i class="fas fa-heart" style="color:#e64c31;"></i> Donate Rs.5 to support spiritual and devotional initiatives.</label>
                             </div>
-                            {{-- @if($availableTickets > 0) --}}
-                           @php
+                                @php
                                     $totalAmnt = $ticket->price;
                                     if($ticket->discount_type == "FLAT"){
                                         $totalAmnt = ($ticket->price) - ($ticket->discount_amount);
@@ -147,10 +170,7 @@
                                         $totalAmnt = ($ticket->price) - ($ticket->price * $ticket->discount_amount)/100;
                                     }
                                 @endphp
-                            <button type="submit" class="btn default-btn w-100">Proceed To Pay Rs.<span id="ticket_price">{{$totalAmnt}}</span></button>
-                            {{-- @else --}}
-                            {{-- <button type="button" class="btn btn-warning w-100">Event Housefull</button> --}}
-                            {{-- @endif --}}
+                            <button type="submit" id="btn-text" class="btn default-btn w-100">Proceed To Pay Rs.<span id="ticket_price">{{$totalAmnt}}</span></button>
                         </div>
                     </div>
                 </div>
@@ -171,42 +191,35 @@
             </div>
             <div class="modal-body">
                 <ol>
-                    <li> Arrival Time: Please arrive at the adventure location at least 15 minutes before the scheduled
-                        start time to complete check-in and necessary preparations.
+                    <li> Please arrive at the temple at least 15 minutes before the scheduled event time to allow for check-in and seating arrangements. Kindly follow the dress code guidelines provided by the temple for the event.
                     </li>
-                    <li>Dress Code: Follow any specific dress code or attire recommendations provided for your
-                        adventure, ensuring your safety and comfort during the experience.
+                    <li>Your e-ticket, displayed on your mobile device, is your entry pass for the event. Please have it ready for scanning upon arrival.
                     </li>
-                    <li>E-Ticket Access: Your e-ticket, accessible on your mobile device, serves as your entry pass for
-                        the adventure. Have it ready for verification upon arrival.</li>
-                    <li>Photography and Mobile Use: Be aware that photography and mobile phone usage may be restricted
-                        during certain portions of the adventure. Please comply with the adventure organizer's rules and
-                        guidelines.</li>
-                    <li>Footwear: Depending on the adventure location, you may be required to remove your shoes before
-                        starting. Follow the instructions provided for footwear placement.</li>
-                    <li>Respectful Atmosphere: Maintain a respectful and quiet atmosphere throughout the adventure,
-                        particularly during critical moments.</li>
-                    <li>Seating and Assignments: Follow the instructions of adventure guides and organizers regarding
-                        seating arrangements. Occupy the designated spot as indicated on your ticket.</li>
-                    <li>Participation in Activities: If the adventure involves activities or interactions, please follow
-                        the guidance of the adventure instructors and participate with enthusiasm and respect.</li>
-                    <li>Mobile Phones: If you need to bring your mobile phone, ensure it is set to silent mode to avoid
-                        disrupting the adventure experience.</li>
-                    <li>Children and Infants: If you are bringing children or infants, ensure they remain calm and
-                        considerate to maintain a pleasant adventure environment for everyone.</li>
-                    <li>Late Arrival: If you arrive after the adventure has commenced, kindly wait quietly for a
-                        suitable break or pause before entering and taking your designated spot.</li>
-                    <li>Smoking and Food: Smoking and consuming food during the adventure may not be permitted. Adhere
-                        to the adventure organizer's guidelines regarding these activities.</li>
-                    <li>Assistance: If you have questions or require assistance during the adventure, feel free to
-                        approach adventure guides, organizers, or volunteers.</li>
-                    <li>Safety Protocols: Familiarize yourself with the location of emergency exits and any safety
-                        protocols provided by the adventure organizers. Your safety is paramount.</li>
-                    <li>Refunds and Cancellations: Review the terms and conditions regarding refunds and cancellations
-                        on your adventure booking page for clarity on such matters.</li>
-                    <li>Feedback: We highly value your feedback. If you have any suggestions or comments about your
-                        adventure experience, please share them with us. Your insights are invaluable for continuous
-                        improvement.</li>
+                    <li>Photography and mobile phone usage may be restricted during the event. Please respect the temple's rules and guidelines.</li>
+                    <li>Before entering the temple premises, please remove your shoes and place them in the designated area.
+                    </li>
+                    <li>Maintain a respectful and quiet atmosphere within the temple premises, especially during the event.
+                    </li>
+                    <li>Follow the ushers' instructions for seating arrangements. Ensure that you occupy the seat assigned to you on your ticket.
+                    </li>
+                    <li>If the event involves offering items, kindly follow the instructions of the priest and participate with reverence.
+                    </li>
+                    <li>If you need to bring your mobile phone inside, please ensure it is switched to silent mode during the event.
+                    </li>
+                    <li>If you are bringing children or infants, please ensure they are calm and not disruptive during the event.
+                    </li>
+                    <li>If you arrive after the event has started, please wait quietly until a suitable break or pause to enter and be seated.
+                    </li>
+                    <li>Smoking and consuming food within the temple premises are generally not permitted. Please adhere to the temple's guidelines.
+                    </li>
+                    <li>In case of any questions or assistance needed, feel free to approach the temple authorities or volunteers.
+                    </li>
+                    <li>Familiarize yourself with the location of emergency exits and follow safety protocols provided by the temple.
+                    </li>
+                    <li>Review the terms and conditions regarding refunds and cancellations on your ticket purchase page.
+                    </li>
+                    <li>We value your feedback. If you have any suggestions or feedback about the event experience, please share it with us.
+                    </li>
                 </ol>
             </div>
             <div class="modal-footer">
@@ -232,98 +245,118 @@
         </div>
     </div>
 </div>
+
 @endsection
 @push('scripts')
+{{-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> --}}
 <script src="{{ url('frontend/js/jquery.validate.min.js') }}"></script>
 <script>
-    var max_oreder = parseInt(document.getElementById('max_order').value);
-    var tick_price = parseFloat(document.getElementById('tick_order').value);
-    var x = 1;
-    $("#add_devotee").on('click', function() {
-        var length = $('.dev_total').length;
-        if (length < max_oreder) {
-            $("#ticket_price").text((1) * tick_price);
-            $("#pst_hre").append(`<tr class="dev_total">
+var max_oreder = parseInt(document.getElementById('max_order').value);
+        var tick_price = parseFloat(document.getElementById('tick_order').value);
+        var x = 1;
+        $("#add_devotee").on('click', function() {
+            var length = $('.dev_total').length;
+            if (length < max_oreder) {
+                $("#ticket_price").text((1) * tick_price);
+                $("#pst_hre").append(`<tr class="dev_total">
                     <td data-label="Name">
                         <div class="form-group mb-0">
-                            <input type="text" class="form-control" name="full_name[${x}]" id="full_name_${x}"
-                                value="{{ Auth::guard('appuser')->check() ? (Auth::guard('appuser')->user()->name . ' ' . Auth::guard('appuser')->user()->last_name) : '' }}"
-                                placeholder="" required>
+                            <input type="text" class="form-control" name="full_name[${x}]" id="full_name_${x}">
                         </div>
                     </td>
-                    <td data-label="Age">
+                    <td data-label="Gotra">
                         <div class="form-group mb-0">
                             <input type="text" class="form-control" name="gotra[${x}]" placeholder="">
                         </div>
                     </td>
-                    <td data-label="Gender">
+                    <td data-label="Rashi">
+                        <div class="form-group mb-0">
+                            <input type="text" class="form-control" name="rashi[${x}]" placeholder="">
+                        </div>
+                    </td>
+                    <td data-label="Nakshatra">
+                        <div class="form-group mb-0">
+                            <input type="text" class="form-control" name="nakshatra[${x}]" placeholder="">
+                        </div>
+                    </td>
+                    <td data-label="Occasion">
                         <select class="form-control default-select" name="occasion[${x}]" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
+                            <option value="" selected disabled>Choose occasion</option>
+                            <option value="Festivals">Festivals</option>
+                            <option value="Birthdays">Birthdays</option>
+                            <option value="Anniversaries">Anniversaries</option>
+                            <option value="New Home or Business">New Home or Business</option>
+                            <option value="Graduation or Educational Achievements">Graduation or Educational Achievements</option>
+                            <option value="Naming Ceremony">Naming Ceremony</option>
+                            <option value="Vehicle Puja">Vehicle Puja</option>
+                            <option value="Weddings">Weddings</option>
+                            <option value="Harvest or Agricultural Celebrations">Harvest or Agricultural Celebrations</option>
+                            <option value="Death Anniversaries">Death Anniversaries</option>
+                            <option value="Astrologically Auspicious Days">Astrologically Auspicious Days</option>
+                            <option value="Special Personal Intentions">Special Personal Intentions</option>
                         </select>
                     </td>
                     <td>
                         <button type="button" class="btn btn-sm btn-danger remove_dev"><i class="fa fa-trash-alt"></i></button>
                     </td>
                 </tr>`);
-            $(`#full_name_${x}`).rules('add', {
-                required: true,
-            });
-            x++;
-        }
-    })
-    $(document).on('click', '.remove_dev', function() {
-        var length = $('.dev_total').length;
-        $("#ticket_price").text((1) * tick_price);
-        $(this).parents('.dev_total').remove();
-    })
-    $("#register_frm").validate({
-        rules: {
-            'full_name[0]': 'required'
-        },
-        messages: {},
-        errorElement: 'div',
-        highlight: function(element, errorClass) {
-            $(element).css({
-                border: '1px solid #f00'
-            });
-        },
-        unhighlight: function(element, errorClass) {
-            $(element).css({
-                border: '1px solid #c1c1c1'
-            });
-        },
-        errorPlacement: function(error, element) {
-            if (element.attr("name") == "date_radio") {
-                $("#date_radio_err").text('Select Event Date')
-            } else if (element.attr("name") == "time_radio") {
-                $("#time_radio_err").text('Select Event Time Slot')
-            } else {
-                error.insertAfter(element);
+                $(`#full_name_${x}`).rules('add',{
+                    required:true,
+                });
+                x++;
             }
-            $("#error_modal_body").html(`
+        })
+
+$(document).on('click','.remove_dev',function(){
+    var length = $('.dev_total').length;
+    $("#ticket_price").text((1) * tick_price);
+    $(this).parents('.dev_total').remove();
+})
+
+$("#register_frm").validate({
+    rules: {
+        'full_name[0]':'required'
+    },
+    messages: {},
+    errorElement: 'div',
+    highlight: function(element, errorClass) {
+        $(element).css({ border: '1px solid #f00' });
+    },
+    unhighlight: function(element, errorClass) {
+        $(element).css({ border: '1px solid #c1c1c1' });
+    },
+    errorPlacement: function(error, element) {
+        if (element.attr("name") == "date_radio") {
+            $("#date_radio_err").text('Select Event Date')
+        }else if(element.attr("name") == "time_radio"){
+            $("#time_radio_err").text('Select Event Time Slot')
+        }else{
+            error.insertAfter(element);
+        }
+        $("#error_modal_body").html(`
             <p class="text-danger">Below fields are required to book tickets</p>
             <ul style="color:red;">
-                <li>Participant name is required</li>
-                <li>Name is required</li>
-                <li>Participant Gender is required</li>
-                <li>Mobile No. is required</li>
-                <li>Email is required</li>
+                <li>Event Time Slot is required</li>
+                <li>Customer name is required</li>
+                <li>Customer Occastion is required</li>
+                <li>Event address name is required</li>
+                <li>Event address mobile is required</li>
+                <li>Event address email is required</li>
             </ul>
         `);
-            $("#error_modal").modal('show');
-        },
-        submitHandler: function(form, event) {
-            event.preventDefault();
-            $("#termsModal").modal('show');
-        }
-    });
-    $('#continue_btn').on('click', function() {
-        $("#loader_parent").css('display', 'flex');
-        document.register_frm.submit();
-        $("#continue_btn").attr('disabled', 'disabled').text('Processing...');
-    })
+        $("#error_modal").modal('show');
+    },
+    submitHandler: function(form,event) {
+        event.preventDefault();
+        $("#termsModal").modal('show');
+    }
+});
+
+$('#continue_btn').on('click',function(){
+    $("#loader_parent").css('display','flex');
+    document.register_frm.submit();
+    $("#continue_btn").attr('disabled','disabled').text('Processing...');
+})
 </script>
 <script>
     $('#donate_checked').on('click',function(){

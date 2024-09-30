@@ -47,7 +47,7 @@
                                 <table class="table" id="event_table">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                         
                                             <th>{{ __('Image') }}</th>
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Price') }}</th>
@@ -62,7 +62,7 @@
                                     <tbody>
                                         @foreach ($productData as $item)
                                             <tr>
-                                                <td></td>
+                                             
                                                 <th> <img class="table-img" src="{{ url('images/upload/' . $item->image) }}">
                                                 </th>
                                                 <td>{{ $item->product_name }}</td>

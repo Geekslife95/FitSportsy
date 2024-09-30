@@ -144,4 +144,10 @@ class ProductController extends Controller
         $orderData = ProductOrder::select('id','order_u_id','pay_type','shipping_details','payment_id','total_paid','payment_status','status','delivery_charge')->with('order_details:id,product_order_id,quantity,unit_price,total_price,product_id')->findorfail($orderId);
         return view('admin.product.order-details',compact('orderData'));
     }
+
+    public function allProducts(){
+        $products = Product::select('image','product_name','product_price','rating','product_slug','quantity')->where('status',1)->inRandomOrder()->paginate(50);
+        return view("all-products",compact('products'));
+    }
+
 }
