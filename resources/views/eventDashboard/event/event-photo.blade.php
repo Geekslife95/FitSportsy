@@ -14,13 +14,13 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Event Photos </h5>
+                            <h5 class="card-title">Images </h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-12">
                                     <div class="form-group">
-                                        <label>Post Card Image <span class="text-danger">*</span></label>
+                                        <label>Main Page Image <span class="text-danger">*</span></label>
                                         <code>Dimension is 400 X 250</code>
                                         @if (isset($checkEvent['postcardImage']))
                                             <img src="{{asset('/images/upload/'.$checkEvent['postcardImage'].'')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
@@ -38,7 +38,7 @@
                            
                                 <div class="col-lg-4 col-md-6 col-12">
                                     <div class="form-group">
-                                        <label>Banner Image</label>
+                                        <label>Description Page Images</label>
                                         <code>Dimension is 1280 X 500</code>
                                         @if (isset($checkEvent['postcardImage']))
                                             <img src="{{asset('/images/upload/'.$checkEvent['postcardImage'].'')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <h5>Star Cast <button type="button" id="add_more_temples" class="btn btn-light text-dark btn-sm">+ Add More</button></h5>
+                            <h5>Coaches <button type="button" id="add_more_temples" class="btn btn-light text-dark btn-sm">+ Add More</button></h5>
                             <br><code>Dimension is 300 X 300</code>
                             <hr>
                             @if (isset($checkEvent['gallery']))

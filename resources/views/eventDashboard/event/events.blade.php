@@ -116,7 +116,7 @@
                                 <div class="row col-lg-12" id="event_recurring">
                                     <div class="col-lg-12 col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="">Session Timings</label>
+                                            <label for="">Session Days</label>
                                             <div class="radio-pannel d-flex flex-wrap" style="gap:15px">
                                                 @isset($checkEvent['days'])
                                                     @php $arr = explode(',',$checkEvent['days']) @endphp
@@ -138,20 +138,20 @@
                                                     <div class="col-lg-12 row">
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
-                                                                <label>Slot Start Time</label>
+                                                                <label>Session Start Time</label>
                                                                 <input type="time" value="{{$val['start_time']}}" name="slot_start[]" placeholder="Choose Start time" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
-                                                                <label>Slot End Time</label>
+                                                                <label>Session End Time</label>
                                                                 <input type="time" value="{{$val['end_time']}}" name="slot_end[]" placeholder="Choose End time" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
                                                                 <label class="d-block">&nbsp;</label>
-                                                                <button type="button" id="add_more_temples" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"> Add Slot</i></button>
+                                                                <button type="button" id="add_more_temples" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"> Add Session</i></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -184,20 +184,20 @@
                                         <div class="col-lg-12 row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label>{{ __('Slot Start Time') }}</label>
+                                                    <label>{{ __('Session Start Time') }}</label>
                                                     <input type="time" name="slot_start[]" placeholder="{{ __('Choose Start time') }}" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label>{{ __('Slot End Time') }}</label>
+                                                    <label>{{ __('Session End Time') }}</label>
                                                     <input type="time" name="slot_end[]" placeholder="{{ __('Choose End time') }}" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label class="d-block">&nbsp;</label>
-                                                    <button type="button" id="add_slot_btn" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"> Add Slot</i></button>
+                                                    <button type="button" id="add_slot_btn" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"> Add Session</i></button>
                                                 </div>
                                             </div>
                                         </div>

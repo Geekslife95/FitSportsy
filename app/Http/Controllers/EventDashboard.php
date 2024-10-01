@@ -265,8 +265,6 @@ class EventDashboard extends Controller
         ],[
             'event_description.required'=>"This Feild is Required"
         ]);
-
-        // dd($req->all());
        
         $userId = Auth::id();
         $checkPreviousData = TempEvent::Where('user_id',$userId)->where('status',0)->orderBy('id','DESC')->first();
@@ -354,6 +352,7 @@ class EventDashboard extends Controller
                     $eventDData->user_id = $userId;
                     $eventDData->title = $descriptionData->desc_title;
                     $eventDData->description = $descriptionData->event_description;
+                    $eventDData->amenities = isset($descriptionData->amenities) ? json_encode($descriptionData->amenities) : null;
                     $eventDData->status = 1;
                     $eventDData->save();
 
@@ -367,6 +366,7 @@ class EventDashboard extends Controller
 
                     $newEvent = new Event;
                     $newEvent->temple_name = $locationData->temple_name;
+                    $newEvent->venue_name = $locationData->venue_name;
                     $newEvent->gallery = $galleryImages;
                     $newEvent->banner_img = $banner_img;
                     $newEvent->ticket_type = $basicData->ticket_type == Null ? 0  : $basicData->ticket_type;

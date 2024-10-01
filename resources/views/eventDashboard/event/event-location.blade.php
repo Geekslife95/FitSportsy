@@ -21,15 +21,22 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-4">
                                     <div class="form-group">
-                                        <label>Event Place <span class="text-danger">*</span></label>
-                                        <input type="text" name="temple_name" value="@isset($checkEvent['temple_name']){{$checkEvent['temple_name']}}@endisset" class="form-control"
-                                            required="" placeholder="Enter Event Place" >
+                                        <label>Venue Name <span class="text-danger">*</span></label>
+                                        <input type="text" name="venue_name" value="@isset($checkEvent['venue_name']){{$checkEvent['venue_name']}}@endisset" class="form-control"
+                                            required="" placeholder="Enter Venue Name" >
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4">
                                     <div class="form-group">
-                                        <label>Event Address <span class="text-danger">*</span></label>
-                                        <input type="text" name="address" placeholder="Event Address"
+                                        <label>Venue Address <span class="text-danger">*</span></label>
+                                        <input type="text" name="temple_name" value="@isset($checkEvent['temple_name']){{$checkEvent['temple_name']}}@endisset" class="form-control"
+                                            required="" placeholder="Enter Venue Address" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label>Venue Area <span class="text-danger">*</span></label>
+                                        <input type="text" name="address" placeholder="Venue Area"
                                             class="form-control" value="@isset($checkEvent['address']){{$checkEvent['address']}}@endisset" required>
                                     </div>
                                 </div>
@@ -39,7 +46,7 @@
                                         <select name="city_name" id="city_name" class="form-control select2" required>
                                             <option value="">Select City</option>
                                             @foreach(Common::allEventCities() as $city)
-                                                <option value="{{$city->city_name}}" @isset($checkEvent['city_name']){{$checkEvent['city_name']==$city->id ? 'selected':''}}@endisset>{{$city->city_name}}</option>
+                                                <option value="{{$city->city_name}}" @isset($checkEvent['city_name']){{$checkEvent['city_name']==$city->city_name ? 'selected':''}}@endisset>{{$city->city_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

@@ -183,4 +183,49 @@ public static function sessionPlanArr(){
   return ['Monthly','Weekly Batch','Summer Batch','Special Batch','Quarterly','Half-Yearly','Yearly'];
 }
 
+public static function amenitiesArr(){
+    return [
+      [
+        'sport'=>'Badminton',
+        'image'=>asset('images/amenities/Badminton.png')
+      ],
+      [
+        'sport'=>'BasketBall',
+        'image'=>asset('images/amenities/BasketBall.png')
+      ],
+      [
+        'sport'=>'Chess',
+        'image'=>asset('images/amenities/Chess.png')
+      ],
+      [
+        'sport'=>'Cricket',
+        'image'=>asset('images/amenities/Cricket.png')
+      ],
+      [
+        'sport'=>'Cycling',
+        'image'=>asset('images/amenities/Cycling.png')
+      ],
+      [
+        'sport'=>'Football',
+        'image'=>asset('images/amenities/Football.png')
+      ],
+      [
+        'sport'=>'Running',
+        'image'=>asset('images/amenities/Running.png')
+      ],
+      [
+        'sport'=>'Swimming',
+        'image'=>asset('images/amenities/Swimming.png')
+      ],
+      [
+        'sport'=>'Tennis',
+        'image'=>asset('images/amenities/Tennis.png')
+      ],
+      [
+        'sport'=>'VolleyBall',
+        'image'=>asset('images/amenities/VolleyBall.png')
+      ],
+    ];
+}
+
 }
