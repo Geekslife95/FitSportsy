@@ -155,7 +155,7 @@ ul.amenities {
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-12 ">
                                     <div class="form-group">
-                                        <label for="eventdescription" class="form-label">Event Description <span class="text-danger">*</span></label>
+                                        <label for="eventdescription" class="form-label">Description <span class="text-danger">*</span></label>
                                         <textarea name="event_description" id="summernote" class="form-control" style="height: 500px;">@isset($checkEvent['event_description']){{$checkEvent['event_description']}}@endisset</textarea>
                                     </div>
                                 </div>
