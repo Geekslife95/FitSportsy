@@ -353,6 +353,7 @@ class EventDashboard extends Controller
                     $eventDData->title = $descriptionData->desc_title;
                     $eventDData->description = $descriptionData->event_description;
                     $eventDData->amenities = isset($descriptionData->amenities) ? json_encode($descriptionData->amenities) : null;
+                    $eventDData->sports_available = isset($descriptionData->sports_available) ? json_encode($descriptionData->sports_available) : null;
                     $eventDData->status = 1;
                     $eventDData->save();
 

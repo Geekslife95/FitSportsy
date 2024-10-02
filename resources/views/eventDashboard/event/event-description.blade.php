@@ -161,6 +161,27 @@ ul.amenities {
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="" class="form-label">Sports Available</label>
+                                        <ul class="amenities">
+                                            @php
+                                                $exAmenities = [];
+                                                if(isset($checkEvent['sports_available'])){
+                                                    $exAmenities = $checkEvent['sports_available'];
+                                                }
+                                            @endphp
+                                            @foreach (Common::availableSportsArr() as $key=> $ameniti)
+                                                <li>
+                                                    <input type="checkbox" name="sports_available[]" value="{{$ameniti['sport']}}" id="myCheckbox{{$key+100}}" {{in_array($ameniti['sport'],$exAmenities) ? 'checked':""}}/>
+                                                    <label for="myCheckbox{{$key+100}}"><img src="{{$ameniti['image']}}" /></label>
+                                              </li>
+                                            @endforeach
+                                           
+                                        </ul>
+                                    </div>                                    
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label for="" class="form-label">Amenities</label>
                                         <ul class="amenities">
                                             @php
@@ -172,14 +193,12 @@ ul.amenities {
                                             @foreach (Common::amenitiesArr() as $key=> $ameniti)
                                                 <li>
                                                     <input type="checkbox" name="amenities[]" value="{{$ameniti['sport']}}" id="myCheckbox{{$key}}" {{in_array($ameniti['sport'],$exAmenities) ? 'checked':""}}/>
-                                                    <label for="myCheckbox{{$key}}"><img src="{{asset('images/amenities/'.$ameniti['sport'].'.png')}}" /></label>
+                                                    <label for="myCheckbox{{$key}}"><img src="{{$ameniti['image']}}" /></label>
                                               </li>
                                             @endforeach
                                            
                                         </ul>
-                                    </div>
-                                    
-                                    
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>

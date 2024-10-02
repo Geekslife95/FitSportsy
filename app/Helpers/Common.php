@@ -186,46 +186,88 @@ public static function sessionPlanArr(){
 public static function amenitiesArr(){
     return [
       [
-        'sport'=>'Badminton',
-        'image'=>asset('images/amenities/Badminton.png')
+        'sport'=>'Bed Room',
+        'image'=>asset('images/amenities/Bed-Room.svg')
       ],
       [
-        'sport'=>'BasketBall',
-        'image'=>asset('images/amenities/BasketBall.png')
+        'sport'=>'Blue Parking',
+        'image'=>asset('images/amenities/Blue-Parking.svg')
       ],
       [
-        'sport'=>'Chess',
-        'image'=>asset('images/amenities/Chess.png')
+        'sport'=>'Changing Room',
+        'image'=>asset('images/amenities/Changing-Room.svg')
       ],
       [
-        'sport'=>'Cricket',
-        'image'=>asset('images/amenities/Cricket.png')
+        'sport'=>'Drinking',
+        'image'=>asset('images/amenities/Drinking.svg')
       ],
       [
-        'sport'=>'Cycling',
-        'image'=>asset('images/amenities/Cycling.png')
+        'sport'=>'FirstAid',
+        'image'=>asset('images/amenities/FirstAid.svg')
       ],
       [
-        'sport'=>'Football',
-        'image'=>asset('images/amenities/Football.png')
+        'sport'=>'Parking',
+        'image'=>asset('images/amenities/parking.svg')
       ],
       [
         'sport'=>'Running',
-        'image'=>asset('images/amenities/Running.png')
+        'image'=>asset('images/amenities/Running.svg')
       ],
       [
-        'sport'=>'Swimming',
-        'image'=>asset('images/amenities/Swimming.png')
+        'sport'=>'Shower',
+        'image'=>asset('images/amenities/Shower.svg')
       ],
       [
-        'sport'=>'Tennis',
-        'image'=>asset('images/amenities/Tennis.png')
+        'sport'=>'Toilets',
+        'image'=>asset('images/amenities/Toilets.svg')
       ],
       [
-        'sport'=>'VolleyBall',
-        'image'=>asset('images/amenities/VolleyBall.png')
+        'sport'=>'Washroom',
+        'image'=>asset('images/amenities/Washroom.svg')
       ],
+    
+      
     ];
 }
+
+public static function availableSportsArr(){
+  return [
+    [
+      'sport'=>'Badminton',
+      'image'=>asset('images/amenities/Badminton.svg')
+    ],
+    [
+      'sport'=>'Basket Ball',
+      'image'=>asset('images/amenities/Basket-Ball.svg')
+    ],
+    [
+      'sport'=>'Cricket',
+      'image'=>asset('images/amenities/Cricket.svg')
+    ],
+    [
+      'sport'=>'Long Tennis',
+      'image'=>asset('images/amenities/Long-tennis.svg')
+    ],
+    [
+      'sport'=>'Skating',
+      'image'=>asset('images/amenities/skating.svg')
+    ],
+    [
+      'sport'=>'Swimming',
+      'image'=>asset('images/amenities/swimming.svg')
+    ],
+    [
+      'sport'=>'Table Tennis',
+      'image'=>asset('images/amenities/table-tennis.svg')
+    ],
+    [
+      'sport'=>'Volley Ball',
+      'image'=>asset('images/amenities/volleyball.svg')
+    ],
+  
+    
+  ];
+}
+
 
 }
