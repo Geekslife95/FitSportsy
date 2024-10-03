@@ -17,7 +17,7 @@
                 <div class="card text-center  border">
                     <div class="card-body">
                         <img src="{{asset('/images/Court-Booking.png')}}" alt="" style="width:100%;object-fit:contain;" class="mb-3 bg-light" height="250px">
-                        <h5 class="text-primary">Court Booking</h5>
+                        <h5 class="text-primary">Coach Management</h5>
                         <p>Explore innovation and connect globally! Join our online event for insightful discussions,
                             expert talks, and networking opportunities. Don't miss out!</p>
                             @php
@@ -34,16 +34,10 @@
                 <div class="card text-center  border">
                     <div class="card-body">
                         <img src="{{asset('/images/physical.jpg')}}" alt="" style="width:100%;object-fit:contain;"  class="mb-3 bg-light" height="250px">
-                        <h5 class="text-primary">Physical Event</h5>
+                        <h5 class="text-primary">Court Booking</h5>
                         <p>Experience live excitement! Join our physical event for hands-on workshops, engaging talks,
                             and networking. Uncover opportunities and connect in person.</p>
-                            @php
-                                $inputObjB1 = new \stdClass();
-                                $inputObjB1->url = url('dashboard-events');
-                                $inputObjB1->params = 'event_type=physical';
-                                $subLink1 = Common::encryptLink($inputObjB1);
-                            @endphp
-                        <a href="{{$subLink1}}" class="btn btn-primary w-100"><i class="fas fa-plus-circle"></i>
+                        <a href="{{url('user/court-booking')}}" class="btn btn-primary w-100"><i class="fas fa-plus-circle"></i>
                             Create Now</a>
                     </div>
                 </div>

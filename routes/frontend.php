@@ -15,7 +15,7 @@ use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\EventDashboard;
-
+use App\Http\Controllers\User\CourtBookingController;
 
 Route::get("/stancer-payment",[SocialLoginController::class,'payment']);
 Route::post("/set-u-location",[EventController::class,'setULocation']);
@@ -240,9 +240,14 @@ Route::group(['middleware' => ['organiser']], function () {
     Route::post('/get-subscription-amount',[EventDashboard::class,'getSubscriptionAmount']);
     Route::post('/buy-subscripton',[EventDashboard::class,'storeEventSubscription']);
     Route::get('/thankyou-subscriber',[EventDashboard::class,'thankyouSubscriber']);
-
-
     // Logout
     Route::get('/dashboard-logout',[EventDashboard::class,'logout']);
 
+});
+
+Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function () {
+    Route::get('/court-booking',[CourtBookingController::class,'courtBooking']);
+    Route::post('/post-court-booking',[CourtBookingController::class,'postCourtBooking']);
+    Route::get('/court-information',[CourtBookingController::class,'courtInformation']);
+    Route::post('/post-court-information',[CourtBookingController::class,'postCourtInformation']);
 });
