@@ -269,5 +269,14 @@ public static function availableSportsArr(){
   ];
 }
 
+public static function courtBookDurationArr(){
+  return [
+    '30 minute'=>'30 Minute',
+    '1 hour'=>'1 Hour',
+    '2 hour'=>'2 Hour',
+    '3 hour'=>'3 Hour',
+    
+  ];
+}
 
 }
