@@ -23,19 +23,19 @@ use Session,Common;
 class EventDashboard extends Controller
 {
     public function dashboard(){
-        $userid = Auth::id();
-        $checkEvent = TempEvent::Where('user_id',$userid)->where('status',0)->orderBy('id','DESC')->first();
-        if($checkEvent != NULL){
-            if($checkEvent->step_count == 2){
-                return redirect('/dashboard-event-location');
-            }else if($checkEvent->step_count == 3){
-                return redirect('/dashboard-event-description');
-            }else if($checkEvent->step_count == 4){
-                return redirect('/dashboard-event-photos');
-            }else if($checkEvent->step_count == 5){
-                return redirect('/dashboard-add-ticket');
-            }
-        }
+        // $userid = Auth::id();
+        // $checkEvent = TempEvent::Where('user_id',$userid)->where('status',0)->orderBy('id','DESC')->first();
+        // if($checkEvent != NULL){
+        //     if($checkEvent->step_count == 2){
+        //         return redirect('/dashboard-event-location');
+        //     }else if($checkEvent->step_count == 3){
+        //         return redirect('/dashboard-event-description');
+        //     }else if($checkEvent->step_count == 4){
+        //         return redirect('/dashboard-event-photos');
+        //     }else if($checkEvent->step_count == 5){
+        //         return redirect('/dashboard-add-ticket');
+        //     }
+        // }
         // return redirect('/dashboard');
         return view('eventDashboard.dashboard');
     }
