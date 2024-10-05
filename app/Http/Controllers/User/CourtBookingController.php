@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\AppHelper;
 use App\Http\Controllers\Controller;
 use App\Models\TempCourtBooking;
 use Illuminate\Http\Request;
@@ -153,6 +154,11 @@ class CourtBookingController extends Controller
 
     public function courtBookImages(){
         return view('user.court-booking.court-book-images');
+    }
+
+    public function storeCourtBookImages(Request $request){
+       dd('in progres'); 
+       echo (new AppHelper)->saveImageWithPath($request->image,'court-booking');
     }
 }
 

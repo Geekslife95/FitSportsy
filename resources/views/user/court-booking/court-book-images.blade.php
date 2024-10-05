@@ -5,12 +5,12 @@
     <div class="content container-fluid">
         <!-- Page Header -->
         <!-- /Page Header -->
-        @include('eventDashboard.common-links')
+        @include('user.court-booking.top-bar')
         @include('messages')
         @isset($checkEvent) @php $checkEvent = json_decode($checkEvent->photos_info,true); @endphp @endisset
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{url('user/store-court-book-images')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-header">
@@ -24,7 +24,7 @@
                                         <code>Dimension is 400 X 250</code>
                                         <img src="{{asset('/images/upload/default-img.png')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
                                         <div class="uploader">
-                                            <input type="file" name="image" id="image" class="uploader form-control" onchange="prevImage(this)" value="" required>
+                                            <input type="file" name="image" id="image" class="uploader form-control" onchange="prevImage(this)" value="" required accept="image/*">
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                         <code>Dimension is 1280 X 500</code>
                                         <img src="{{asset('/images/upload/default-img.png')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
                                         <div class="uploader">
-                                            <input type="file" name="main_image" id="main_image" class="uploader form-control" onchange="prevImage(this)" value="" required>
+                                            <input type="file" name="main_image" id="main_image" class="uploader form-control" onchange="prevImage(this)" value="" required accept="image/*">
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
             <div class="form-group">
                 <label class="w-100">Gallery Image <button type="button" class="float-right remove_temp badge badge-danger"><i class="fas fa-times"></i> Remove </button></label>
                 <img src="{{asset('/images/upload/default-img.png')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
-                <div class="uploader"><input onchange="prevImage(this)" name="gallery_image[]" type="file" class="form-control" required></div>
+                <div class="uploader"><input onchange="prevImage(this)" name="gallery_image[]" type="file" class="form-control" required accept="image/*"></div>
             </div>
         </div>`);
     })

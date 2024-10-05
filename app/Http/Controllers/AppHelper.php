@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Exception;
-use Illuminate\Http\File;
+use File;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Setting;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
-
 class AppHelper extends Controller
 
 {
@@ -137,5 +136,14 @@ class AppHelper extends Controller
             $q->where('end_time', '<=', $date);
         })->get()->each->update(['order_status' => 'Complete']);
         return true;
+    }
+
+    public function saveImageWithPath($image,$folder)
+    {
+        $path = public_path().'/uploads/'.$folder;
+        File::makeDirectory($path, $mode = 0777, true, true);
+        $name = time().'-'.uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->move($path, $name);
+        return $folder."/".$name;
     }
 }
