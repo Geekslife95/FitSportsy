@@ -108,6 +108,9 @@
                             <a href="/organization/home"><i class="fas fa-border-all"></i> <span> Main Dashboard</span></a>
                         </li>
                         <li>
+                            <a href="/user/court-booking-list"><i class="fas fa-border-all"></i> <span> Courts</span></a>
+                        </li>
+                        <li>
                             <a href="/dashboard-logout"><i class="fas fa-cog"></i> <span> Logout</span></a>
                         </li>
                     </ul>

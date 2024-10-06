@@ -7,10 +7,10 @@
         <!-- /Page Header -->
         @include('user.court-booking.top-bar')
         @include('messages')
-        @isset($checkEvent) @php $checkEvent = json_decode($checkEvent->photos_info,true); @endphp @endisset
+       
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
-                <form action="{{url('user/store-court-book-images')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{url('user/store-court-book-images')}}" name="event_form" id="event_form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-header">
@@ -41,7 +41,7 @@
                                         <code>Dimension is 1280 X 500</code>
                                         <img src="{{asset('/images/upload/default-img.png')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
                                         <div class="uploader">
-                                            <input type="file" name="main_image" id="main_image" class="uploader form-control" onchange="prevImage(this)" value="" required accept="image/*">
+                                            <input type="file" name="gallery_image[]" class="uploader form-control" onchange="prevImage(this)" value="" required accept="image/*">
                                         </div>
                                     </div>
                                 </div>
@@ -62,10 +62,10 @@
 <script>
     $("#event_form").validate({
        rules: {
-           image:{required:true},
+           
        },
        messages: {
-           image:{required:"* This Feild is required"},
+           
        },
        errorElement: 'div',
        highlight: function(element, errorClass) {

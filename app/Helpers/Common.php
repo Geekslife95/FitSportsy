@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 use App\Models\Category;
+use App\Models\CourtSlot;
 use Auth;
 class Common
 {
@@ -275,8 +276,14 @@ public static function courtBookDurationArr(){
     '1 hour'=>'1 Hour',
     '2 hour'=>'2 Hour',
     '3 hour'=>'3 Hour',
-    
   ];
+}
+
+public static function generateCourtToken(){
+    do {
+        $str = substr(str_shuffle('abcdefghijklmnopqrstuvwxyz1234567890'),15);
+    } while (CourtSlot::where('slot_token', $str)->exists());
+    return $str;
 }
 
 }

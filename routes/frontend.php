@@ -254,4 +254,5 @@ Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function (
     Route::post('/post-court-book-description',[CourtBookingController::class,'postCourtBookDescription']);
     Route::get('/court-book-images',[CourtBookingController::class,'courtBookImages']);
     Route::post('/store-court-book-images',[CourtBookingController::class,'storeCourtBookImages']);
+    Route::get('/court-booking-list',[CourtBookingController::class,'CourtBookingList']);
 });
