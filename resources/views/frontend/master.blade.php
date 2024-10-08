@@ -50,7 +50,7 @@
 <body>
     {{-- <div class="sharethis-sticky-share-buttons"></div> --}}
     <div class="sigma_preloader">
-        <img src="{{ asset('images/om.svg') }}" alt="preloader">
+        <img src="{{ asset('images/FitSportsy_logo_No_BG.png') }}" alt="preloader">
     </div>
     <header class="site-header sticky-top">
         <nav class="navbar navbar-expand navbar-dark topbar static-top shadow-sm bg-dark osahan-nav-top">
