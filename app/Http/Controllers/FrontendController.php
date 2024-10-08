@@ -57,6 +57,8 @@ use Spatie\Permission\Guard;
 use Illuminate\Auth\Events\Registered;
 use Throwable;
 use App\Helpers\Common;
+use App\Models\EventDescription;
+
 class FrontendController extends Controller
 {
 
@@ -569,8 +571,11 @@ class FrontendController extends Controller
     {
         $setting = Common::siteGeneralSettings();
         $currency = $setting->currency_sybmol;
-        $data = Event::select('id','category_id','user_id','name','event_type','description','tags','temple_name','address','city_name','recurring_days','start_time','end_time','gallery','image','banner_img')->with(['category:id,name,image','organization:id,first_name,name,bio,last_name,image'])->find($id);
+        $data = Event::select('id','category_id','user_id','name','event_type','age_group','bring_equipment','demo_session','description','tags','temple_name','address','event_description_id','venue_name','city_name','recurring_days','start_time','end_time','gallery','image','banner_img','session_plan','coaching_fee','time_slots')->with(['category:id,name,image','organization:id,first_name,name,bio,last_name,image'])->find($id);
         // dd($data);
+
+        $eventDesc = EventDescription::select('amenities','sports_available')->where('id',$data->event_description_id)->first();
+
         $categoryId = $data->category_id;
 
         $imgOg = $data->image;
@@ -605,19 +610,7 @@ class FrontendController extends Controller
             'tag' => $data->tags,
         ]);
 
-        // Twitter::setTitle($data->name.'-'.$data->temple_name)
-        // ->setDescription($desctSubstr)
-        // ->setUrl(url()->current())
-        // ->addImage(asset('images/upload/'. $imgOg))
-        // ->setArticle([
-        //     'start_time' => $data->created_at,
-        //     'end_time' => $data->updated_at,
-        //     'organization' => $data->organization->name,
-        //     'catrgory' => $data->category->name,
-        //     'type' => "offline",
-        //     'address' => $data->address,
-        //     'tag' => $data->tags,
-        // ]);
+        
 
         TwitterCard::setType('summary_large_image');
         TwitterCard::setTitle($data->name.'-'.$data->temple_name);
@@ -651,14 +644,14 @@ class FrontendController extends Controller
         }else{
             $data->ticket_data = Ticket::select('name','id','type','description','start_time','end_time','quantity','maximum_checkins','price','ticket_sold','discount_type','discount_amount')->withSum('total_orders','quantity')->where([['event_id', $data->id], ['is_deleted', 0], ['status', 1]])->orderBy('id', 'DESC')->get();
         }
-        $images = explode(",", $data->gallery);
+        $images = is_null($data->gallery) ? [] : json_decode($data->gallery);
         $date = date("Y-m-d H:i:s");
         $relatedEvents= Event::select('events.name as name','events.id','events.image','temple_name')->where([['events.status', 1], ['events.is_deleted', 0], ['event_status', 'Pending']])->where(function($q) use($date){
             $q->where('events.end_time', '>', $date)->orWhereIn('event_type',[2,3]);
         })->limit(10)->where('category_id',$categoryId)->where('events.id','!=',$id)->get();
 
         // dd($data);
-        return view('frontend.eventDetail', compact('currency', 'data', 'images','relatedEvents'));
+        return view('frontend.eventDetail', compact('currency', 'data', 'images','relatedEvents','eventDesc'));
     }
 
     public function orgDetail($id, $name)

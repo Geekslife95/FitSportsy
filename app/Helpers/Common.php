@@ -188,23 +188,23 @@ public static function amenitiesArr(){
     return [
       [
         'sport'=>'Bed Room',
-        'image'=>asset('images/amenities/Bed-Room.svg')
+        'image'=>asset('images/amenities/bedroom.svg')
       ],
       [
         'sport'=>'Blue Parking',
-        'image'=>asset('images/amenities/Blue-Parking.svg')
+        'image'=>asset('images/amenities/blueparking.svg')
       ],
       [
         'sport'=>'Changing Room',
-        'image'=>asset('images/amenities/Changing-Room.svg')
+        'image'=>asset('images/amenities/changingroom.svg')
       ],
       [
         'sport'=>'Drinking',
-        'image'=>asset('images/amenities/Drinking.svg')
+        'image'=>asset('images/amenities/drinking.svg')
       ],
       [
         'sport'=>'FirstAid',
-        'image'=>asset('images/amenities/FirstAid.svg')
+        'image'=>asset('images/amenities/firstaid.svg')
       ],
       [
         'sport'=>'Parking',
@@ -212,19 +212,19 @@ public static function amenitiesArr(){
       ],
       [
         'sport'=>'Running',
-        'image'=>asset('images/amenities/Running.svg')
+        'image'=>asset('images/amenities/running.svg')
       ],
       [
         'sport'=>'Shower',
-        'image'=>asset('images/amenities/Shower.svg')
+        'image'=>asset('images/amenities/shower.svg')
       ],
       [
         'sport'=>'Toilets',
-        'image'=>asset('images/amenities/Toilets.svg')
+        'image'=>asset('images/amenities/toilets.svg')
       ],
       [
         'sport'=>'Washroom',
-        'image'=>asset('images/amenities/Washroom.svg')
+        'image'=>asset('images/amenities/washroom.svg')
       ],
     
       
@@ -235,19 +235,19 @@ public static function availableSportsArr(){
   return [
     [
       'sport'=>'Badminton',
-      'image'=>asset('images/amenities/Badminton.svg')
+      'image'=>asset('images/amenities/badminton.svg')
     ],
     [
       'sport'=>'Basket Ball',
-      'image'=>asset('images/amenities/Basket-Ball.svg')
+      'image'=>asset('images/amenities/basketball.svg')
     ],
     [
       'sport'=>'Cricket',
-      'image'=>asset('images/amenities/Cricket.svg')
+      'image'=>asset('images/amenities/cricket.svg')
     ],
     [
       'sport'=>'Long Tennis',
-      'image'=>asset('images/amenities/Long-tennis.svg')
+      'image'=>asset('images/amenities/longtennis.svg')
     ],
     [
       'sport'=>'Skating',
@@ -259,7 +259,7 @@ public static function availableSportsArr(){
     ],
     [
       'sport'=>'Table Tennis',
-      'image'=>asset('images/amenities/table-tennis.svg')
+      'image'=>asset('images/amenities/tabletennis.svg')
     ],
     [
       'sport'=>'Volley Ball',

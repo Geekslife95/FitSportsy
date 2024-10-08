@@ -5,11 +5,93 @@
 @push('scripts')
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65327c612ee074001200f29d&product=inline-share-buttons&source=platform" async="async"></script>
 @endpush
+@push('styles')
+    <style>
+        .icon_img{
+            height:25px;
+            width:25px;
+            margin-top:-2px;
+        }
+        .amenities_img{
+            border: 1px solid #929090;
+            border-radius: 50%;
+            height: 110px;
+            width: 110px;
+            object-fit: cover;
+            box-shadow: 3px 3px 6px #413f3f;
+        }
+         /* Hide the default radio button */
+    /* Custom radio button container */
+    .modern-radio {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border: 2px solid #3a3c5f;
+      border-radius: 8px;
+      background-color: #1a1b2e;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    /* Circle indicator for radio */
+    .modern-radio .radio-circle {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #fff; /* Primary blue */
+      border-radius: 50%;
+      margin-right: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    /* Dot inside the circle (hidden by default) */
+    .modern-radio .radio-circle::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background-color: #db207b;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* When the radio input is checked, change the border of .modern-radio */
+    .radio-container input[type="radio"]:checked ~ .modern-radio {
+      border-color: #db207b; /* Yellow border on checked */
+    }
+
+    /* Checked state */
+    .radio-container input[type="radio"]:checked + .modern-radio .radio-circle {
+      border-color: #db207b; /* Yellow border for radio circle */
+    }
+
+    .radio-container input[type="radio"]:checked + .modern-radio .radio-circle::after {
+      transform: scale(1); /* Show dot when checked */
+    }
+
+    /* Radio button text styling */
+    .modern-radio .radio-label {
+      font-size: 16px;
+      color: #fff;
+    }
+
+    /* Hover and active state for the container */
+    
+    .event-ticket input[type="radio"] {
+      display: none;
+    }
+        
+    </style>
+@endpush
 <section class="section-area event-details">
     <div class="container">
         <div class="banner-image mb-4">
             @isset($data->banner_img)
-                <img src="{{asset('images/upload/'.$data->banner_img)}}" class="w-100 img-fluid rounded border" alt="...">
+                <img src="{{asset('images/upload/'.$data->banner_img)}}" class="w-100 img-fluid rounded border" alt="..." style="max-height: 500px;">
             @endisset
         </div>
         <div class="row">
@@ -22,54 +104,11 @@
                     <div class="sharethis-inline-share-buttons" style="position: relative;z-index: 1;"></div>
 
 
-                    {{-- <div>
-                        <a href="https://www.facebook.com/sharer.php?u={{Request::url()}}" target="_blank" class="btn btn-sm btn-primary btn-circle">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-
-                        @php
-                            $title = $data->name;
-                            $short_url = Request::url();
-
-
-                            $twitterlink = "http://twitter.com/share?text=$title&url=$short_url";
-                            $walink = "whatsapp://send?text=$short_url";
-                        @endphp
-
-                        <a href="{{$walink}}" target="_blank" class="btn btn-sm btn-success btn-circle">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-
-
-                        <a href="{{$twitterlink}}" target="_blank" class="btn btn-sm btn-info btn-circle">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div> --}}
+                  
                 </div>
-                {{-- <div class="event-img shadow-sm">
-                	<span class="badge badge-pill badge-warning eventcat">{{$data->category->name}}</span>
-                    @if(count($images))
-                    <img src="{{asset('images/upload/'.$images[0])}}" alt="" class="img-fluid" id="cover_img">
-                    @endif
-                </div> --}}
+               
             </div>
-            {{-- <div class="col-lg-4 col-md-4 col-12">
-                <div class="event-other-card shadow-sm">
-                    <h5>Image Gallery</h5>
-                    <div class="row">
-                        @if(count($images))
-                            @foreach ($images as $img)
-                                <div class="col-lg-6 col-lg-6 col-6" style="cursor: pointer;">
-                                    <div class="event-other-img">
-                                        <img src="{{asset('images/upload/'.$img)}}" alt="" class="img-fluid event_img">
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-
-                    </div>
-                </div>
-            </div> --}}
+           
         </div>
         <div class="row mb-3">
             <div class="col-lg-8 col-md-8 col-12">
@@ -91,52 +130,63 @@
 
                         </div>
                         <div class="row align-items-center">
-                            <div class="col-lg-7 col-md-6 col-12">
+                            <div class="col-lg-6 col-md-6 col-12">
                                 <ul class="event-meta-info">
-                                    
                                     <li>
                                         <span class="meta-icon" style="">
-                                            <i class="fas fa-calendar-alt"></i>
+                                            <img src="{{asset('images/coach-book/sport.svg')}}" alt="" class="icon_img">
                                         </span>
                                         <div class="meta-content">
-                                            @if($data->event_type=='Particular')
-                                                <p>{{date("d",strtotime($data->start_time))}} <span>{{date("M Y",strtotime($data->start_time))}}</span> - </p>
-                                                <p>{{date("d",strtotime($data->end_time))}} <span>{{date("M Y",strtotime($data->end_time))}}</span></p>
-                                            @elseif($data->event_type=='Reccuring')
-                                                <p style="margin-top:3px;"><span>{{str_replace(",",", ",$data->recurring_days)}}</span></p>
-                                            @else
-                                                <p style="margin-top:3px;"><span>On Request Supershows</span></p>
-                                            @endif
+                                            Sport Name : <p><span>{{$data->category->name}}</span></p>
                                         </div>
                                     </li>
                                     <li>
                                         <span class="meta-icon" style="">
-                                            <i class="fas fa-gopuram"></i>
+                                            <img src="{{asset('images/coach-book/sport.svg')}}" alt="" class="icon_img">
                                         </span>
                                         <div class="meta-content">
-                                            <p style="margin-top:3px;"> <span>{{$data->temple_name}}</span></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="meta-icon" style="">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </span>
-                                        <div class="meta-content">
-                                            <p style="margin-top:3px;"><span>{{$data->address}}</span></p>
+                                            BYOE : <p><span>{{$data->bring_equipment}}</span></p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-lg-5 col-md-6 col-12">
-                                <ul class="list-unstyled">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <ul class="event-meta-info">
                                     <li>
-                                       <p><i class="fas fa-bolt" style="width: 20px;"></i>Instant Confirmation</p>
+                                        <span class="meta-icon" style="">
+                                            <img src="{{asset('images/coach-book/age_group.svg')}}" alt="" class="icon_img">
+                                        </span>
+                                        <div class="meta-content">
+                                            Age Group : <p><span>{{$data->age_group}}</span></p>
+                                        </div>
                                     </li>
                                     <li>
-                                        <p><i class="fas fa-mobile " style="width: 20px;"></i>Mobile Ticket</p>
+                                        <span class="meta-icon" style="">
+                                            <img src="{{asset('images/coach-book/demo-session.svg')}}" alt="" class="icon_img">
+                                        </span>
+                                        <div class="meta-content">
+                                            Free Demo Session : <p><span>{{$data->demo_session}}</span></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <ul class="event-meta-info">
+                                    <li>
+                                        <span class="meta-icon" style="">
+                                            <img src="{{asset('images/coach-book/venue.svg')}}" alt="" class="icon_img">
+                                        </span>
+                                        <div class="meta-content">
+                                            Venue : <p><span>{{$data->venue_name.', '.$data->temple_name.', '.$data->address.', '.$data->city_name}}</span></p>
+                                        </div>
                                     </li>
                                     <li>
-                                        <p><i class="fas fa-heart " style="width: 20px;"></i>Pray with your heart, serve with your hands</p>
+                                        <span class="meta-icon" style="">
+                                            <img src="{{asset('images/coach-book/timings.svg')}}" alt="" class="icon_img">
+                                        </span>
+                                        <div class="meta-content">
+                                            Session Days : <p><span>{{$data->venue_name.', '.$data->temple_name.', '.$data->address.', '.$data->city_name}}</span></p>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -144,11 +194,39 @@
 
                     </div>
                 </div>
+
+                <div class="card about-event shadow-sm mb-3">
+                    <div class="card-body">
+                        <h4>Sports Available</h4>
+                        <div class="row">
+                            @foreach (json_decode($eventDesc->sports_available) as $item)
+                                <div class="col-md-2">
+                                    <img src="{{asset('images/amenities/'.str_replace(" ","",strtolower($item)).'.svg')}}" alt="{{$item}}" class="amenities_img">
+                                </div>
+                            @endforeach
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="card about-event shadow-sm mb-3">
+                    <div class="card-body">
+                        <h4>Amenities</h4>
+                        <div class="row">
+                            @foreach (json_decode($eventDesc->amenities) as $item)
+                                <div class="col-md-2">
+                                    <img src="{{asset('images/amenities/'.str_replace(" ","",strtolower($item)).'.svg')}}" alt="{{$item}}" class="amenities_img">
+                                </div>
+                            @endforeach
+                        </div>
+                        
+                    </div>
+                </div>
+
                 <div class="card about-event shadow-sm mb-3">
                     <div class="card-body">
                         <h4>About Event</h4>
                         <div class="description">
-                            {{-- <div id="short_desc">{!!substr(strip_tags($data->description),0,400)!!}<a href="javascript:void(0)" id="read_more_click" style="display:block;"> Read More...</a></div> --}}
                             <div id="full_desc" >{!!$data->description!!}</div>
                         </div>
                     </div>
@@ -197,53 +275,28 @@
 
             </div>
             <div class="col-lg-4 col-md-4 col-12">
-               
-                @if(count($data->ticket_data))
-                    @foreach ($data->ticket_data as $item)
-                    @endforeach
-                    <div class="event-ticket card shadow-sm mb-3">
-                        <div class="card-body">
-                            <div class="single-ticket">
-                                {{-- <span class="badge badge-pill badge-success">{{$item->name}}</span>
-                                <h5 class="price mt-2">
-                                    <del class="ml-1 mr-2 text-muted">
-                                        @if ($item->discount_type != null)
-                                        ₹{{$item->price}}
-                                        @endif
-                                    </del>
-                                     </h5> --}}
-                               {{-- 
-                                @if($item->ticket_sold!=1)
-                                    @if($data->event_type=='Particular')
-                                        <span class="avalable-tickets ">{{(($item->total_orders_sum_quantity!=null) && ($item->quantity - $item->total_orders_sum_quantity > 0)) ? ($item->quantity - $item->total_orders_sum_quantity) : $item->quantity}} Ticket Available</span>
-                                    @else
-                                        <span class="avalable-tickets ">{{$item->quantity}} Ticket Available</span>
-                                    @endif
-                                @else
-                                    <span class="text-danger text-center">Tickets Soldout</span>
-                                @endif
+                <div class="event-ticket card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$data->session_plan}}</h5>
 
-                                <div class="ticket-description">
-                                    <p>{{$item->description}}</p>
-                                </div> --}}
-                                @php
-                                    $inputObj = new stdClass();
-                                    $inputObj->params = 'id='.$item->id.'&type='.$data->event_type;
-                                    $inputObj->url = url('book-event-ticket');
-                                    $encLink = Common::encryptLink($inputObj);
-                                @endphp
-                                {{-- @if(Auth::guard('appuser')->check())
-                                    <a href="{{$encLink}}" class="btn default-btn w-100">Buy Ticket Now</a>
-                                @else
-                                    <a href="{{url('user-login')}}" class="btn default-btn w-100">Buy Ticket Now</a>
-                                @endif --}}
-                                @if($item->ticket_sold != 1)
-                                    <a href="{{$encLink}}" class="btn default-btn w-100">Continue To Book {{$data->category->name}}</a>
-                                @endif
+                        <!-- Custom Modern Radio Button 1 -->
+                        @foreach (json_decode($data->time_slots) as $k=> $item)
+                            <div class="radio-container">
+                                <input type="radio" id="credit_{{$k}}" name="paymentOptions" value="credit-card" {{$k==0 ? 'checked':''}}>
+                                <label class="modern-radio" for="credit_{{$k}}">
+                                  <span class="radio-circle"></span>
+                                  <span class="radio-label">{{date("h:i A",strtotime(date("Y-m-d ".$item->start_time)))}} to {{date("h:i A",strtotime(date("Y-m-d ".$item->end_time)))}}</span>
+                                </label>
                             </div>
+                        @endforeach
+                      
+                        
+                       
+                        <div class="single-ticket">
+                            <a href="" class="btn default-btn w-100">Pay ₹{{$data->coaching_fee+0}} To Book</a>
                         </div>
                     </div>
-                @endif
+                </div>
 
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
@@ -339,11 +392,9 @@
         <h2>Star Cast</h2>
             <div class="d-flex flex-wrap">
                 @foreach ($images as $img)
-                    @if ($img != null)
                         <div class="p-2">
-                            <img src="{{asset('images/upload/'.$img)}}" style="width:120px !important;height:120px !important;padding:2px;" class="rounded-circle bg-light img-fluid" alt="...">
+                            <img src="{{asset('uploads/'.$img->image)}}" title="{{$img->coach_name}}" style="width:120px !important;height:120px !important;padding:2px;" class="rounded-circle bg-light img-fluid" alt="...">
                         </div>
-                    @endif
                 @endforeach
             </div>
         @endif

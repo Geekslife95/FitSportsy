@@ -319,13 +319,13 @@ class EventDashboard extends Controller
         $galleryImages = null;
         if($request->has('gallery_image')){
             $gallImage = [];
-            foreach($request->file('gallery_image') as $image){
-                $name = time().'-'.uniqid() . '.' . $image->getClientOriginalExtension();
-                $destinationPath = public_path('/images/upload');
-                $image->move($destinationPath, $name);
-                $gallImage[] = $name;
+            foreach($request->file('gallery_image') as $k=>$image){
+                $gallImage[] = [
+                    'coach_name'=>$request->coach_name[$k],
+                    'image'=>(new AppHelper)->saveImageWithPath($image, 'couch-image')
+                ];
             }
-            $galleryImages = implode(",",$gallImage);
+            $galleryImages = json_encode($gallImage);
         }
 
         $userId = Auth::id();

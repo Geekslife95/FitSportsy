@@ -25,12 +25,12 @@
                                         @if (isset($checkEvent['postcardImage']))
                                             <img src="{{asset('/images/upload/'.$checkEvent['postcardImage'].'')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
                                             <div class="uploader">
-                                                <input type="file" name="image" id="image" class="uploader form-control" onchange="prevImage(this)" value="{{$checkEvent['postcardImage']}}" required>
+                                                <input type="file" accept="image/*" name="image" id="image" class="uploader form-control" onchange="prevImage(this)" value="{{$checkEvent['postcardImage']}}" required>
                                             </div>
                                         @else
                                             <img src="{{asset('/images/upload/default-img.png')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
                                             <div class="uploader">
-                                                <input type="file" name="image" id="image" class="uploader form-control" onchange="prevImage(this)" value="" required>
+                                                <input type="file" accept="image/*" name="image" id="image" class="uploader form-control" onchange="prevImage(this)" value="" required>
                                             </div>
                                         @endif
                                     </div>
@@ -43,12 +43,12 @@
                                         @if (isset($checkEvent['postcardImage']))
                                             <img src="{{asset('/images/upload/'.$checkEvent['postcardImage'].'')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
                                             <div class="uploader">
-                                                <input type="file" name="main_image" id="main_image" class="uploader form-control" onchange="prevImage(this)" value="{{$checkEvent['banner_img']}}" required>
+                                                <input type="file" accept="image/*" name="main_image" id="main_image" class="uploader form-control" onchange="prevImage(this)" value="{{$checkEvent['banner_img']}}" required>
                                             </div>
                                         @else
                                             <img src="{{asset('/images/upload/default-img.png')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
                                             <div class="uploader">
-                                                <input type="file" name="main_image" id="main_image" class="uploader form-control" onchange="prevImage(this)" value="" required>
+                                                <input type="file" accept="image/*" name="main_image" id="main_image" class="uploader form-control" onchange="prevImage(this)" value="" required>
                                             </div>
                                         @endif
                                     </div>
@@ -113,7 +113,10 @@
                                     <div class="form-group">
                                         <label class="w-100">Gallery Image <button type="button" class="float-right remove_temp badge badge-danger"><i class="fas fa-times"></i> Remove </button></label>
                                         <img src="{{asset('/images/upload/default-img.png')}}" class="upimage img-fluid img-thumbnail d-block mb-2" alt="">
-                                        <div class="uploader"><input onchange="prevImage(this)" name="gallery_image[]" type="file" class="form-control" required></div>
+                                        <div class="uploader">
+                                            <input onchange="prevImage(this)" accept="image/*" name="gallery_image[]" type="file" class="form-control" required>
+                                        </div>
+                                        <input type="text" name="coach_name[]" class="form-control mt-3" placeholder="Coach Name"/>
                                     </div>
                                 </div>`);
     })
