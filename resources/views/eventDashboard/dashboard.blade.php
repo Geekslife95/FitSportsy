@@ -20,13 +20,7 @@
                         <h5 class="text-primary">Coach Management</h5>
                         <p>Explore innovation and connect globally! Join our online event for insightful discussions,
                             expert talks, and networking opportunities. Don't miss out!</p>
-                            @php
-                                $inputObjB = new \stdClass();
-                                $inputObjB->url = url('dashboard-events');
-                                $inputObjB->params = 'event_type=online';
-                                $subLink = Common::encryptLink($inputObjB);
-                            @endphp
-                        <a href="{{$subLink}}" class="btn btn-primary w-100"><i class="fas fa-plus-circle"></i> Create Now</a>
+                        <a href="{{url('user/coach-book')}}" class="btn btn-primary w-100"><i class="fas fa-plus-circle"></i> Create Now</a>
                     </div>
                 </div>
             </div>

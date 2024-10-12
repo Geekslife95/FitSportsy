@@ -6,6 +6,9 @@ use App\Models\CourtSlot;
 use Auth;
 class Common
 {
+  const TYPE_COURT_BOOK = 1;
+  const TYPE_COACH_BOOK = 2;
+  const STATUS_ACTIVE = 1;
   public static function encryptLink($inputObj){
     $params = isset($inputObj->params) ? $inputObj->params : '';
     $url = url($inputObj->url);

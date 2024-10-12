@@ -111,6 +111,9 @@
                             <a href="/user/court-booking-list"><i class="fas fa-border-all"></i> <span> Courts</span></a>
                         </li>
                         <li>
+                            <a href="/user/coach-booking-list"><i class="fas fa-border-all"></i> <span> Coaches</span></a>
+                        </li>
+                        <li>
                             <a href="/dashboard-logout"><i class="fas fa-cog"></i> <span> Logout</span></a>
                         </li>
                     </ul>

@@ -15,6 +15,7 @@ use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\EventDashboard;
+use App\Http\Controllers\User\CoachBookingController;
 use App\Http\Controllers\User\CourtBookingController;
 
 Route::get("/stancer-payment",[SocialLoginController::class,'payment']);
@@ -255,4 +256,12 @@ Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function (
     Route::get('/court-book-images',[CourtBookingController::class,'courtBookImages']);
     Route::post('/store-court-book-images',[CourtBookingController::class,'storeCourtBookImages']);
     Route::get('/court-booking-list',[CourtBookingController::class,'CourtBookingList']);
+    //coach
+    Route::get('/coach-book',[CoachBookingController::class,'coachBook']);
+    Route::post('/post-coach-book',[CoachBookingController::class,'postCoachBook']);
+    Route::get('/coach-book-information',[CoachBookingController::class,'coachBookInformation']);
+    Route::post('/post-coach-book-information',[CoachBookingController::class,'postCoachBookInformation']);
+    Route::get('/coach-book-media',[CoachBookingController::class,'coachBookMedia']);
+    Route::post('/store-coach-book-media',[CoachBookingController::class,'storeCoachBookMedia']);
+    Route::get('/coach-booking-list',[CoachBookingController::class,'coachBookingList']);
 });

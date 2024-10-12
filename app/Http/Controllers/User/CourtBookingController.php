@@ -18,7 +18,7 @@ class CourtBookingController extends Controller
 {
     private function lastCourtBookDataByUserId(int $userId)
     {
-        return TempCourtBooking::where('created_by', $userId)->orderBy('id', 'desc')->first();
+        return TempCourtBooking::where(['created_by'=>$userId,'book_type'=>Common::TYPE_COURT_BOOK])->orderBy('id', 'desc')->first();
     }
 
     public function CourtBookingList(){
@@ -66,6 +66,7 @@ class CourtBookingController extends Controller
             $courtBookObj->court_information = null;
             $courtBookObj->description = null;
             $courtBookObj->created_by = Auth::id();
+            $courtBookObj->book_type = Common::TYPE_COURT_BOOK;
             $courtBookObj->save();
         }
         return redirect('user/court-information')->with('success', 'Basic information added successfully...');
