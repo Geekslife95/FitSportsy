@@ -18,7 +18,8 @@ class Category extends Model
         'banner_image',
         'redirect_link',
         'type',
-        'order_num'
+        'order_num',
+        'benefits'
     ];
 
     protected $table = 'category';

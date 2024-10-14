@@ -37,6 +37,7 @@ class CategoryController extends Controller
             $data['banner_image'] = (new AppHelper)->saveImage($request);
         }
         $data['slug'] = $slug;
+        $data['benefits'] = $request->benefits;
         Category::create( $data);
         \Cache::forget('event-categories');
         return redirect()->route('category.index')->withStatus(__('Category has added successfully.'));
@@ -70,6 +71,7 @@ class CategoryController extends Controller
             $image->move($destinationPath, $name);
             $data['banner_image'] = $name;
         }
+        $data['benefits'] = $request->benefits;
         Category::find($category->id)->update( $data);
         \Cache::forget('event-categories');
         return redirect()->route('category.index')->withStatus(__('Category has updated successfully.'));

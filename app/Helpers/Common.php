@@ -289,4 +289,9 @@ public static function generateCourtToken(){
     return $str;
 }
 
+public static function allBenefits($categoryId){
+  $data =  Category::select('benefits')->where('id',$categoryId)->first();
+  return explode(',',$data->benefits);
+}
+
 }

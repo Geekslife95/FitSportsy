@@ -119,7 +119,71 @@ class CoachBookingController extends Controller
                 'description' => $request->description
             ]),
         ]);
-        return redirect('user/coach-book-media')->with('success', 'Description added successfully...');
+        return redirect('user/coach-book-session')->with('success', 'Description added successfully...');
+    }
+
+    public function coachBookSession(){
+        abort_if(Gate::denies('event_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $coachBookData = $this->lastcoachBookDataByUserId(Auth::id());
+        if (!$coachBookData) {
+            return redirect('user/coach-book');
+        }
+        $basicInfo = json_decode($coachBookData->basic_information);
+
+        if (is_null($coachBookData->description)) {
+            return redirect('user/coach-book');
+        }
+        $tempData = [];
+        if (is_null($coachBookData->court_information)) {
+            $tempData = [
+                'session_duration'=>'',
+                'activities'=>[
+                    [
+                        'activity'=>'',
+                        'activity_duration'=>''
+                    ]
+                ],
+                'calories'=>'',
+                'intensity'=>'',
+                'benefits'=>[]
+            ];
+        } else {
+            $tempData = json_decode($coachBookData->court_information);
+        }
+        $data['bookData'] = is_array($tempData) ? json_decode(json_encode($tempData), FALSE) : $tempData;
+        $data['categoryId'] = $basicInfo->category_id;
+        // dd($data['bookData']);
+        return view('user.coach-booking.coach-book-session',$data);
+    }
+
+    public function postCoachBookSession(Request $request){
+        $request->validate([
+            'session_duration'=>'required',
+            'calories'=>'required',
+            'intensity'=>'required',
+            'benefits'=>'required',
+        ]);
+        if(empty($request->activity) || empty($request->benefits)){
+            return redirect()->back()->with('warning','All fields are required');
+        }
+        $coachBookData = $this->lastcoachBookDataByUserId(Auth::id());
+        $activityData = [];
+        foreach($request->activity as $kk=>$act){
+            $activityData[] = [
+                'activity'=>$act,
+                'activity_duration'=>$request->time[$kk]
+            ];
+        }
+        TempCourtBooking::where('id', $coachBookData->id)->update([
+            'court_information' => json_encode([
+                'session_duration' => $request->session_duration,
+                'calories' => $request->calories,
+                'intensity' => $request->intensity,
+                'benefits'=>$request->benefits,
+                'activities'=>$activityData
+            ]),
+        ]);
+        return redirect('user/coach-book-media')->with('success', 'Session duration added successfully...');
     }
 
     public function coachBookMedia(){
@@ -159,6 +223,7 @@ class CoachBookingController extends Controller
             $courtObj->poster_image = (new AppHelper)->saveImageWithPath($request->image, 'coach-booking');
             $courtObj->description_image = (new AppHelper)->saveImageWithPath($request->desc_page_img, 'coach-booking');
             $courtObj->coaches_info = json_encode($coachesData);
+            $courtObj->session_duration = $coachBookData->court_information;
             $courtObj->organiser_id = !empty($basicInfo->organiser_id) ? $basicInfo->organiser_id : Auth::id();
             $courtObj->created_by = Auth::id();
             $courtObj->is_active = Coach::ACTIVE;

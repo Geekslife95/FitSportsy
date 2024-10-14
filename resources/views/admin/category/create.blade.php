@@ -90,6 +90,11 @@
                                             </select>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label>{{ __('Benefits') }}(comma separated to add multiple)</label>
+                                            <input type="text" name="benefits" id="benefits" class="form-control">
+                                        </div>
+
 
                                         
 

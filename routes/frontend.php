@@ -264,4 +264,6 @@ Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function (
     Route::get('/coach-book-media',[CoachBookingController::class,'coachBookMedia']);
     Route::post('/store-coach-book-media',[CoachBookingController::class,'storeCoachBookMedia']);
     Route::get('/coach-booking-list',[CoachBookingController::class,'coachBookingList']);
+    Route::get('/coach-book-session',[CoachBookingController::class,'coachBookSession']);
+    Route::post('/post-coach-book-session',[CoachBookingController::class,'postCoachBookSession']);
 });
