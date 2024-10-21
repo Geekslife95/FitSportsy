@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\EventDashboard;
 use App\Http\Controllers\User\CoachBookingController;
+use App\Http\Controllers\User\CoachingPackageController;
 use App\Http\Controllers\User\CourtBookingController;
 
 Route::get("/stancer-payment",[SocialLoginController::class,'payment']);
@@ -266,4 +267,10 @@ Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function (
     Route::get('/coach-booking-list',[CoachBookingController::class,'coachBookingList']);
     Route::get('/coach-book-session',[CoachBookingController::class,'coachBookSession']);
     Route::post('/post-coach-book-session',[CoachBookingController::class,'postCoachBookSession']);
+    Route::get('/coaching-packages-list',[CoachingPackageController::class,'coachingPackagesList']);
+    Route::get('/add-coaching-package',[CoachingPackageController::class,'addCoachingPackage']);
+    Route::post('/store-coaching-package',[CoachingPackageController::class,'storeCoachingPackage']);
+    Route::get('/edit-coaching-package',[CoachingPackageController::class,'editCoachingPackage']);
+    Route::post('/update-coaching-package',[CoachingPackageController::class,'updateCoachingPackage']);
+    Route::get('/remove-coaching-package',[CoachingPackageController::class,'removeCoachingPackage']);
 });

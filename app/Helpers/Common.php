@@ -52,7 +52,7 @@ class Common
   }
 
   public static function daysArr(){
-    return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   }
 
   public static function generateUniqueTicketNum($ticket){

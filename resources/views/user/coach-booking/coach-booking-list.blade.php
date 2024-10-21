@@ -33,7 +33,18 @@
                                         <td><img style="object-fit: cover;height:40px;width:40px;" src="{{asset('uploads/'.$coach->poster_image)}}" alt=""></td>
                                         <td>{{$coach->venue_area}}</td>
                                         <td>{{$coach->venue_city}}</td>
-                                        <td></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                @php
+                                                    $inputObj = new stdClass();
+                                                    $inputObj->params = 'coaching_id='.$coach->id;
+                                                    $inputObj->url = url('user/coaching-packages-list');
+                                                    $encLink = Common::encryptLink($inputObj);
+
+                                                @endphp
+                                                <a href="javascript:Void(0);" class="btn btn-danger package_link" data-link="{{$encLink}}">Packages</a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -51,5 +62,37 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="packageModal" tabindex="-1" role="dialog" aria-labelledby="packageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="packageModalLabel">Packages</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modal_body">
+                    <h6 class="text-center mt-4">Loading Data...</h6>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </section>
 @endsection
+@push('scripts')
+    <script>
+        $(".package_link").on('click',function(){
+            let link = $(this).data('link');
+            $("#packageModal").modal('show');
+            $("#modal_body").html('<h6 class="text-center mt-4">Loading Data...</h6>');
+            $.get(link,function(data){
+                $("#modal_body").html(data);
+            });
+        });
+    </script>
+@endpush
