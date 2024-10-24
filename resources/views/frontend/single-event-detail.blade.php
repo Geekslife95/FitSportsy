@@ -598,7 +598,7 @@
             slidesToShow: 1,
             slidesToScroll: 1,
             autoplay: false,
-            arrows: true
+            arrows: false
         });
     });
 </script>
