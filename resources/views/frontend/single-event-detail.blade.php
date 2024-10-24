@@ -397,7 +397,7 @@
                 <hr>
                 <div class="row">
                     <!-- Coach Card 1 -->
-                    <div class="col-xl-2  col-lg-3 col-md-6 mb-4">
+                    <div class="col-xl-2  col-lg-3 col-md-6 col-6 mb-4">
                         <div class="card bg-dark-theme border-dark-theme coach-card">
                             <div class="text-center">
                                 <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="Coach John" class="coach-image img-fluid rounded-circle">
@@ -409,7 +409,7 @@
                         </div>
                     </div>
                     <!-- Coach Card 2 -->
-                    <div class="col-xl-2 col-lg-3 col-md-6 mb-4">
+                    <div class="col-xl-2  col-lg-3 col-md-6 col-6 mb-4">
                         <div class="card bg-dark-theme border-dark-theme coach-card">
                             <div class="text-center">
                                 <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="Coach Alice" class="coach-image img-fluid rounded-circle">
@@ -422,7 +422,7 @@
                     </div>
 
                       <!-- Coach Card 1 -->
-                      <div class="col-xl-2  col-lg-3 col-md-6 mb-4">
+                      <div class="col-xl-2  col-lg-3 col-md-6 col-6 mb-4">
                         <div class="card bg-dark-theme border-dark-theme coach-card">
                             <div class="text-center">
                                 <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="Coach John" class="coach-image img-fluid rounded-circle">
@@ -434,7 +434,7 @@
                         </div>
                     </div>
                     <!-- Coach Card 2 -->
-                    <div class="col-xl-2 col-lg-3 col-md-6 mb-4">
+                    <div class="col-xl-2  col-lg-3 col-md-6 col-6 mb-4">
                         <div class="card bg-dark-theme border-dark-theme coach-card">
                             <div class="text-center">
                                 <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="Coach Alice" class="coach-image img-fluid rounded-circle">
