@@ -288,20 +288,20 @@
                 <!-- Available Sports Section -->
                 <div class="available-sports">
                     <div class="available-sport-card">
-                        <span>🏸</span>
-                        <p>Badminton</p>
+                        <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="" width="36" height="36">
+                        <p class="mb-0" style="font-size:14px; ">Badminton</p>
                     </div>
                     <div class="available-sport-card">
-                        <span>🏏</span>
-                        <p>Box Cricket</p>
+                        <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="" width="36" height="36">
+                        <p class="mb-0" style="font-size:14px; ">Box Cricket</p>
                     </div>
                     <div class="available-sport-card">
-                        <span>⚽</span>
-                        <p>Football</p>
+                        <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="" width="36" height="36">
+                        <p class="mb-0" style="font-size:14px; ">Football</p>
                     </div>
                     <div class="available-sport-card">
-                        <span>🏏</span>
-                        <p>Cricket Nets</p>
+                        <img src="https://simplehai.axisdirect.in/images/user.jpg" alt="" width="36" height="36">
+                        <p class="mb-0" style="font-size:14px; ">Cricket Nets</p>
                     </div>
                 </div>
         
