@@ -44,7 +44,7 @@ class HomeService
     {
         return Coach::select('*')->with('category',function($q){
             $q->select('id','name as category_name');
-        })->where('is_active', Coach::ACTIVE)->first($id);
+        })->where('is_active', Coach::ACTIVE)->where('id', $id)->first();
     }
 }
 
