@@ -704,10 +704,7 @@
         margin-right: 8px;
     }
 
-    .container h2 {
-        text-align: center;
-        margin-bottom: 40px;
-    }
+
 
     @media (min-width: 768px) {
         .subscription-card {
