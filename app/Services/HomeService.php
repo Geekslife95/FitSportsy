@@ -43,7 +43,7 @@ class HomeService
     public static function coachingBookDataById(int $id)
     {
         return Coach::select('*')->with('category',function($q){
-            $q->select('id','name as category_name');
+            $q->select('id','name as category_name','category_id');
         })->where('is_active', Coach::ACTIVE)->first($id);
     }
 }
