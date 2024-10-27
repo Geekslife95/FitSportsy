@@ -586,6 +586,205 @@
     </div>
 </section>
 
+
+<style>
+    /* Dark Theme Styling */
+    .subscription-section {
+        background: #070b28;
+        color: #ffffff;
+        padding: 60px 0;
+    }
+
+    .subscription-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #1a1b2e;
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 25px;
+        transition: transform 0.2s, background 0.3s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+    }
+
+    .subscription-card:hover {
+        transform: translateY(-4px);
+        background: #1b1b37;
+    }
+
+    .subscription-card-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 15px;
+        border-radius: 10px 10px 0 0;
+        text-align: left;
+    }
+
+    .subscription-card-body {
+        padding: 20px 0;
+    }
+
+    .subscription-card-title {
+        font-size: 2rem;
+        margin: 10px 0;
+        text-align: left;
+    }
+
+    .price-text-muted {
+        color: #b0b0b0;
+        font-size: 0.9rem;
+    }
+
+    .button-primary, .button-success, .button-premium {
+        display: inline-block;
+        padding: 12px 25px;
+        width: 100%;  /* Full width button */
+        color: #ffffff;
+        font-size: 1rem;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s, transform 0.2s;
+        margin-top: 20px;
+    }
+
+    .button-primary {
+        background: linear-gradient(90deg, #db207b, #e74c3c);
+    }
+
+    .button-primary:hover {
+        background: linear-gradient(90deg, #e74c3c, #db207b);
+        transform: translateY(-2px);
+    }
+
+    .button-success {
+        background: linear-gradient(90deg, #28a745, #34d058);
+    }
+
+    .button-success:hover {
+        background: linear-gradient(90deg, #34d058, #28a745);
+        transform: translateY(-2px);
+    }
+
+    .button-premium {
+        background: linear-gradient(90deg, #f39c12, #e67e22);
+    }
+
+    .button-premium:hover {
+        background: linear-gradient(90deg, #e67e22, #f39c12);
+        transform: translateY(-2px);
+    }
+
+    .discount-badge {
+        background-color: #ff9800;
+        color: #121212;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .price-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .price-list li {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .price-list li i {
+        color: #28a745;
+        margin-right: 8px;
+    }
+
+    .container h2 {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    @media (min-width: 768px) {
+        .subscription-card {
+            height: 100%;
+        }
+    }
+</style>
+
+<section class="subscription-section">
+    <div class="container">
+        <h2>Our Subscription Plans</h2>
+        <div class="row">
+            <!-- Basic Plan -->
+            <div class="col-md-4 d-flex">
+                <div class="subscription-card flex-grow-1 d-flex flex-column position-relative">
+                    <div class="subscription-card-header" style="background-color: #007bff;">
+                        <h4><i class="fas fa-gem"></i> Basic</h4>
+                    </div>
+                    <div class="subscription-card-body">
+                        <h3 class="subscription-card-title">$19 <small class="price-text-muted">/ mo</small></h3>
+                        <ul class="price-list">
+                            <li><i class="fas fa-check"></i> 5 Projects</li>
+                            <li><i class="fas fa-check"></i> 10 GB Storage</li>
+                            <li><i class="fas fa-check"></i> Email Support</li>
+                            <li><i class="fas fa-check"></i> Basic Help Center Access</li>
+                        </ul>
+                        <a href="#" class="button-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Pro Plan with Discount -->
+            <div class="col-md-4 d-flex">
+                <div class="subscription-card flex-grow-1 d-flex flex-column position-relative">
+                    <div class="subscription-card-header" style="background-color: #28a745;">
+                        <h4><i class="fas fa-crown"></i> Pro</h4>
+                        <span class="discount-badge">20% Off</span>
+                    </div>
+                    <div class="subscription-card-body">
+                        <h3 class="subscription-card-title">$39 <small class="price-text-muted">/ mo</small></h3>
+                        <p><small class="price-text-muted">Normally $49 / mo</small></p>
+                        <ul class="price-list">
+                            <li><i class="fas fa-check"></i> 10 Projects</li>
+                            <li><i class="fas fa-check"></i> 20 GB Storage</li>
+                            <li><i class="fas fa-check"></i> Priority Email Support</li>
+                            <li><i class="fas fa-check"></i> Help Center Access</li>
+                        </ul>
+                        <a href="#" class="button-success">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Premium Plan -->
+            <div class="col-md-4 d-flex">
+                <div class="subscription-card flex-grow-1 d-flex flex-column position-relative">
+                    <div class="subscription-card-header" style="background: linear-gradient(90deg, #f39c12, #e67e22);">
+                        <h4><i class="fas fa-star"></i> Premium</h4>
+                        <span class="discount-badge">10% Off</span>
+                    </div>
+                    <div class="subscription-card-body">
+                        <h3 class="subscription-card-title">$59 <small class="price-text-muted">/ mo</small></h3>
+                        <p><small class="price-text-muted">Normally $65 / mo</small></p>
+                        <ul class="price-list">
+                            <li><i class="fas fa-check"></i> Unlimited Projects</li>
+                            <li><i class="fas fa-check"></i> 50 GB Storage</li>
+                            <li><i class="fas fa-check"></i> Phone and Email Support</li>
+                            <li><i class="fas fa-check"></i> Advanced Help Center Access</li>
+                        </ul>
+                        <a href="#" class="button-premium">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
 @endsection
 
 @push('scripts')
