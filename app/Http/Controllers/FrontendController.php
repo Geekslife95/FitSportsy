@@ -567,6 +567,18 @@ class FrontendController extends Controller
         return view('frontend.events', compact('user', 'events', 'chip', 'onlinecount', 'offlinecount'));
     }
 
+    public function singleEventDetail()
+    {
+        // Fetch the event data or perform any necessary logic here
+        $event = [
+            'title' => 'Sample Event',
+            'description' => 'This is a sample event description.',
+            // Add more fields as needed
+        ];
+
+        // Pass the event data to the view
+        return view('frontend.single-event-detail', compact('event'));
+    }
     public function eventDetail($id, $name = null)
     {
         $setting = Common::siteGeneralSettings();
