@@ -13,6 +13,6 @@ class City extends Model
     ];
 
     public function selectCity(){
-        return $this->hasMany(Coach::class, 'city_name', 'venue_city')->where('is_active',Coach::ACTIVE);
+        return $this->hasMany(Coach::class, 'venue_city', 'city_name')->where('is_active',Coach::ACTIVE);
     }
 }
