@@ -93,6 +93,10 @@ class Common
   }
 
 
+  public static function allCities(){
+    return \App\Models\City::select('city_name','id')->groupBy('city_name')->get();
+  }
+
 
   public static function nextTwoWeeks(){
     $days   = [];
