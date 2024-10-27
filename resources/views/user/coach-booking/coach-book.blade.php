@@ -110,7 +110,7 @@
                                         <label for="venue_city" class="form-label">Venue City <span class="text-danger">*</span></label>      
                                         <select name="venue_city" id="venue_city" class="form-control select2"  required>
                                             <option value="">Select City</option>
-                                            @foreach(Common::allEventCities() as $city)
+                                            @foreach(Common::allCities() as $city)
                                                 <option value="{{$city->city_name}}" {{$bookData->venue_city==$city->city_name ? 'selected':''}}>{{$city->city_name}}</option>
                                             @endforeach
                                         </select>
