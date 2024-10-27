@@ -31,6 +31,9 @@ class HomeController extends Controller
     public function coachingBook(int $id, string $title)
     {
         $data['coachData'] = HomeService::coachingBookDataById($id);
+        $sessionDurationData = json_decode($data['coachData']->session_duration, true);
+        dd($sessionDurationData);
+        $data['sessionDurationData'] = $sessionDurationData;
         return view('home.coaching-book', $data);
     }
 }
