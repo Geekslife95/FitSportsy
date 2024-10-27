@@ -125,7 +125,12 @@ ul.amenities {
                                 <div class="col-lg-4 col-md-12">
                                     <div class="form-group">
                                         <label for="intensity" class="form-label">Intensity<span class="text-danger">*</span></label>      
-                                        <input type="text" name="intensity" id="intensity" class="form-control" placeholder="Enter Intensity" value="{{$bookData->intensity}}" required>
+                                        <select name="intensity" class="form-control" id="intensity" required>
+                                            <option value="">Select</option>
+                                            @foreach (Common::sportIntensityArr() as $intensity)
+                                                <option value="{{ $intensity }}">{{ $intensity }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-12 ">

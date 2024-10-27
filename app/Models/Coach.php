@@ -9,4 +9,14 @@ class Coach extends Model
 {
     use HasFactory;
     const ACTIVE = 1;
+
+    public function coachingPackage()
+    {
+        return $this->hasOne(CoachingPackage::class)->where('is_active', CoachingPackage::STATUS_ACTIVE);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -21,16 +21,8 @@
     <link href="{{ asset('f-vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('f-vendor/slick/slick.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('f-vendor/slick/slick-theme.min.css') }}" />
-
     <link href="{{ asset('f-css/main.css') }}" rel="stylesheet">
-    {!! JsonLdMulti::generate() !!}
-    {!! SEOMeta::generate() !!}
-    {!! OpenGraph::generate() !!}
-    {!! Twitter::generate() !!}
-    {!! JsonLd::generate() !!}
-    @stack('styles')
-    {{-- <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=650e90bf5cec690019fc9188&product=sticky-share-buttons&source=platform" async="async"></script> --}}
-        
+    @stack('styles')        
     
     <style>
         .btn-success, .default-btn {  
@@ -316,16 +308,7 @@
                     @endforeach
                 </ul>
             </div>
-            @foreach (Common::abhisheka() as $item)
-            <div>
-                <a href="{{url('all-events?category='.$item->id)}}" class="text-white mb-2 fw-bold">{{$item->name}}</a>
-                <ul class="list-unstyled ">
-                    @foreach ($item->events as $val)
-                        <li><a href="{{url('event/'.$val->id.'/'.Str::slug($val->name))}}">{{$val->name}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-            @endforeach
+           
         </div>
     </address>
     <footer class="footer">

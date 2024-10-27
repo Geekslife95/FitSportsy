@@ -15,6 +15,7 @@ use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\EventDashboard;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CoachBookingController;
 use App\Http\Controllers\User\CoachingPackageController;
 use App\Http\Controllers\User\CourtBookingController;
@@ -35,7 +36,8 @@ Route::group(['middleware' => ['mode', 'XSS']], function () {
     Route::get('/filter-spiritual-volunteers',[BookController::class,'spritualVolunteer']);
 
 
-    Route::get('/', [FrontendController::class, 'home'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/coaching-book/{id}/{title}', [HomeController::class, 'coachingBook']);
     Route::post('/send-to-admin', [FrontendController::class, 'sentMessageToAdmin']);
     // Route::get('/privacy_policy', [FrontendController::class, 'privacypolicy']);
 
