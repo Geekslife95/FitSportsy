@@ -25,7 +25,7 @@ $favicon = Common::siteGeneralSettings();
                             <div class="text-center">
                                 {{-- <img src="{{ $favicon->logo ? asset('/images/upload/' . $favicon->logo) : asset('/images/logo.png') }}"
                                 alt="" width="160" class="img-thumbnail mb-2"> --}}
-                                <h1 class="h3 text-gray-900 mb-4">Organizer Login</h1>
+                                <h1 class="h3 text-white mb-4">Organizer Login</h1>
                             </div>
                             @include('messages')
                             <form class="user" method="post" name="register_frm" id="register_frm">

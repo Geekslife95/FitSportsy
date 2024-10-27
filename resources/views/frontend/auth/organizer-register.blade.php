@@ -33,7 +33,7 @@ $favicon = Common::siteGeneralSettings();
                             <div class="text-center">
                             </div>
                             <div class="text-center">
-                                <h1 class="h3 text-gray-900 mb-4">Create Organizer Account</h1>
+                                <h1 class="h3 text-white mb-4">Create Organizer Account</h1>
                                 <p class="ot_err text-danger text-left"></p>
                             </div>
 
