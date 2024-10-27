@@ -656,6 +656,7 @@
     .button-primary:hover {
         background: linear-gradient(90deg, #e74c3c, #db207b);
         transform: translateY(-2px);
+        color: #fff;
     }
 
     .button-success {
@@ -665,6 +666,8 @@
     .button-success:hover {
         background: linear-gradient(90deg, #34d058, #28a745);
         transform: translateY(-2px);
+        color: #fff;
+
     }
 
     .button-premium {
@@ -674,6 +677,8 @@
     .button-premium:hover {
         background: linear-gradient(90deg, #e67e22, #f39c12);
         transform: translateY(-2px);
+        color: #fff;
+
     }
 
     .discount-badge {
