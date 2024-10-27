@@ -301,7 +301,7 @@
                     
                 @php
                     $sessionDurationData = json_decode($coachData->session_duration, true);
-                    dd($coachData->session_duration);
+                    dd($coachData);
                 @endphp
                 <!-- Intensity and Calories Section -->
                 <div class="mt-4 mb-3">
