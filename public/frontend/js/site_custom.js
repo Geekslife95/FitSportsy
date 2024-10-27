@@ -3,7 +3,7 @@
     $(window).on('load', function() {
         setTimeout(() => {
             $('.sigma_preloader').addClass('hidden');
-        }, 700);
+        }, 100);
         
     });
     $('.collections-slider').slick({

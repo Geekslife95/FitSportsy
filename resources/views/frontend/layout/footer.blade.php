@@ -1,5 +1,5 @@
 @php
-    $language = \App\Models\Language::where('status', 1)->get();
+    // $language = \App\Models\Language::where('status', 1)->get();
 @endphp
 <div class="footer bg-primary py-3 bottom-0 m-0">
     <div
@@ -43,7 +43,7 @@
                 <div
                     class="languageClass hidden rigin-top-left absolute left-0 w-44 rounded-md shadow-2xl z-10 bottom-12">
                     <div class="rounded-md bg-white shadow-lg p-3">
-                        @foreach ($language as $item)
+                        {{-- @foreach ($language as $item)
                             <div class="">
                                 <div class="p-2 flex items-left justify-left">
                                     <a type="button" href="{{ url('change-language/' . $item->name) }}"
@@ -52,7 +52,7 @@
                                             class="w-5 h-5 mx-2 language" alt="">{{ $item->name }}</a>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 </div>
             </div>

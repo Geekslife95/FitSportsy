@@ -294,4 +294,119 @@ public static function allBenefits($categoryId){
   return explode(',',$data->benefits);
 }
 
+public static function randomRatings(){
+  $num = rand(3,5);
+  $str = '';
+  for($i = 1; $i <= 5; $i++){
+    $str .= '<small><i class="fas fa-star '.($i <= $num ? 'active' : '').'"></i></small>';
+  }
+  return $str. '<span class="text-dark"> ('.$num.') Ratings</span>';                                      
+}
+
+public static function showDiscountLabel($price = 0, $discount = 0)
+{ 
+  $afterDiscountPrice = $price;
+  if($discount > 0 && $discount < 101){
+    $percPrice = $price * ($discount / 100);
+    $afterDiscountPrice = $price - $percPrice;
+  }
+  $str = '<p class=" h6 text-dark mb-1">';
+  if($price == $afterDiscountPrice){
+    return '<span class="font-weight-bold pr-2">₹'. ($price+0) .'</span>';
+  }else{
+    $str .= '<small>
+                <del class="mr-1 text-muted "> 
+                    ₹'. ($price+0) .'
+                </del>
+            </small>
+            <span class="font-weight-bold pr-2">₹'. ($afterDiscountPrice+0) .'</span>
+            <small class="text-danger">'. $discount .'%</small>
+            ';
+  }
+  $str .= '</p>';
+  return $str;
+  
+}
+
+public static function sportIntensityArr(){
+  return [
+    'High',
+    'Moderate',
+    'Low',
+    'High To Moderate',
+    'Low To Moderate',
+    'Moderate To High',
+  ];
+}
+
+public static function intensityColors($key=null){
+  $arr =  [
+    'High' => '#FF0000',
+    'Moderate' => '#FFA500',
+    'Low' => '#32CD32',
+    'High To Moderate' => '#FF4500',
+    'Low To Moderate' => '#ADFF2F',
+    'Moderate To High' => '#FF7F50',
+  ];
+  return isset($arr[$key]) ? $arr[$key] : "#FFFFFF";
+}
+
+public static function sessionColors($key){
+  $colors = [
+      0 => '#FF4500',  // Bright Red-Orange
+      1 => '#FFA500',  // Orange
+      2 => '#32CD32',  // Lime Green
+      3 => '#FF6347',  // Tomato Red
+      4 => '#9ACD32',  // Yellow-Green
+      5 => '#FF7F50',  // Coral
+      6 => '#00CED1',  // Dark Turquoise
+      7 => '#4682B4',  // Steel Blue
+      8 => '#9370DB',  // Medium Purple
+      9 => '#DA70D6',  // Orchid
+      10 => '#FFD700', // Gold
+      11 => '#FF69B4', // Hot Pink
+      12 => '#FF4500', // Orange Red
+      13 => '#8A2BE2', // Blue Violet
+      14 => '#5F9EA0', // Cadet Blue
+      15 => '#20B2AA', // Light Sea Green
+      16 => '#7FFF00', // Chartreuse
+      17 => '#FF1493', // Deep Pink
+      18 => '#FF6347', // Tomato Red (repeated)
+      19 => '#9400D3', // Dark Violet
+      20 => '#00FF7F'  // Spring Green
+  ];
+  return isset($colors[$key]) ? $colors[$key] : $colors[array_rand($colors)];
+}
+
+public static function SportsSvgArr($key){
+  $arr = [
+    'Badminton' => asset('images/amenities/white/badminton.svg'),
+    'Basket_Ball' => asset('images/amenities/white/basketball.svg'),
+    'Cricket' => asset('images/amenities/white/cricket.svg'),
+    'Long_Tennis' => asset('images/amenities/white/longtennis.svg'),
+    'Skating' => asset('images/amenities/white/skating.svg'),
+    'Swimming' => asset('images/amenities/white/swimming.svg'),
+    'Table_Tennis' => asset('images/amenities/white/tabletennis.svg'),
+    'Volley_Ball' => asset('images/amenities/white/volleyball.svg'),
+  ];
+  return $arr[$key];
+}
+
+public static function amenitiesSvgArr($key){
+  $arr = [
+    'Bed_Room' => asset('images/amenities/white/bedroom.svg'),
+    'Blue_Parking' => asset('images/amenities/white/blueparking.svg'),
+    'Changing_Room' => asset('images/amenities/white/changingroom.svg'),
+    'Drinking' => asset('images/amenities/white/drinking.svg'),
+    'FirstAid' => asset('images/amenities/white/firstaid.svg'),
+    'Parking' => asset('images/amenities/white/parking.svg'),
+    'Running' => asset('images/amenities/white/running.svg'),
+    'Shower' => asset('images/amenities/white/shower.svg'),
+    'Toilets' => asset('images/amenities/white/toilets.svg'),
+    'Washroom' => asset('images/amenities/white/washroom.svg'),
+  ];
+  return $arr[$key];
+}
+
+
 }
