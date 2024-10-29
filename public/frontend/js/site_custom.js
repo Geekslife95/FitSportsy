@@ -45,7 +45,7 @@
         centerMode: true,
         centerPadding: '0px',
       
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
 
         responsive: [{

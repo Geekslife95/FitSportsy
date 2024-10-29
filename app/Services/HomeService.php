@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Coach;
+use App\Models\CoachingPackage;
 use App\Models\Product;
 
 class HomeService
@@ -46,5 +47,22 @@ class HomeService
             $q->select('id','name as category_name');
         })->where('is_active', Coach::ACTIVE)->where('id', $id)->first();
     }
+
+    public static function getCoachingPackagesDataByCoachId(int $coachingId){
+        return CoachingPackage::select('*')->where(['coach_id' => $coachingId, 'is_active' => CoachingPackage::STATUS_ACTIVE])->get();
+    }
+
+    public static function getRelateCoachingData($id, $selectedCity = 'All'){
+        $coachingData = Coach::select('id','coaching_title','poster_image','venue_name')
+                        ->with('coachingPackage',function($q){
+                            $q->select('id','coach_id','package_price','discount_percent','session_days');
+                        })->has('coachingPackage');
+                        if($selectedCity != 'All'){
+                            $coachingData->where('venue_city', $selectedCity);
+                        }
+        $coachingData = $coachingData->where('is_active', Coach::ACTIVE)->where('id', '!=', $id)->inRandomOrder()->limit(10)->get();
+        return $coachingData;
+    }
+
 }
 

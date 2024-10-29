@@ -9,15 +9,15 @@ use App\Models\Popups;
 use App\Services\HomeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use stdClass;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $selectedCity = Session::has('CURR_CITY') ? Session::get('CURR_CITY') : 'All';
-        $cityName = session()->get('CURR_CITY');
-        if($cityName != 'All'){
-            $data['popup'] = Popups::Where('city',$cityName)->orderBy('id','DESC')->first();
+        if($selectedCity != 'All'){
+            $data['popup'] = Popups::Where('city', $selectedCity)->orderBy('id','DESC')->first();
         }else{
             $data['popup'] = "";
         }
@@ -30,9 +30,22 @@ class HomeController extends Controller
 
     public function coachingBook(int $id, string $title)
     {
+        $selectedCity = Session::has('CURR_CITY') ? Session::get('CURR_CITY') : 'All';
         $data['coachData'] = HomeService::coachingBookDataById($id);
         $sessionDurationData = json_decode($data['coachData']->session_duration, true);
         $data['sessionDurationData'] = $sessionDurationData;
+        $data['relatedCoaching'] = HomeService::getRelateCoachingData($id, $selectedCity);
+        $inputObj = new stdClass();
+        $inputObj->params = 'coach_id='.$id;
+        $inputObj->url = url('coaching-packages');
+        $data['packageLink'] = Common::encryptLink($inputObj);
         return view('home.coaching-book', $data);
+    }
+
+    public function coachingPackages(){
+        $coachingId = $this->memberObj['coach_id'];
+        $data['coachData'] = HomeService::coachingBookDataById($coachingId);
+        $data['packageData'] = HomeService::getCoachingPackagesDataByCoachId($coachingId);
+        return view('home.coaching-package', $data);
     }
 }
