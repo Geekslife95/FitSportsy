@@ -1,4 +1,5 @@
 @extends('frontend.master', ['activePage' => 'home'])
+
 @section('title', __('Coach Book'))
 @push('styles')
 <style>
@@ -329,7 +330,7 @@
                 <div class="event-ticket card shadow-sm mb-3">
                     <div class="card-body">
                         <div class="single-ticket">
-                            <a href="{{ $packageLink }}" class="btn default-btn w-100">Continue To Book Workshops</a>
+                            <a href="{{ $packageLink }}" class="btn default-btn w-100">Continue To Book {{ $coachData->category->category_name }}</a>
                         </div>
                     </div>
                 </div>

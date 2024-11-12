@@ -10,7 +10,7 @@ use App\Services\Category;
 use App\Services\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use DB;
+use DB, stdClass;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -236,6 +236,229 @@ class CoachBookingController extends Controller
             dd($e->getMessage());
             exit('SOMETHING WENT WRONG...');
         }
+    }
+
+    private function coachBookDataById(int $coachId)
+    {
+        return Coach::findorfail($coachId);
+    }
+
+    public function editCoachBook(Category $category){
+        $coachId = $this->memberObj['coaching_id'];
+        abort_if(Gate::denies('event_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $coachBookData = $this->coachBookDataById($coachId);
+        $data['bookData'] = $coachBookData;
+
+        $data['category'] = $category->getActiveCategories();
+        if(Auth::user()->hasRole('admin')){
+            $data['users'] = User::getOrganisers();
+        }
+        $inputObj = new stdClass();
+        $inputObj->params = 'coaching_id='.$coachId;
+        $inputObj->url = url('user/update-coach-book');
+        $encLink = Common::encryptLink($inputObj);
+        $data['updateLink'] = $encLink;
+        return view("user.coach-booking.edit-coach-book",$data);
+    }
+
+    public function updateCoachBook(Request $request){
+        $coachId = $this->memberObj['coaching_id'];
+
+        $request->validate([
+            'venue_name' => 'required',
+            'venue_area' => 'required',
+            'venue_address' => 'required',
+            'venue_city' => 'required',
+            'coaching_title' => 'required',
+            'category_id' => 'required',
+            'age_group' => 'required',
+            'free_demo_session' => 'required',
+            'bring_own_equipment' => 'required',
+        ]);
+
+        $skillLevel = !empty($request->skill_level) ? json_encode($request->skill_level): null;
+        
+        $coachBookObj = $this->coachBookDataById($coachId);
+        $coachBookObj->venue_name = $request->venue_name;
+        $coachBookObj->venue_area = $request->venue_area;
+        $coachBookObj->venue_address = $request->venue_address;
+        $coachBookObj->venue_city = $request->venue_city;
+        $coachBookObj->coaching_title = $request->coaching_title;
+        $coachBookObj->category_id = $request->category_id;
+        $coachBookObj->age_group = $request->age_group;
+        $coachBookObj->free_demo_session = $request->free_demo_session;
+        $coachBookObj->bring_own_equipment = $request->bring_own_equipment;
+        $coachBookObj->skill_level = $skillLevel;
+        $coachBookObj->updated_at = date("Y-m-d H:i:s");
+        $coachBookObj->save();
+
+        $inputObj = new stdClass();
+        $inputObj->params = 'coaching_id='.$coachId;
+        $inputObj->url = url('user/edit-coach-book-information');
+        $encLink = Common::encryptLink($inputObj);
+        
+        return redirect($encLink)->with('success', 'Basic information added successfully...');        
+    }
+
+    public function editCoachBookInformation(){
+        abort_if(Gate::denies('event_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $coachId = $this->memberObj['coaching_id'];
+        $coachBookData = $this->coachBookDataById($coachId);
+        if (!$coachBookData) {
+            return redirect('user/coach-book');
+        }
+        $data['bookData'] = $coachBookData;
+        $inputObj = new stdClass();
+        $inputObj->params = 'coaching_id='.$coachId;
+        $inputObj->url = url('user/update-coach-book-information');
+        $encLink = Common::encryptLink($inputObj);
+
+        $data['updateLink'] = $encLink;
+        return view('user.coach-booking.edit-coach-book-information',$data);
+    }
+
+    public function updateCoachBookInformation(Request $request){
+        $coachId = $this->memberObj['coaching_id'];
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        $coachBookData = $this->coachBookDataById($coachId);
+        $coachBookData->sports_available = !empty($request->sports_available) ? json_encode($request->sports_available) : json_encode([]);
+        $coachBookData->ameneties = !empty($request->amenities) ? json_encode($request->amenities) : json_encode([]);
+        $coachBookData->description = $request->description;
+        $coachBookData->updated_at = date("Y-m-d H:i:s");
+        $coachBookData->save();
+
+        $inputObj = new stdClass();
+        $inputObj->params = 'coaching_id='.$coachId;
+        $inputObj->url = url('user/edit-coach-book-session');
+        $encLink = Common::encryptLink($inputObj);
+        return redirect($encLink)->with('success','Description added successfully');
+    }
+
+    public function editCoachBookSession(){
+        abort_if(Gate::denies('event_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $coachId = $this->memberObj['coaching_id'];
+        $coachBookData = $this->coachBookDataById($coachId);
+        if (!$coachBookData) {
+            return redirect('user/coach-book');
+        }
+        $data['bookData'] = $coachBookData;
+        $data['bookDataSD'] = json_decode($coachBookData->session_duration);
+        // dd($data['bookData']);
+        $data['categoryId'] = $coachBookData->category_id;
+        $inputObj = new stdClass();
+        $inputObj->params = 'coaching_id='.$coachId;
+        $inputObj->url = url('user/update-coach-book-session');
+        $encLink = Common::encryptLink($inputObj);
+        // dd($coachBookData);
+        $data['updateLink'] = $encLink;
+        return view('user.coach-booking.edit-coach-book-session',$data);
+    }
+
+    public function updateCoachBookSession(Request $request)
+    {
+        $request->validate([
+            'session_duration'=>'required',
+            'calories'=>'required',
+            'intensity'=>'required',
+            'benefits'=>'required',
+        ]);
+        if(empty($request->activity) || empty($request->benefits)){
+            return redirect()->back()->with('warning','All fields are required');
+        }
+        $coachId = $this->memberObj['coaching_id'];
+
+        $activityData = [];
+        foreach($request->activity as $kk=>$act){
+            $activityData[] = [
+                'activity'=>$act,
+                'activity_duration'=>$request->time[$kk]
+            ];
+        }
+
+        $courtObj = $this->coachBookDataById($coachId);
+
+        $courtObj->session_duration = json_encode([
+            'session_duration' => $request->session_duration,
+            'calories' => $request->calories,
+            'intensity' => $request->intensity,
+            'benefits'=>$request->benefits,
+            'activities'=>$activityData
+        ]);
+        $courtObj->updated_at = date("Y-m-d H:i:s");
+        $courtObj->save();
+
+        $inputObj = new stdClass();
+        $inputObj->params = 'coaching_id='.$coachId;
+        $inputObj->url = url('user/edit-coach-book-media');
+        $encLink = Common::encryptLink($inputObj);
+
+        return redirect($encLink)->with('success', 'Session duration added successfully...');
+    }
+
+    public function editCoachBookMedia()
+    {
+        abort_if(Gate::denies('event_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $coachId = $this->memberObj['coaching_id'];
+        $coachBookData = $this->coachBookDataById($coachId);
+        if (!$coachBookData) {
+            return redirect('user/coach-book');
+        }
+        $data['bookData'] = $coachBookData;
+
+        $inputObj = new stdClass();
+        $inputObj->params = 'coaching_id='.$coachId;
+        $inputObj->url = url('user/update-coach-book-media');
+        $encLink = Common::encryptLink($inputObj);
+        $data['updateLink'] = $encLink;
+
+        return view('user.coach-booking.edit-coach-book-media', $data);
+    }
+
+    public function updateCoachBookMedia(Request $request)
+    {
+        $coachId = $this->memberObj['coaching_id'];
+
+        // dd($request->all());
+
+        $coachesData = [];
+        // foreach ($request->gallery_image as $k=>$file) {
+        foreach ($request->coach_name as $k=>$coach) {
+            if(isset($request->gallery_image[$k])){
+                $image = (new AppHelper)->saveImageWithPath($request->gallery_image[$k], 'coach-booking');
+            }else{
+                $image = $request->gallery_image_old[$k];
+            }
+
+            $coachesData[] = [
+                'image'=>$image,
+                'name'=>$coach,
+                'age'=>$request->coach_age[$k],
+                'experience'=>$request->coach_experience[$k]
+            ];
+        }
+
+        $courtObj = $this->coachBookDataById($coachId);
+        if($request->hasFile('image')){
+            $courtObj->poster_image = (new AppHelper)->saveImageWithPath($request->image, 'coach-booking');
+        }
+
+        if($request->hasFile('desc_page_img')){
+            $courtObj->description_image = (new AppHelper)->saveImageWithPath($request->desc_page_img, 'coach-booking');
+        }
+
+        $courtObj->coaches_info = json_encode($coachesData);
+        $courtObj->save();
+        return redirect('user/coach-booking-list')->with('success','Data updated successfully...');   
+    }
+
+    public function removeCoachBook()
+    {
+        $coachId = $this->memberObj['coaching_id'];
+        Coach::where('id', $coachId)->update(['is_active' => Coach::INACTIVE]);
+        return redirect('user/coach-booking-list')->with('success','Coaching Data removed successfully...');   
     }
 
 }

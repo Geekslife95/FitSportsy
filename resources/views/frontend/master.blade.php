@@ -301,7 +301,7 @@
                 </ul>
             </div>
             <div>
-                <h5 class="text-white mb-2">Supershows Tickets</h5>
+                <h5 class="text-white mb-2">FitSportsy Locations</h5>
                 <ul class="list-unstyled ">
                     @foreach (Common::allEventCities() as $city)
                         <li><a href="{{ url('all-events?city=' . $city->id) }}">{{ $city->city_name }}</a></li>

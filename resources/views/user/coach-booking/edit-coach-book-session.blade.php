@@ -69,11 +69,11 @@ ul.amenities {
 @endpush
 <section class="page-wrapper">
     <div class="content container-fluid">
-        @include('user.coach-booking.top-bar')
+        @include('user.coach-booking.edit-top-bar', ['type' => 'session_details', 'bookData' => $bookData])
         @include('messages')
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
-                <form action="{{url('user/post-coach-book-session')}}" method="POST" id="event_form" name="event_form">
+                <form action="{{ $updateLink }}" method="POST" id="event_form" name="event_form">
                     @csrf
                     <div class="card">
                         <div class="card-header">
@@ -84,12 +84,12 @@ ul.amenities {
                                 <div class="col-lg-6 col-md-12 col-12 ">
                                     <div class="form-group">
                                         <label for="session_duration" class="form-label">Session Duration (In Min)<span class="text-danger">*</span></label>      
-                                        <input type="number" name="session_duration" id="session_duration" class="form-control" placeholder="Enter Session Duration (In Min)" value="{{$bookData->session_duration}}" required>
+                                        <input type="number" name="session_duration" id="session_duration" class="form-control" placeholder="Enter Session Duration (In Min)" value="{{$bookDataSD->session_duration}}" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="act_more">
-                                @foreach ($bookData->activities as $k=>$activity)
+                                @foreach ($bookDataSD->activities as $k=>$activity)
                                     <div class="row">
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
@@ -122,10 +122,10 @@ ul.amenities {
                                         <select name="calories" id="calories" class="form-control">
                                             <option value="">Select Calories</option>
                                             @foreach (Common::caloriesArr() as $calory)
-                                                <option value="{{ $calory }}" {{ $calory == $bookData->calories ? 'selected' : '' }}>{{ $calory }}</option>
+                                                <option value="{{ $calory }}" {{ $calory == $bookDataSD->calories ? 'selected' : '' }}>{{ $calory }}</option>
                                             @endforeach
                                         </select>
-                                        {{-- <input type="text" name="calories" id="calories" class="form-control" placeholder="Enter Calories" value="{{$bookData->calories}}" required> --}}
+                                        {{-- <input type="text" name="calories" id="calories" class="form-control" placeholder="Enter Calories" value="{{$bookDataSD->calories}}" required> --}}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12">
@@ -134,7 +134,7 @@ ul.amenities {
                                         <select name="intensity" class="form-control" id="intensity" required>
                                             <option value="">Select</option>
                                             @foreach (Common::sportIntensityArr() as $intensity)
-                                                <option value="{{ $intensity }}" {{ $intensity == $bookData->intensity ? 'selected' : '' }}>{{ $intensity }}</option>
+                                                <option value="{{ $intensity }}" {{ $intensity == $bookDataSD->intensity ? 'selected' : '' }}>{{ $intensity }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -143,7 +143,7 @@ ul.amenities {
                                     <div class="form-group">
                                         <label for="" class="form-label">Benefits<span class="text-danger">*</span></label>
                                         @php
-                                            $benefits = !is_array($bookData->benefits) ? json_decode($bookData->benefits,true) : $bookData->benefits;
+                                            $benefits = !is_array($bookDataSD->benefits) ? json_decode($bookDataSD->benefits,true) : $bookDataSD->benefits;
                                         @endphp
                                         <select name="benefits[]" class="form-control select2Tags" multiple required>
                                             <option disabled>Select Benefits</option>
@@ -198,7 +198,7 @@ ul.amenities {
 </script>
 
 <script>
-    var x = '{{count($bookData->activities)}}';
+    var x = '{{count($bookDataSD->activities)}}';
     $(document).on('click',"#add_more_activ",function(){
         $(".act_more").append(`
         <div class="row prnt_dv">

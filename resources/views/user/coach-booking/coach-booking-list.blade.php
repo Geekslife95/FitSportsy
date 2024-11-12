@@ -41,8 +41,20 @@
                                                     $inputObj->url = url('user/coaching-packages-list');
                                                     $encLink = Common::encryptLink($inputObj);
 
+                                                    $inputObjE = new stdClass();
+                                                    $inputObjE->params = 'coaching_id='.$coach->id;
+                                                    $inputObjE->url = url('user/edit-coach-book');
+                                                    $encLinkE = Common::encryptLink($inputObjE);
+
+                                                    $inputObjD = new stdClass();
+                                                    $inputObjD->params = 'coaching_id='.$coach->id;
+                                                    $inputObjD->url = url('user/remove-coach-book');
+                                                    $encLinkD = Common::encryptLink($inputObjD);
+
                                                 @endphp
-                                                <a href="javascript:Void(0);" class="btn btn-danger package_link" data-link="{{$encLink}}">Packages</a>
+                                                <a href="javascript:Void(0);" class="btn text-white btn-primary package_link" data-link="{{$encLink}}">Packages</a>
+                                                <a href="{{ $encLinkE }}" class="btn btn-warning text-white ml-1"><i class="fas fa-edit"></i></a>
+                                                <a href="javascript:Void(0);" class="btn btn-danger remove_coach_list text-white ml-1" data-link="{{$encLinkD}}"><i class="fas fa-trash-alt"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -94,5 +106,13 @@
                 $("#modal_body").html(data);
             });
         });
+    </script>
+    <script>
+        $(document).on('click', ".remove_coach_list", function(){
+            let link = $(this).data('link');
+            if(confirm('Are you sure? you want to delete this')){
+                window.location.href = link;
+            }
+        })
     </script>
 @endpush

@@ -277,4 +277,16 @@ Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function (
     Route::get('/edit-coaching-package',[CoachingPackageController::class,'editCoachingPackage']);
     Route::post('/update-coaching-package',[CoachingPackageController::class,'updateCoachingPackage']);
     Route::get('/remove-coaching-package',[CoachingPackageController::class,'removeCoachingPackage']);
+
+    Route::get('/edit-coach-book',[CoachBookingController::class,'editCoachBook']);
+    Route::post('/update-coach-book',[CoachBookingController::class,'updateCoachBook']);
+    Route::get('/edit-coach-book-information',[CoachBookingController::class,'editCoachBookInformation']);
+    Route::post('/update-coach-book-information',[CoachBookingController::class,'updateCoachBookInformation']);
+    Route::get('/edit-coach-book-session',[CoachBookingController::class,'editCoachBookSession']);
+    Route::post('/update-coach-book-session',[CoachBookingController::class,'updateCoachBookSession']);
+    Route::get('/edit-coach-book-media',[CoachBookingController::class,'editCoachBookMedia']);
+    Route::post('/update-coach-book-media',[CoachBookingController::class,'updateCoachBookMedia']);
+
+    Route::get('/remove-coach-book',[CoachBookingController::class,'removeCoachBook']);
+    
 });

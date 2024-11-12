@@ -1,10 +1,10 @@
-@extends('frontend.master', ['activePage' => 'All Spiritual Products'])
+@extends('frontend.master', ['activePage' => 'All Sports Products'])
 @section('title', __('Home'))
 @section('content')
 <div class="container mt-5">
    @if(count($products))
         <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-3 overflow-hidden">
-            <h1 class="h4 mb-0 float-left">Spiritual Products</h1>
+            <h1 class="h4 mb-0 float-left">Sports Products</h1>
           
         </div>
         <div class="row mb-5">
