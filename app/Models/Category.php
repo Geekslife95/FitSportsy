@@ -38,5 +38,10 @@ class Category extends Model
         return $this->hasMany('App\Models\Event', 'category_id', 'id');
     }
 
+    public function coachings()
+    {
+        return $this->hasMany('App\Models\Coach', 'category_id', 'id')->where('is_active', Coach::ACTIVE);
+    }
+
 
 }

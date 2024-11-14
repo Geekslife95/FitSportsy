@@ -131,7 +131,7 @@
     .single-detail-area p {
         font-size: 1rem;
         line-height: 1.6;
-        color: #b0b0b0;
+        color: #ffffff;
     }
 
     @media (min-width: 768px) {
@@ -159,11 +159,13 @@
         width: auto;
         text-align: center;
         color: #fff;
-        white-space: nowrap
+        white-space: nowrap;
+        min-width: 110px;
     }
 
     .available-sport-card span {
         font-size: 1.5rem;
+        
     }
 
     /* Buttons */
@@ -276,17 +278,18 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-12">
                 <h2 >{{ $coachData->coaching_title }}</h2>
-                <div class="d-flex flex-column flex-md-row dark-gap font-weight-bold h5 mb-4">
+                <div class="d-flex flex-column flex-md-row dark-gap text-white h5 mb-4">
                     <p class="dark-gap">Sport name: {{ $coachData->category->category_name }}</p>
                     <div class="d-flex">
                         <p class="mr-3">👨‍👩‍👧‍👦 Age group: {{ $coachData->age_group }}</p>
-                        <p>🏸 BYOE: {{ $coachData->bring_own_equipment }}</p>
+                        <p class="mr-3">🏸 BYOE: {{ $coachData->bring_own_equipment }}</p>
+                        <p>🎟️ Free Demo session: {{ $coachData->free_demo_session }}</p>
                     </div>
                 </div>
         
-                <div class="d-flex flex-column flex-md-row font-weight-bold h5">
+                <div class="d-flex flex-column flex-md-row text-white h5">
                     <p class="mr-4">📍 Venue: {{ $coachData->venue_name.', '.$coachData->venue_area.', '.$coachData->venue_address.', '.$coachData->venue_city }}</p>
-                    <p>🎟️ Free Demo session: {{ $coachData->free_demo_session }}</p>
+                   
                 </div>
                 @if($coachData->sports_available != null)
                     <h4>Available Sports</h4>
@@ -307,7 +310,7 @@
                     <div class="d-flex flex-row align-items-start w-100">
                         <div class="mr-4">
                             <span class="text-muted">CALORIES</span>
-                            <div>
+                            <div style="min-width: 115px;">
                                 <span>🔥</span>
                                 <span class="ml-2 font-weight-bold">{{ $sessionDurationData['calories'] }}</span>
                             </div>
@@ -478,7 +481,7 @@
                     <h4 class="font-weight-bold h5 mb-3">Amenities</h4>
                     <div class="d-flex">
                         @foreach (json_decode($coachData->ameneties) as $ameniti)
-                            <div class="text-center p-3 border border-dark rounded mr-2">
+                            <div class="text-center p-3 border border-dark rounded mr-2" style="min-width: 110px;">
                                 <img src="{{ Common::amenitiesSvgArr(str_replace(" ","_",$ameniti)) }}" alt="Badminton"
                                     style="width: 32px; height: 32px;">
                             </div>

@@ -19,7 +19,7 @@
                                 <div class="text-center">
                                 </div>
                                 <div class="text-center">
-                                    <h1 class="h3  mb-4">Login to Super Show</h1>
+                                    <h1 class="h3  mb-4">Login to FitSportsy</h1>
                                 </div>
                                 @include('messages')
                                 <form class="user" method="post" name="register_frm" id="register_frm">

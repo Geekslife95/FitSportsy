@@ -71,7 +71,7 @@
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-logo">
-                <a href="index.html">
+                <a href="/">
                     <img src="{{ $logo ? asset('/images/upload/' . $logo) : asset('/images/logo.png') }}" class="img-fluid" alt="">
                 </a>
             </div>
@@ -111,7 +111,7 @@
                             <a href="/user/court-booking-list"><i class="fas fa-border-all"></i> <span> Courts</span></a>
                         </li>
                         <li>
-                            <a href="/user/coach-booking-list"><i class="fas fa-border-all"></i> <span> Coaches</span></a>
+                            <a href="/user/coach-booking-list"><i class="fas fa-border-all"></i> <span> Coaching Sessions</span></a>
                         </li>
                         <li>
                             <a href="/dashboard-logout"><i class="fas fa-cog"></i> <span> Logout</span></a>

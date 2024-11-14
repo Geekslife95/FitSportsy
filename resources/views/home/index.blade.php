@@ -10,47 +10,50 @@
     </div>
 </div>
 <div class="container mt-5">
-    @if(count($coachings))
-        <div class="hawan_section">
-            <div class="d-sm-flex align-items-center justify-content-between mt-5 mb-3 overflow-hidden">
-                <h1 class="h4 mb-0 float-left">Sports Coaching</h1>
-                <a href="{{url('sports-coachings')}}" class="d-sm-inline-block text-xs float-right "> Explore All </a>
-            </div>
-            <div class="event-block-slider">
-                @foreach ($coachings as $coaching)
-                    <div class="card m-card shadow-sm border-0 listcard">
-                        <div>
-                            <div class="m-card-cover">
-                                <img src="{{asset('uploads/'.$coaching->poster_image)}}" class="card-img-top" alt="{{$coaching->coaching_title}}">
-                            </div>
-                            <div class="card-body">
-                                <div class="rating-star mb-1">
-                                    {!!Common::randomRatings()!!}
+    @if(count($coachingsData))
+        @foreach ($coachingsData as $category)
+            <div class="hawan_section">
+                <div class="d-sm-flex align-items-center justify-content-between mt-5 mb-3 overflow-hidden">
+                    <h1 class="h4 mb-0 float-left">{{$category->name}}</h1>
+                    <a href="{{url('sports-coachings')}}" class="d-sm-inline-block text-xs float-right "> Explore All </a>
+                </div>
+                <div class="event-block-slider">
+                    @foreach ($category->coachings as $coaching)
+                        <div class="card m-card shadow-sm border-0 listcard">
+                            <div>
+                                <div class="m-card-cover">
+                                    <img src="{{asset('uploads/'.$coaching->poster_image)}}" class="card-img-top" alt="{{$coaching->coaching_title}}">
                                 </div>
-                                <h5 class="card-title mb-2"><u>{{$coaching->coaching_title}}</u></h5>
-                                <p class="card-text mb-0">
-                                    <small class="text-dark" title="{{ $coaching->venue_name }}"><i class="fas fa-map-marker-alt pr-2"></i>
-                                    {{ strlen($coaching->venue_name) > 50 ? substr($coaching->venue_name, 0, 50) . '...' : $coaching->venue_name }}
-                                    </small>
-                                </p>
+                                <div class="card-body">
+                                    <div class="rating-star mb-1">
+                                        {!!Common::randomRatings()!!}
+                                    </div>
+                                    <h5 class="card-title mb-2"><u>{{$coaching->coaching_title}}</u></h5>
+                                    <p class="card-text mb-0">
+                                        <small class="text-dark" title="{{ $coaching->venue_name }}"><i class="fas fa-map-marker-alt pr-2"></i>
+                                        {{ strlen($coaching->venue_name) > 50 ? substr($coaching->venue_name, 0, 50) . '...' : $coaching->venue_name }}
+                                        </small>
+                                    </p>
 
-                                @php
-                                    $sessionDays = isset($coaching->coachingPackage->session_days) ? json_decode($coaching->coachingPackage->session_days, true) : [];
-                                @endphp
-                                <p class="my-1 text-light"><small><i class="fas fa-calendar-alt pr-2"></i> {{ implode(", ", $sessionDays) }}</small></p>
+                                    @php
+                                        $sessionDays = isset($coaching->coachingPackage->session_days) ? json_decode($coaching->coachingPackage->session_days, true) : [];
+                                    @endphp
+                                    <p class="my-1 text-light"><small><i class="fas fa-calendar-alt pr-2"></i> {{ implode(", ", $sessionDays) }}</small></p>
 
-                                <div class="mt-2 d-flex justify-content-between align-items-center">
-                                   {!!Common::showDiscountLabel($coaching->coachingPackage->package_price, $coaching->coachingPackage->discount_percent )!!}  
+                                    <div class="mt-2 d-flex justify-content-between align-items-center">
+                                    {!!Common::showDiscountLabel($coaching->coachingPackage->package_price, $coaching->coachingPackage->discount_percent )!!}  
+                                    
+                                        <a href="{{url('coaching-book/'.$coaching->id.'/'.Str::slug($coaching->coaching_title))}}" class="mt-1 btn btn-success btn-sm mb-1 ">Book Now</a>
+                                    </div>
                                 
-                                    <a href="{{url('coaching-book/'.$coaching->id.'/'.Str::slug($coaching->coaching_title))}}" class="mt-1 btn btn-success btn-sm mb-1 ">Book Now</a>
                                 </div>
-                            
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endforeach
+        
     @endif
     
 

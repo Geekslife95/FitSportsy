@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Common;
 use App\Models\Banner;
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Popups;
 use App\Services\HomeService;
 use Illuminate\Http\Request;
@@ -24,7 +25,17 @@ class HomeController extends Controller
         $data['blog'] = HomeService::allBlogs();
         $data['banner'] = HomeService::allHomeBanners();
         $data['products'] = HomeService::allProducts();
-        $data['coachings'] = HomeService::getCoachingDataByCity($selectedCity);
+        $categories = Category::whereHas('coachings', function ($query) use($selectedCity){
+            if($selectedCity != 'All'){
+                $query->where('venue_name', '!=' ,$selectedCity);
+            }
+            $query->whereHas('coachingPackage');
+        })->get()->toArray();
+        $categoriesIds = [0];
+        if(count($categories)){
+            $categoriesIds = array_column($categories, 'id');
+        }
+        $data['coachingsData'] = HomeService::getCoachingDataByCityWithCategory($categoriesIds, $selectedCity);
         return view('home.index', $data);
     }
 

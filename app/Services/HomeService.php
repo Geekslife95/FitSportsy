@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Banner;
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Coach;
 use App\Models\CoachingPackage;
 use App\Models\Product;
@@ -40,6 +41,24 @@ class HomeService
         $coachingData = $coachingData->where('is_active', Coach::ACTIVE)->inRandomOrder()->limit(10)->get();
         return $coachingData;
     }
+
+    
+    public static function getCoachingDataByCityWithCategory(array $categoriesIds, string $selectedCity){
+        $coachingData = Category::with([
+            'coachings' => function ($query) use($selectedCity){
+                if($selectedCity != 'All'){
+                    $query->where('venue_name', $selectedCity);
+                }
+                $query->limit(10); // Get 10 per category
+            },
+            'coachings.coachingPackage' => function ($query) {
+                $query->orderBy('created_at')->limit(1); // Get the first comment for each post
+            }
+        ])->whereIn('id', $categoriesIds)->get();
+        return $coachingData;
+    }
+
+
 
     public static function coachingBookDataById(int $id)
     {

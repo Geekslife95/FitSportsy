@@ -10,4 +10,5 @@ class Category{
         return ModelsCategory::select('id','name')->where('status',Common
         ::STATUS_ACTIVE)->get();
     }
+    
 }
