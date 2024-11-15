@@ -38,6 +38,8 @@ Route::group(['middleware' => ['mode', 'XSS']], function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('coaching-packages', [HomeController::class, 'coachingPackages'])->name('coaching-packages');
+    Route::get('coachings/{category}/{id}', [HomeController::class, 'coachings']);
+    
     Route::get('/coaching-book/{id}/{title}', [HomeController::class, 'coachingBook']);
     Route::post('/send-to-admin', [FrontendController::class, 'sentMessageToAdmin']);
     // Route::get('/privacy_policy', [FrontendController::class, 'privacypolicy']);

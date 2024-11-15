@@ -206,7 +206,7 @@
                     <ul class="navbar-nav w-100 justify-content-center">
                         @foreach (Common::allEventCategories() as $cat)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('all-events?category=' . $cat->id) }}">
+                                <a class="nav-link" href="{{url('coachings/'.Str::slug($cat->name).'/'.$cat->id)}}">
                                     <span>{{ $cat->name }}</span></a>
                             </li>
                         @endforeach

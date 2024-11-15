@@ -419,4 +419,9 @@ public static function caloriesArr()
 
 }
 
+public static function packageDurationTypes()
+{
+  return ["Weeks", "Months", "Years"];
+}
+
 }

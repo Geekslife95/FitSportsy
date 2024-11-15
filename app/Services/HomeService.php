@@ -83,5 +83,19 @@ class HomeService
         return $coachingData;
     }
 
+    public static function getCoachingDataByCateoryId($selectedCity, $Id){
+        $categoryData = Category::find($Id);
+        $coaches = Coach::has('coachingPackage')->with('coachingPackage', function($query){
+                            $query->limit(1);
+                        })
+                        ->where('is_active', Coach::ACTIVE)
+                        ->where('category_id', $Id);
+                if($selectedCity != 'All'){
+                    $coaches->where('venue_name', $selectedCity);
+                }        
+        $coaches = $coaches->paginate(50);
+        return ['coachesData' => $coaches, 'categoryData' => $categoryData];
+    }
+
 }
 

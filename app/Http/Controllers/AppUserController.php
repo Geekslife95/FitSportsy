@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppUser;
+use App\Models\Coach;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -104,12 +105,14 @@ class AppUserController extends Controller
     public function searchAllEvents(Request $request){
         $search = $request->search_str;
         $searchStr = str_replace("_"," ",$search);
-        $eventData = Event::select('temple_name','name','id')->where('status',1)->where(function($q) use($searchStr){
-            $q->where('name','like','%'.$searchStr.'%')->orWhere('temple_name','like','%'.$searchStr.'%');
-        })->limit(10)->get();
+
+        $coaches = Coach::has('coachingPackage')->where('is_active', Coach::ACTIVE)
+                ->where('coaching_title', 'like', '%' . $searchStr . '%' );   
+        $coaches = $coaches->paginate(50);
+
         $str = '';
-        foreach($eventData as $val){
-            $str .= '<a href="'.url('event/'.$val->id.'/'.\Str::slug($val->name)).'" class="list-group-item">'.$val->name.'<br><small>'.$val->temple_name.'</small></a>';
+        foreach($coaches as $val){
+            $str .= '<a href="'.url('coaching-book/'.$val->id.'/'.\Str::slug($val->coaching_title)).'" class="list-group-item">'.$val->coaching_title.'</a>';
         }
         echo $str;
     }

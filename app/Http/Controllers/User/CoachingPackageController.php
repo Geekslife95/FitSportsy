@@ -53,6 +53,7 @@ class CoachingPackageController extends Controller
         $coachingPackageObj->session_start_time = $request->start_time;
         $coachingPackageObj->session_end_time = $request->end_time;
         $coachingPackageObj->session_days = json_encode($request->session_days);
+        $coachingPackageObj->package_duration = $request->duration.' '.$request->duration_type;
         $coachingPackageObj->save();
         return redirect('user/coach-booking-list')->with("success", 'Package added successfully...');
     }
@@ -78,7 +79,6 @@ class CoachingPackageController extends Controller
     {
         $coachingId = $this->memberObj['coaching_id'];
         $coachingPackageObj  = $coachingPackageService->getCoachingPackageById($coachingId);
-        $coachingPackageObj->coach_id = $this->memberObj['coaching_id'];
         $coachingPackageObj->package_name = $request->package_name;
         $coachingPackageObj->batch_size = $request->batch_size;
         $coachingPackageObj->package_price = $request->package_price;
@@ -89,6 +89,7 @@ class CoachingPackageController extends Controller
         $coachingPackageObj->session_start_time = $request->start_time;
         $coachingPackageObj->session_end_time = $request->end_time;
         $coachingPackageObj->session_days = json_encode($request->session_days);
+        $coachingPackageObj->package_duration = $request->duration.' '.$request->duration_type;
         $coachingPackageObj->save();
         return redirect('user/coach-booking-list')->with("success", 'Package updated successfully...');
     }

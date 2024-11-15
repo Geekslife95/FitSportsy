@@ -121,6 +121,26 @@
                                    
                                 </div>
 
+                                <div class="col-lg-6 col-md-12 col-12 ">
+                                    <div class="form-group">
+                                        <label for="duration" class="form-label">Duration (No. of week/month/year) <span class="text-danger">*</span></label>      
+                                        <input type="number" name="duration" id="duration" class="form-control" placeholder="Enter Duration" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-12 ">
+                                    <div class="form-group">
+                                        <label for="duration_type" class="form-label">Duration Type <span class="text-danger">*</span></label>      
+                                        <select name="duration_type" id="duration_type" class="form-control" required>
+                                            <option value="">Select</option>
+                                            @foreach (Common::packageDurationTypes() as $type)
+                                                <option value="{{ $type }}">{{ $type }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                         <div class="card-footer">

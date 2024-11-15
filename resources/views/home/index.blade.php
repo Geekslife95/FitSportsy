@@ -15,7 +15,7 @@
             <div class="hawan_section">
                 <div class="d-sm-flex align-items-center justify-content-between mt-5 mb-3 overflow-hidden">
                     <h1 class="h4 mb-0 float-left">{{$category->name}}</h1>
-                    <a href="{{url('sports-coachings')}}" class="d-sm-inline-block text-xs float-right "> Explore All </a>
+                    <a href="{{url('coachings/'.Str::slug($category->name).'/'.$category->id)}}" class="d-sm-inline-block text-xs float-right "> Explore All </a>
                 </div>
                 <div class="event-block-slider">
                     @foreach ($category->coachings as $coaching)

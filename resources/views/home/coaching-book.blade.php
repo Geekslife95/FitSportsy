@@ -505,7 +505,7 @@
                                 </div>
                                 <div class="coach-details text-center">
                                     <h5 class="text-white">{{ $coach->name }}</h5>
-                                    <p class="text-muted">{{ $coach->experience }} </p>
+                                    <p class="text-muted">{{ $coach->experience }} Years </p>
                                 </div>
                             </div>
                         </div>

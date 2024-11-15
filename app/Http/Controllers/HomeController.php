@@ -59,4 +59,14 @@ class HomeController extends Controller
         $data['packageData'] = HomeService::getCoachingPackagesDataByCoachId($coachingId);
         return view('home.coaching-package', $data);
     }
+
+    public function coachings($category, $Id)
+    {
+        $selectedCity = Session::has('CURR_CITY') ? Session::get('CURR_CITY') : 'All';
+        $coachData = HomeService::getCoachingDataByCateoryId($selectedCity, $Id);
+        $data['coachingData'] = $coachData['coachesData'];
+        $data['categoryData'] = $coachData['categoryData'];
+        return view('home.coachings', $data);
+
+    }
 }

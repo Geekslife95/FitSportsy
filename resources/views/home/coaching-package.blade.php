@@ -37,7 +37,7 @@
     }
 
     .subscription-card-body {
-        padding: 20px 0;
+        /* padding: 20px 0; */
     }
 
     .subscription-card-title {
@@ -151,6 +151,8 @@
                                 $afterDiscountPrice = round($realPrice - $perc, 2);
                                 $showDiscount = 1;
                             }
+                            $type = explode(" ",$package->package_duration);
+                            $type = trim($type[1],'s');
                         @endphp
                         <div class="col-md-4 d-flex">
                             <div class="subscription-card flex-grow-1 d-flex flex-column position-relative">
@@ -162,10 +164,10 @@
                                 </div>
                                 <div class="subscription-card-body">
                                     @if($showDiscount)
-                                        <h3 class="subscription-card-title">₹{{ $afterDiscountPrice }} <small class="price-text-muted">/ mo</small></h3>
-                                        <p><small class="price-text-muted">Normally ₹{{ $realPrice }} / mo</small></p>
+                                        <h3 class="subscription-card-title">₹{{ $afterDiscountPrice }} <small class="price-text-muted">/ {{$type}}</small></h3>
+                                        <p><small class="price-text-muted">Normally ₹{{ $realPrice }} / {{$type}}</small></p>
                                     @else
-                                        <h3 class="subscription-card-title">₹{{$realPrice}} <small class="price-text-muted">/ mo</small></h3>
+                                        <h3 class="subscription-card-title">₹{{$realPrice}} <small class="price-text-muted">/ {{$type}}</small></h3>
                                     @endif
                                     
 
