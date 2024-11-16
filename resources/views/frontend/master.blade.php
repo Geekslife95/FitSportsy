@@ -182,7 +182,7 @@
                                 
                                   <div class="dropdown-menu dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="{{ url('user-login') }}"><i class="fas fa-sign-in-alt"></i>   Login</a>
-                                    <a class="dropdown-item" href="{{ url('register') }}"><i class="fas fa-user-plus"></i> Register</a>
+                                    <a class="dropdown-item" href="{{ url('user-register') }}"><i class="fas fa-user-plus"></i> Register</a>
                                   </div>
 
                             </li>
@@ -436,7 +436,7 @@
     @stack('scripts')
     <script>
         var timeout = null;
-        $(".head-search-box").on('input', function(e) {
+        $(".head-search-box").on('input,click', function(e) {
             var val = $(this).val().split(' ').join('_');
             if (val == '') {
                 $(".search-result").html('')

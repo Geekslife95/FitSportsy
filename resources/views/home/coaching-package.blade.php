@@ -44,6 +44,8 @@
         font-size: 2rem;
         margin: 10px 0;
         text-align: left;
+        margin-top:0px;
+        margin-bottom:2px;
     }
 
     .price-text-muted {
@@ -157,7 +159,7 @@
                         <div class="col-md-4 d-flex">
                             <div class="subscription-card flex-grow-1 d-flex flex-column position-relative">
                                 <div class="subscription-card-header" style="background-color: #007bff;">
-                                    <h4><i class="fas fa-gem"></i> {{ $package->package_name }}</h4>
+                                    <h4><i class="fas fa-gem" style="font-size: 1rem;"></i> {{ $package->package_name }}</h4>
                                     @if($showDiscount)
                                         <span class="discount-badge">{{ $package->discount_percent }}% Off</span>
                                     @endif

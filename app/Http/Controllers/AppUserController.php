@@ -106,13 +106,15 @@ class AppUserController extends Controller
         $search = $request->search_str;
         $searchStr = str_replace("_"," ",$search);
 
-        $coaches = Coach::has('coachingPackage')->where('is_active', Coach::ACTIVE)
-                ->where('coaching_title', 'like', '%' . $searchStr . '%' );   
-        $coaches = $coaches->paginate(50);
+        $coaches = Coach::has('coachingPackage')->where('is_active', Coach::ACTIVE);
+        if(!empty($search)){
+            $coaches = $coaches->where('coaching_title', 'like', '%' . $searchStr . '%' );   
+        }
+        $coaches = $coaches->inRandomOrder()->paginate(20);
 
         $str = '';
         foreach($coaches as $val){
-            $str .= '<a href="'.url('coaching-book/'.$val->id.'/'.\Str::slug($val->coaching_title)).'" class="list-group-item">'.$val->coaching_title.'</a>';
+            $str .= '<a href="'.url('coaching-book/'.$val->id.'/'.\Str::slug($val->coaching_title)).'" class="list-group-item">'.$val->coaching_title.'<br>'.$val->venue_name.'</a>';
         }
         echo $str;
     }
