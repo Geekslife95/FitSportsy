@@ -31,9 +31,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => '353694442485-p21njj8t70fjvbo48ie5c72vjke8aai2.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'https://bookmypujaseva.com/google-auth-login',
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
