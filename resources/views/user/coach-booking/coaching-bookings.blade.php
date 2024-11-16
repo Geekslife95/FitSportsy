@@ -35,8 +35,8 @@
                                 @forelse ($bookingData as $booking)
                                     <tr>
                                         <td>{{$booking->booking_id}}</td>
-                                        <td>{{$booking->coachingPackage->package_name}}</td>
-                                        <td>{{$booking->coachingPackage->coaching->coaching_title}}</td>
+                                        <td>{{$booking->package_name}}</td>
+                                        <td>{{$booking->coaching_title}}</td>
                                         <td>{{$booking->full_name}}</td>
                                         <td>{{$booking->email}}</td>
                                         <td>{{$booking->mobile_number}}</td>

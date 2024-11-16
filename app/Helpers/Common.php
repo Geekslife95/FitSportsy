@@ -195,43 +195,43 @@ public static function amenitiesArr(){
     return [
       [
         'sport'=>'Bed Room',
-        'image'=>asset('images/amenities/bedroom.svg')
+        'image'=>asset('images/amenities/white/bedroom.svg')
       ],
       [
         'sport'=>'Blue Parking',
-        'image'=>asset('images/amenities/blueparking.svg')
+        'image'=>asset('images/amenities/white/blueparking.svg')
       ],
       [
         'sport'=>'Changing Room',
-        'image'=>asset('images/amenities/changingroom.svg')
+        'image'=>asset('images/amenities/white/changingroom.svg')
       ],
       [
         'sport'=>'Drinking',
-        'image'=>asset('images/amenities/drinking.svg')
+        'image'=>asset('images/amenities/white/drinking.svg')
       ],
       [
         'sport'=>'FirstAid',
-        'image'=>asset('images/amenities/firstaid.svg')
+        'image'=>asset('images/amenities/white/firstaid.svg')
       ],
       [
         'sport'=>'Parking',
-        'image'=>asset('images/amenities/parking.svg')
+        'image'=>asset('images/amenities/white/parking.svg')
       ],
       [
         'sport'=>'Running',
-        'image'=>asset('images/amenities/running.svg')
+        'image'=>asset('images/amenities/white/running.svg')
       ],
       [
         'sport'=>'Shower',
-        'image'=>asset('images/amenities/shower.svg')
+        'image'=>asset('images/amenities/white/shower.svg')
       ],
       [
         'sport'=>'Toilets',
-        'image'=>asset('images/amenities/toilets.svg')
+        'image'=>asset('images/amenities/white/toilets.svg')
       ],
       [
         'sport'=>'Washroom',
-        'image'=>asset('images/amenities/washroom.svg')
+        'image'=>asset('images/amenities/white/washroom.svg')
       ],
     
       
@@ -242,35 +242,35 @@ public static function availableSportsArr(){
   return [
     [
       'sport'=>'Badminton',
-      'image'=>asset('images/amenities/badminton.svg')
+      'image'=>asset('images/amenities/white/badminton.svg')
     ],
     [
       'sport'=>'Basket Ball',
-      'image'=>asset('images/amenities/basketball.svg')
+      'image'=>asset('images/amenities/white/basketball.svg')
     ],
     [
       'sport'=>'Cricket',
-      'image'=>asset('images/amenities/cricket.svg')
+      'image'=>asset('images/amenities/white/cricket.svg')
     ],
     [
       'sport'=>'Long Tennis',
-      'image'=>asset('images/amenities/longtennis.svg')
+      'image'=>asset('images/amenities/white/longtennis.svg')
     ],
     [
       'sport'=>'Skating',
-      'image'=>asset('images/amenities/skating.svg')
+      'image'=>asset('images/amenities/white/skating.svg')
     ],
     [
       'sport'=>'Swimming',
-      'image'=>asset('images/amenities/swimming.svg')
+      'image'=>asset('images/amenities/white/swimming.svg')
     ],
     [
       'sport'=>'Table Tennis',
-      'image'=>asset('images/amenities/tabletennis.svg')
+      'image'=>asset('images/amenities/white/tabletennis.svg')
     ],
     [
       'sport'=>'Volley Ball',
-      'image'=>asset('images/amenities/volleyball.svg')
+      'image'=>asset('images/amenities/white/volleyball.svg')
     ],
   
     

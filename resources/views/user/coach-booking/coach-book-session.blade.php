@@ -145,7 +145,7 @@ ul.amenities {
                                         @php
                                             $benefits = !is_array($bookData->benefits) ? json_decode($bookData->benefits,true) : $bookData->benefits;
                                         @endphp
-                                        <select name="benefits[]" class="form-control select2Tags" multiple required>
+                                        <select name="benefits[]" class="form-control select2" multiple required>
                                             <option disabled>Select Benefits</option>
                                             @foreach (Common::allBenefits($categoryId) as $benefit)
                                                 <option  {{in_array($benefit,$benefits) ? 'selected':''}}>{{$benefit}}</option>

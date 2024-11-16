@@ -58,7 +58,8 @@
 	if ($('.select2').length > 0) {
 		$('.select2').select2({
 			
-			width: '100%'
+			width: '100%',
+			tags:false,
 
 		});
 	}
@@ -66,7 +67,11 @@
 		if ($('.select2Tags').length > 0) {
 		$('.select2Tags').select2({
 			width: '100%',
-			tags: true
+			tags: false,
+			createTag: function () {
+				// Disable tagging
+				return null;
+			  }
 
 			
 		});

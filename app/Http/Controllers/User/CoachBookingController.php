@@ -478,20 +478,17 @@ class CoachBookingController extends Controller
 
         $organiserId = Auth::user()->id;
 
-
-        $bookingData  = CoachingPackageBooking::whereHas(['coachingPackage.coaching' => function($q) use($organiserId){
-           
-                if(!Auth::user()->hasRole('admin')){
-                    $q->where('organiser_id', $organiserId);
-                    $q->orWhere('created_by', Auth::id());
-                }
-        }])->with('coachingPackage.coaching');
-        // dd($bookingData);
+        $bookingData = CoachingPackageBooking::select('booking_id','package_name','coaching_title','full_name','email','mobile_number','transaction_id','paid_amount','expiry_date','coaching_package_bookings.created_at','coaching_package_bookings.id')->join('coaching_packages as pc','pc.id','coaching_package_bookings.coaching_package_id')->join('coaches as c','c.id','pc.coach_id');
         if($packageId > 0){
             $bookingData->where('coaching_package_id', $packageId);
         }
-        $bookingData = $bookingData->orderBy('id','DESC')->paginate(50);
-        dd($bookingData);
+        if(!Auth::user()->hasRole('admin')){
+            $bookingData->where(function($q) use($organiserId){
+                $q->where('organiser_id', $organiserId);
+                $q->orWhere('created_by', Auth::id());
+            });
+        }
+        $bookingData = $bookingData->orderBy('coaching_package_bookings.id','DESC')->paginate(50);
         $data['bookingData'] = $bookingData;
         
         
