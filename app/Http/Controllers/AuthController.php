@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\AppUser;
+use App\Models\CoachingPackageBooking;
 use App\Models\Order;
 use Session;
 class AuthController extends Controller
@@ -133,7 +134,10 @@ class AuthController extends Controller
 
     public function myTickets(){
         $userId = \Auth::guard('appuser')->user()->id;
-        $ticketData = Order::select('id','payment','event_id')->with('event:id,name,temple_name,image')->where('customer_id',$userId)->paginate(50);
+        $ticketData = CoachingPackageBooking::whereHas('coachingPackage')->with(['coachingPackage' => function($query){
+            $query->whereHas('coaching')->with('coaching');
+        }])->where(['user_id' => $userId, 'is_active' => CoachingPackageBooking::STATUS_ACTIVE])->paginate(50);
+        
         return view("frontend.auth.my-tickets",compact('ticketData'));
     }
 

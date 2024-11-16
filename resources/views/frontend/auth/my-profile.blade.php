@@ -1,5 +1,12 @@
 @extends('frontend.master', ['activePage' => 'My Profile'])
 @section('title', __('My Profile'))
+@push('styles')
+    <style>
+        label{
+            color: #000;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="profile-area section-area">
         <div class="container list-bp">
@@ -9,7 +16,7 @@
                     <div class="bg-white p-3 widget shadow-sm rounded mb-4">
                         <div>
                             <div class="mb-3 overflow-hidden">
-                                <h1 class="h4 mb-0 float-left">My Profile </h1>
+                                <h1 class="h4 mb-0 float-left text-dark">My Profile </h1>
                             </div>
                             <hr>
                             @php

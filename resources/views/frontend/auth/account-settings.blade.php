@@ -1,5 +1,12 @@
 @extends('frontend.master', ['activePage' => 'My Profile'])
 @section('title', __('My Profile'))
+@push('styles')
+    <style>
+        label{
+            color: #000;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="profile-area section-area" style="min-height: 65vh;">
         <div class="container list-bp">
@@ -9,7 +16,7 @@
                     <div class="bg-white p-3 widget shadow-sm rounded ">
                         <div>
                             <div class="mb-3 overflow-hidden">
-                                <h1 class="h4 mb-0 float-left">Change Password </h1>
+                                <h1 class="h4 mb-0 float-left text-dark">Change Password </h1>
                             </div>
                             <hr>
                             <form name="register_frm" id="register_frm" action="{{url("user/update-user-password")}}" method="post">

@@ -19,6 +19,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CoachBookingController;
 use App\Http\Controllers\User\CoachingPackageController;
 use App\Http\Controllers\User\CourtBookingController;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 Route::get("/stancer-payment",[SocialLoginController::class,'payment']);
 Route::post("/set-u-location",[EventController::class,'setULocation']);

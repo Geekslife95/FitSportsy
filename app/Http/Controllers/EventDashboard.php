@@ -781,7 +781,8 @@ class EventDashboard extends Controller
 
     }
 
-    public function logout(){    
+    public function logout(){   
+        // dd('asdf'); 
         Auth::logout();
         Session::flush();
         return redirect('user-login');

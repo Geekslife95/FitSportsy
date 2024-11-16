@@ -15,19 +15,19 @@
                             @forelse ($ticketData as $val)
                                 @php
                                     $inputObj = new stdClass();
-                                    $inputObj->url = url('booked-ticket-details');
-                                    $inputObj->params = 'order_id='.$val->id;
+                                    $inputObj->url = url('booked-coaching-package-details');
+                                    $inputObj->params = 'package_booking_id='.$val->id;
                                     $encLink = Common::encryptLink($inputObj);
                                 @endphp
                                 <div class="col-xl-3 col-md-6 mb-4">
                                     <div class="card m-card shadow-sm border-0">
                                         <a href="{{$encLink}}">
                                             <div class="m-card-cover">
-                                                <img src="{{asset('images/upload/'.$val->event->image)}}" class="card-img-top" alt="...">
+                                                <img src="{{asset('uploads/'.$val->coachingPackage->coaching->poster_image)}}" class="card-img-top" alt="...">
                                             </div>
                                             <div class="card-body p-3">
-                                                <h5 class="card-title text-white mb-1">{{$val->event->name}}</h5>
-                                                <p class="card-text"><small class="text-white">{{$val->event->temple_name}}</small> <small class="text-danger ml-2"><i class="fas fa-calendar-alt fa-sm"></i> ₹{{$val->payment}}</small> </p>
+                                                <h5 class="card-title text-white mb-1">{{$val->coachingPackage->coaching->coaching_title}}</h5>
+                                                <p class="card-text"><small class="text-white">{{$val->coachingPackage->coaching->venue_name}}</small> <small class="text-danger ml-2"><i class="fas fa-calendar-alt fa-sm"></i> ₹{{$val->actual_amount}}</small> </p>
                                             </div>
                                         </a>
                                     </div>
