@@ -23,12 +23,15 @@ class CoachBookingController extends Controller
     }
 
     public function coachBookingList(){
-        $organiserId = Auth::guard('appuser')->check() ? Auth::guard('appuser')->user()->id : 0;
+        $organiserId = Auth::user()->id;
        
-        $coachData = Coach::select('id','coaching_title','venue_name','poster_image','venue_area','venue_city')->where(['created_by'=>Auth::id(),'is_active'=>Coach::ACTIVE]);
-        if($organiserId > 0){
-            $coachData->where('organiser_id', $organiserId);
-        }
+        $coachData = Coach::select('id','coaching_title','venue_name','poster_image','venue_area','venue_city')->where(['is_active'=>Coach::ACTIVE]);
+        if(!Auth::user()->hasRole('admin')){
+            $coachData->where(function($q) use($organiserId){
+                $q->where('organiser_id', $organiserId);
+                $q->orWhere('created_by', Auth::id());
+            });
+        }        
         $coachData = $coachData->orderBy('id','DESC')->paginate(50);
         $data['coachData'] = $coachData;
         return view('user.coach-booking.coach-booking-list',$data);
@@ -473,12 +476,14 @@ class CoachBookingController extends Controller
     {
         $packageId = isset($this->memberObj['package_id']) ? $this->memberObj['package_id'] : 0;
 
-        $organiserId = Auth::guard('appuser')->check() ? Auth::guard('appuser')->user()->id : 0;
+        $organiserId = Auth::user()->id;
+
 
         $bookingData  = CoachingPackageBooking::whereHas('coachingPackage')->with(['coachingPackage' => function($query) use($organiserId){
             $query->whereHas('coaching')->with(['coaching' => function($q) use($organiserId){
-                if($organiserId > 0){
+                if(!Auth::user()->hasRole('admin')){
                     $q->where('organiser_id', $organiserId);
+                    $q->orWhere('created_by', Auth::id());
                 }
             }]);
         }]);
@@ -486,6 +491,7 @@ class CoachBookingController extends Controller
             $bookingData->where('coaching_package_id', $packageId);
         }
         $bookingData = $bookingData->orderBy('id','DESC')->paginate(50);
+        // dd($bookingData);
         $data['bookingData'] = $bookingData;
         
         

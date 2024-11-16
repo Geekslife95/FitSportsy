@@ -112,7 +112,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td scope="row" class="w-25">Address <span class="text-danger">*</span></td>
                                         <td class="w-75">
                                             <div class="form-group mb-0">
@@ -121,7 +121,7 @@
                                                     name="address" placeholder="" id="address" required>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td scope="row" class="w-25">Mobile No. <span class="text-danger">*</span></td>
                                         <td class="w-75">
@@ -156,7 +156,7 @@
 
                             <div class="form-check mb-2">
                                 <input type="checkbox" name="donate_checked" class="form-check-input" id="donate_checked" value="5">
-                                <label class="form-check-label" for="donate_checked"><i class="fas fa-heart" style="color:#e64c31;"></i> Donate Rs.5 to support spiritual and devotional initiatives.</label>
+                                <label class="form-check-label" for="donate_checked"><i class="fas fa-heart" style="color:#e64c31;"></i> Donate Rs.5 to support sports initiatives and inspire future champions.</label>
                             </div>
                                 
                             <button type="submit" id="btn-text" class="btn default-btn w-100">Proceed To Pay Rs.<span id="ticket_price">{{$afterDiscountPrice + 0}}</span></button>

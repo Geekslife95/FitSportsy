@@ -160,7 +160,7 @@ class HomeController extends Controller
                         'full_name' => $request->full_name,
                         'email' => $request->email,
                         'mobile_number' => $request->mobile_number,
-                        'address' => $request->address,
+                        'address' => 'NA',
                         'booking_id' => $merchant_order_id,
                         'transaction_id' => $razorpay_payment_id,
                         'coaching_package_id' => $packageId,

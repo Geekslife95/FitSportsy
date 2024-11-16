@@ -22,7 +22,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Mobile</th>
-                                    <th>Address</th>
+                                    {{-- <th>Address</th> --}}
                                     <th>Transaction ID</th>
                                     <th>Paid Amount</th>
                                     <th>Expiry Date</th>
@@ -40,7 +40,7 @@
                                         <td>{{$booking->full_name}}</td>
                                         <td>{{$booking->email}}</td>
                                         <td>{{$booking->mobile_number}}</td>
-                                        <td>{{$booking->address}}</td>
+                                        {{-- <td>{{$booking->address}}</td> --}}
                                         <td>{{$booking->transaction_id}}</td>
                                         <td>₹{{$booking->paid_amount}}</td>
                                         <td>{{date("d M Y",strtotime($booking->expiry_date))}}</td>
@@ -66,7 +66,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="12"><h5 class="text-center text-danger">NO DATA</h5></td>
+                                        <td colspan="11"><h5 class="text-center text-danger">NO DATA</h5></td>
                                     </tr>
                                 @endforelse
                             </tbody>
