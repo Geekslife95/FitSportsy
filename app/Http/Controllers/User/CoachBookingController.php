@@ -487,12 +487,12 @@ class CoachBookingController extends Controller
                 }
             }]);
         }]);
-        dd($bookingData);
+        // dd($bookingData);
         if($packageId > 0){
             $bookingData->where('coaching_package_id', $packageId);
         }
         $bookingData = $bookingData->orderBy('id','DESC')->paginate(50);
-        // dd($bookingData);
+        dd($bookingData);
         $data['bookingData'] = $bookingData;
         
         
