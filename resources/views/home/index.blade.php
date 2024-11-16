@@ -55,6 +55,19 @@
         @endforeach
         
     @endif
+
+    <div class="all-category mb-5">
+        @foreach ($coachingsData as $cat)
+        <div class="category-card">
+            <a href="{{url('coachings/'.Str::slug($cat->name).'/'.$cat->id)}}">
+                <img src="{{asset('images/upload/'.$cat->image)}}" class="category-img" alt="...">
+                <div class="cat-content">
+                    <p class="cat-title text-truncate">{{$cat->name}}</p>
+                </div>
+            </a>
+        </div>
+        @endforeach
+    </div>
     
 
     @if(count($products))
