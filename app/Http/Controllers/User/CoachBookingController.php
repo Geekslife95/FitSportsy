@@ -479,14 +479,13 @@ class CoachBookingController extends Controller
         $organiserId = Auth::user()->id;
 
 
-        $bookingData  = CoachingPackageBooking::whereHas('coachingPackage.coaching')->with(['coachingPackage' => function($query) use($organiserId){
-            $query->whereHas('coaching')->with(['coaching' => function($q) use($organiserId){
+        $bookingData  = CoachingPackageBooking::whereHas(['coachingPackage.coaching' => function($q) use($organiserId){
+           
                 if(!Auth::user()->hasRole('admin')){
                     $q->where('organiser_id', $organiserId);
                     $q->orWhere('created_by', Auth::id());
                 }
-            }]);
-        }]);
+        }])->with('coachingPackage.coaching');
         // dd($bookingData);
         if($packageId > 0){
             $bookingData->where('coaching_package_id', $packageId);
