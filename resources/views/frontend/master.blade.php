@@ -438,19 +438,29 @@
         var timeout = null;
         $(".head-search-box").on('input click', function(e) {
             var val = $(this).val().split(' ').join('_');
-            if (val == '') {
-                $(".search-result").html('')
-            } else {
-                if (e.which == 13 && val != '') {
+            // if (val == '') {
+            //     $(".search-result").html('')
+            // } else {
+            //     if (e.which == 13 && val != '') {
+            //         //
+            //     }
+            //     clearTimeout(timeout);
+            //     timeout = setTimeout(function() {
+            //         $.get('{{ url('search-all-events') }}?search_str=' + val, function(data) {
+            //             $(".search-result").html(data);
+            //         })
+            //     }, 200);
+            // }
+
+            if (e.which == 13 && val != '') {
                     //
-                }
-                clearTimeout(timeout);
-                timeout = setTimeout(function() {
-                    $.get('{{ url('search-all-events') }}?search_str=' + val, function(data) {
-                        $(".search-result").html(data);
-                    })
-                }, 200);
             }
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                $.get('{{ url('search-all-events') }}?search_str=' + val, function(data) {
+                    $(".search-result").html(data);
+                })
+            }, 200);
 
         })
     </script>
