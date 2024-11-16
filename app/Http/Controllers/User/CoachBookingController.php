@@ -479,7 +479,7 @@ class CoachBookingController extends Controller
         $organiserId = Auth::user()->id;
 
 
-        $bookingData  = CoachingPackageBooking::whereHas('coachingPackage')->with(['coachingPackage' => function($query) use($organiserId){
+        $bookingData  = CoachingPackageBooking::whereHas('coachingPackage.coaching')->with(['coachingPackage' => function($query) use($organiserId){
             $query->whereHas('coaching')->with(['coaching' => function($q) use($organiserId){
                 if(!Auth::user()->hasRole('admin')){
                     $q->where('organiser_id', $organiserId);
