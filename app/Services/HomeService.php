@@ -97,5 +97,11 @@ class HomeService
         return ['coachesData' => $coaches, 'categoryData' => $categoryData];
     }
 
+    public static function getCoachingDataByPackage(int $packageId)
+    {
+        $packageData = CoachingPackage::with('coaching')->where('id', $packageId)->first();
+        return $packageData;
+    }
+
 }
 

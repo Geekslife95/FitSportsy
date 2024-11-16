@@ -15,4 +15,8 @@ class CoachingPackage extends Model
     const PLATFORM_FEE_BUYER = 2;
     const GATEWAY_FEE_ME = 1;
     const GATEWAY_FEE_BUYER = 2;
+
+    public function coaching(){
+        return $this->belongsTo(Coach::class, 'coach_id', 'id');
+    }
 }

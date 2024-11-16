@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Common;
+use App\Models\AppUser;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\CoachingPackage;
+use App\Models\CoachingPackageBooking;
 use App\Models\Popups;
+use App\Models\User;
+use App\Models\WhatsappSubscriber;
 use App\Services\HomeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use stdClass;
 
@@ -67,6 +73,140 @@ class HomeController extends Controller
         $data['coachingData'] = $coachData['coachesData'];
         $data['categoryData'] = $coachData['categoryData'];
         return view('home.coachings', $data);
+    }
 
+    public function bookCoachingPackage()
+    {
+        $packageId = $this->memberObj['id'];
+        $data['coachingData'] = HomeService::getCoachingDataByPackage($packageId);
+        $inputObj = new stdClass();
+        $inputObj->params = 'id='.$packageId;
+        $inputObj->url = url('store-book-coaching-package');
+        $data['encLink'] = Common::encryptLink($inputObj);
+        return view('home.book-coaching-package', $data);
+    }
+
+    public function get_curl_handle($razorpay_payment_id){
+         $settingData = Common::paymentKeysAll();
+         $url = 'https://api.razorpay.com/v1/payments/' . $razorpay_payment_id . '/capture';
+         $key_id = $settingData->razorPublishKey;
+         $key_secret = $settingData->razorSecretKey;
+ 
+          $curl = curl_init();
+ 
+         curl_setopt_array($curl, [
+         CURLOPT_URL => "https://api.razorpay.com/v1/payments/".$razorpay_payment_id,
+         CURLOPT_RETURNTRANSFER => true,
+         CURLOPT_ENCODING => "",
+         CURLOPT_MAXREDIRS => 10,
+         CURLOPT_TIMEOUT => 30,
+         CURLOPT_USERPWD=>$key_id . ':' . $key_secret,
+         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+         CURLOPT_CUSTOMREQUEST => "GET",
+         ]);
+ 
+         return $curl;
+     }
+
+    public function storeBookCoachingPackage(Request $request)
+    {
+        $packageId = $this->memberObj['id'];
+        $userId = Auth::guard('appuser')->check() ? Auth::guard('appuser')->user()->id : 0;
+        $packageData = CoachingPackage::find($packageId);
+
+        $realPrice = $packageData->package_price;
+        $afterDiscountPrice = $packageData->package_price;
+        if($packageData->discount_percent > 0 && $packageData->discount_percent <= 100){
+            $perc = ($realPrice * $packageData->discount_percent) / 100;
+            $afterDiscountPrice = round($realPrice - $perc, 2);
+            $showDiscount = 1;
+        }
+
+        if(!empty($request->razorpay_payment_id) && !empty($request->merchant_order_id)){
+            $razorpay_payment_id = $request->razorpay_payment_id;
+            $merchant_order_id = $request->merchant_order_id;
+            $success = false;
+            $error = '';
+            try{
+                $ch = $this->get_curl_handle($razorpay_payment_id);
+                $result = curl_exec($ch);
+                $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                if ($result === false){
+                    $success = false;
+                    $error = 'Curl error: ' . curl_error($ch);
+                }else{
+                    $response_array = json_decode($result, true);
+                    if ($http_status === 200 and isset($response_array['error']) === false){
+                        $success = true;
+                    }else{
+                        $success = false;
+                        if (!empty($response_array['error']['code'])){
+                            $error = $response_array['error']['code'] . ':' . $response_array['error']['description'];
+                        }else{
+                            $error = 'RAZORPAY_ERROR:Invalid Response <br/>' . $result;
+                        }
+                    }
+                }
+                curl_close($ch);
+            }catch(\Exception $e){
+                $success = false;
+                $error = 'OPENCART_ERROR:Request to Razorpay Failed';
+            }
+            if ($success === true){
+               
+                $checkData = CoachingPackageBooking::select('id')->where(['coaching_package_id'=>$packageId,'transaction_id'=>$razorpay_payment_id])->first();
+                if(!$checkData){
+                    $orderId = CoachingPackageBooking::insertGetId([
+                        'full_name' => $request->full_name,
+                        'email' => $request->email,
+                        'mobile_number' => $request->mobile_number,
+                        'address' => $request->address,
+                        'booking_id' => $merchant_order_id,
+                        'transaction_id' => $razorpay_payment_id,
+                        'coaching_package_id' => $packageId,
+                        'user_id' => $userId,
+                        'actual_amount' => round($afterDiscountPrice, 2),
+                        'paid_amount' => $request->merchant_total / 100,
+                        'created_at'=>date("Y-m-d H:i:s"),
+                        'updated_at'=>date("Y-m-d H:i:s")
+                    ]);
+                    
+                    if(!empty($request->whattsapp_subscribe)){
+                        WhatsappSubscriber::insert([
+                            'phone_number'=>$request->mobile_number,
+                            'created_at'=>date("Y-m-d H:i:s"),
+                            'updated_at'=>date("Y-m-d H:i:s")
+                        ]);
+                    }
+                  
+                }else{
+                    $orderId = $checkData->id;
+                }
+
+                $inputObjB = new \stdClass();
+                $inputObjB->url = url('booked-coaching-package-details');
+                $inputObjB->params = 'package_booking_id='.$orderId;
+                $subLink = Common::encryptLink($inputObjB);
+
+                return redirect($subLink)->with('success','Ticket Booked Successfully...');
+            }else{
+                echo "<h4>Something went wrong..Payment Failed... <a href='/'>GO BACK TO Home</a></h4>";
+                exit();
+            }
+        }else{
+            echo "<h4>Something went wrong..Payment Failed... <a href='/'>GO BACK TO Home</a></h4>";
+                exit();
+        }
+    }
+
+    public function bookedCoachingPackageDetails()
+    {
+        $packageBookingId = $this->memberObj['package_booking_id'];
+        $data['orderData'] = CoachingPackageBooking::with(['coachingPackage' => function($query){
+            $query->with('coaching');
+        }])->find($packageBookingId);
+        $data['userData'] = User::find($data['orderData']->coachingPackage->coaching->organiser_id);
+        // dd($data['userData']);
+        return view('home.booked-coaching-package-details', $data);
     }
 }

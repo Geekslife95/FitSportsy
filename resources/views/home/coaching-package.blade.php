@@ -177,7 +177,13 @@
                                         <li><i class="fas fa-check"></i> Session Days - {{ implode(", ", json_decode($package->session_days, true)) }}</li>
                                         <li><i class="fas fa-check"></i> {!! $package->description !!}</li>
                                     </ul>
-                                    <a href="#" class="button-primary">Book Now</a>
+                                    @php
+                                           $inputObj = new stdClass();
+                                           $inputObj->params = 'id='.$package->id;
+                                           $inputObj->url = url('book-coaching-package');
+                                           $encLink = Common::encryptLink($inputObj);
+                                    @endphp
+                                    <a href="{{$encLink}}" class="button-primary">Book Now</a>
                                 </div>
                             </div>
                         </div>

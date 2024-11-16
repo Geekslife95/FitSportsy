@@ -39,6 +39,10 @@ Route::group(['middleware' => ['mode', 'XSS']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('coaching-packages', [HomeController::class, 'coachingPackages'])->name('coaching-packages');
     Route::get('coachings/{category}/{id}', [HomeController::class, 'coachings']);
+    Route::get('book-coaching-package', [HomeController::class, 'bookCoachingPackage']);
+    Route::post('store-book-coaching-package', [HomeController::class, 'storeBookCoachingPackage']);
+
+    Route::get('/booked-coaching-package-details',[HomeController::class,'bookedCoachingPackageDetails']);
     
     Route::get('/coaching-book/{id}/{title}', [HomeController::class, 'coachingBook']);
     Route::post('/send-to-admin', [FrontendController::class, 'sentMessageToAdmin']);
@@ -125,6 +129,7 @@ Route::group(['middleware' => ['mode', 'XSS']], function () {
     Route::post('/save-ticket-bookings',[BookController::class,'saveTicketBookings']);
     
     Route::get('/confirm-ticket-book',[BookController::class,'confirmTicketBook']);
+    
     
     Route::get('/get-promo-discount',[BookController::class,'getPromoDiscount']);
     Route::post('/calculate-book-amount',[BookController::class,'calculateBookAmount']);
