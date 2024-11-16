@@ -3,6 +3,7 @@
 @section('content')
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.css" integrity="sha512-m52YCZLrqQpQ+k+84rmWjrrkXAUrpl3HK0IO4/naRwp58pyr7rf5PO1DbI2/aFYwyeIH/8teS9HbLxVyGqDv/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .hidden{display:none;}
 </style>
@@ -87,31 +88,32 @@
                                         <textarea name="description" id="description" class="form-control" placeholder="Enter Description" rows="5" required>{{$packageData->description}}</textarea>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-12 ">
+                                <div class="col-lg-12 col-md-12 col-12 d-none">
                                     <h6>Session Timing</h6>
                                 </div>
 
-                                <div class="col-lg-6 col-md-12 col-12 ">
+                                <div class="col-lg-6 col-md-12 col-12 d-none">
                                     <div class="form-group">
                                         <label for="start_time" class="form-label">Start Time <span class="text-danger">*</span></label>      
                                         <input type="text" name="start_time" id="start_time" class="form-control time_picker" placeholder="Enter Start Time" value="{{$packageData->session_start_time}}" required>
                                     </div>
                                 </div>
                                
-                                <div class="col-lg-6 col-md-12 col-12 ">
+                                <div class="col-lg-6 col-md-12 col-12 d-none">
                                     <div class="form-group">
                                         <label for="end_time" class="form-label">End Time <span class="text-danger">*</span></label>      
                                         <input type="text" name="end_time" id="end_time" class="form-control time_picker" placeholder="Enter End Time" value="{{$packageData->session_end_time}}" required>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12 col-md-12 col-12">
+                                <div class="col-lg-12 col-md-12 col-12 d-none">
                                     <div class="form-group">
                                         <h6 for="">Session Days <span class="text-danger">*</span></h6>
                                         <p id="check_err" class="text-danger"></p>
                                         <div class="radio-pannel d-flex flex-wrap" style="gap:15px">
                                             @php
-                                                $days = json_decode($packageData->session_days,true);
+                                                // $days = json_decode($packageData->session_days,true);
+                                                $days = [];
                                             @endphp
                                             @foreach (Common::daysArr() as $day)
                                                 <label class="radio-label selectgroup-item w-auto">
@@ -129,7 +131,7 @@
 
                                 @endphp
 
-                                <div class="col-lg-6 col-md-12 col-12 ">
+                                <div class="col-lg-6 col-md-12 col-12">
                                     <div class="form-group">
                                         <label for="duration" class="form-label">Duration (No. of week/month/year) <span class="text-danger">*</span></label>      
                                         <input type="number" name="duration" id="duration" class="form-control" placeholder="Enter Duration" value="{{$packageT[0]}}" required>
@@ -163,6 +165,17 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js" integrity="sha512-6rE6Bx6fCBpRXG/FWpQmvguMWDLWMQjPycXMr35Zx/HRD9nwySZswkkLksgyQcvrpYMx0FELLJVBvWFtubZhDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function() {
+         $('#description').summernote({
+                height: 200,
+                minHeight: 100,
+                toolbar: [],
+        });
+    });
+</script>
 <script>
     $(".time_picker").flatpickr({
         enableTime: true,
@@ -198,18 +211,18 @@
             $(element).css({ border: '1px solid #c1c1c1' });
         },
         submitHandler: function(form) {
-            var checkedLength = 0;
-            $("input[name='session_days[]']").each(function(){
-                if($(this).is(':checked')){
-                    checkedLength++;
-                }
-            })
-            if(checkedLength < 1){
-                $("#check_err").html('select one or more session days').focus() ;
-            }else{
+            // var checkedLength = 0;
+            // $("input[name='session_days[]']").each(function(){
+            //     if($(this).is(':checked')){
+            //         checkedLength++;
+            //     }
+            // })
+            // if(checkedLength < 1){
+                // $("#check_err").html('select one or more session days').focus() ;
+            // }else{
                 document.event_form.submit();
                 $("#continue_btn").attr('disabled','disabled').text('Processing...');
-            }
+            // }
             
         }
     });

@@ -173,9 +173,9 @@
 
                                     <ul class="price-list">
                                         <li><i class="fas fa-check"></i> Batch Size -  {{ $package->batch_size }}</li>
-                                        <li><i class="fas fa-check"></i> Session Time - {{ date("h:iA",strtotime($package->session_start_time)).' - '.date("h:iA",strtotime($package->session_end_time)) }}</li>
-                                        <li><i class="fas fa-check"></i> Session Days - {{ implode(", ", json_decode($package->session_days, true)) }}</li>
-                                        <li><i class="fas fa-check"></i> {!! $package->description !!}</li>
+                                        <li><i class="fas fa-check"></i> <div>{!! $package->description !!}</div></li>
+                                        {{-- <li><i class="fas fa-check"></i> Session Days - {{ implode(", ", json_decode($package->session_days, true)) }}</li> --}}
+                                        {{-- <li><i class="fas fa-check"></i> {!! $package->description !!}</li> --}}
                                     </ul>
                                     @php
                                            $inputObj = new stdClass();

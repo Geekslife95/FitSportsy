@@ -55,10 +55,10 @@
                     <div class="col-lg-2 col-md-3 col-12">
                         <div class="invoice-slot">
                             <div class="invoice-header">
-                                <p>Timing</p>
+                                <p>Session</p>
                             </div>
                             <div class="invoice-body ">
-                                <p class="mb-1"><i class="fas fa-calendar-alt pr-2"></i>{{date("h:i A",strtotime($orderData->coachingPackage->session_start_time))}} - {{date("h:i A",strtotime($orderData->coachingPackage->session_end_time))}}</p>
+                                <p class="mb-1">{!! $orderData->coachingPackage->description !!}</p>
                             </div>
                         </div>
                     </div>

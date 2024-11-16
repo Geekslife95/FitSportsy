@@ -32,9 +32,9 @@ class CoachingPackageRequest extends FormRequest
             'platform_fee' => 'required',
             'gateway_fee' => 'required',
             'description' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
-            'session_days' => 'required|array',
+            // 'start_time' => 'required',
+            // 'end_time' => 'required',
+            // 'session_days' => 'required|array',
         ];
     }
 

@@ -36,9 +36,9 @@
                                     </p>
 
                                     @php
-                                        $sessionDays = isset($coaching->coachingPackage->session_days) ? json_decode($coaching->coachingPackage->session_days, true) : [];
+                                        // $sessionDays = isset($coaching->coachingPackage->session_days) ? json_decode($coaching->coachingPackage->session_days, true) : [];
                                     @endphp
-                                    <p class="my-1 text-light"><small><i class="fas fa-calendar-alt pr-2"></i> {{ implode(", ", $sessionDays) }}</small></p>
+                                    <p class="my-1 text-light"><small> {!! $coaching->coachingPackage->description  !!}</small></p>
 
                                     <div class="mt-2 d-flex justify-content-between align-items-center">
                                     {!!Common::showDiscountLabel($coaching->coachingPackage->package_price, $coaching->coachingPackage->discount_percent )!!}  

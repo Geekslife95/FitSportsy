@@ -74,7 +74,7 @@ class HomeService
     public static function getRelateCoachingData($id, $selectedCity = 'All'){
         $coachingData = Coach::select('id','coaching_title','poster_image','venue_name')
                         ->with('coachingPackage',function($q){
-                            $q->select('id','coach_id','package_price','discount_percent','session_days');
+                            $q->select('id','coach_id','package_price','discount_percent','session_days','description');
                         })->has('coachingPackage');
                         if($selectedCity != 'All'){
                             $coachingData->where('venue_city', $selectedCity);

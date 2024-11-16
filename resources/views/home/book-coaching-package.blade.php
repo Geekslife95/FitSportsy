@@ -68,16 +68,17 @@
                                             {{$coachingData->package_duration}}
                                         </td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td scope="row" class="w-25">Session Timing </td>
                                         <td class="w-75">
                                            {{date("h:i A",strtotime($coachingData->session_start_time))}} - {{date("h:i A",strtotime($coachingData->session_end_time))}}
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
-                                        <td scope="row" class="w-25">Session Days </td>
+                                        <td scope="row" class="w-25">Session  </td>
                                         <td class="w-75">
-                                            {{implode(", ", json_decode($coachingData->session_days, true))}}
+                                            {{-- {{implode(", ", json_decode($coachingData->session_days, true))}} --}}
+                                            {!! $coachingData->description !!}
                                         </td>
                                     </tr>
                                 </tbody>

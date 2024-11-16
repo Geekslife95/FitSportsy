@@ -10,9 +10,10 @@
                         <th>#</th>
                         <th>Package Name</th>
                         <th>Price</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Session Days</th>
+                        <th>Duration</th>
+                        <th>Description</th>
+                        {{-- <th>End Time</th>
+                        <th>Session Days</th> --}}
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -25,9 +26,10 @@
                             <td>{{ $i }}</td>
                             <td>{{ $package->package_name }}</td>
                             <td>{{ $package->package_price }}</td>
-                            <td>{{ date("h:i A",strtotime($package->session_start_time)) }}</td>
-                            <td>{{ date("h:i A",strtotime($package->session_end_time)) }}</td>
-                            <td>{{ implode(",",json_decode($package->session_days,true))}}</td>
+                            <td>{{ $package->package_duration }}</td>
+                            <td>{!! $package->description !!}</td>
+                            {{-- <td>{{ date("h:i A",strtotime($package->session_end_time)) }}</td>
+                            <td>{{ implode(",",json_decode($package->session_days,true))}}</td> --}}
                             <td>
                                 @php
                                     $inputObj = new stdClass();
