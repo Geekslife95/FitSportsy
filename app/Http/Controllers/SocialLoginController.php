@@ -50,7 +50,7 @@ class SocialLoginController extends Controller
                     $userId = $checkUser->id;
                 }else{
                     $data['name'] = $user->user['given_name'];
-                    $data['last_name'] = $user->user['family_name'];
+                    $data['last_name'] = isset($user->user['family_name']) ? $user->user['family_name'] : null;
                     $data['email'] = $user->email;
                     $data['password'] = \Hash::make('GAUTH');
                     $data['image'] = "defaultuser.png";
@@ -73,7 +73,7 @@ class SocialLoginController extends Controller
             }
             return redirect('/');
         }catch(\Exception $e){
-            return "LOGIN ERROR - ".$e->getMessage();
+            return "LOGIN ERROR <br> <a href='/'>GO TO HOME</a>";
         }
        
     }
