@@ -296,4 +296,8 @@ Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function (
 
     Route::get('/remove-coach-book',[CoachBookingController::class,'removeCoachBook']);
     
+    Route::get('/coaching-bookings',[CoachBookingController::class,'coachingBookings']);
+
+
+    
 });

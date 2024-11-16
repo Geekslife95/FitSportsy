@@ -34,7 +34,7 @@
                                                 </label>
                                                 <label class="radio-label">
                                                     <input type="radio" name="logintype" value="2" />
-                                                    <span>Purohit/Temple</span>
+                                                    <span>Organiser</span>
                                                 </label>
                                             </div>
                                         </div>

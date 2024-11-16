@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            {{-- <div class="col-lg-4 col-md-4 col-12">
                 <div class="card text-center  border">
                     <div class="card-body">
                         <img src="{{asset('/images/physical.jpg')}}" alt="" style="width:100%;object-fit:contain;"  class="mb-3 bg-light" height="250px">
@@ -35,8 +35,8 @@
                             Create Now</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            </div> --}}
+            {{-- <div class="col-lg-4 col-md-4 col-12">
                 <div class="card text-center  border">
                     <div class="card-body">
                         <img src="{{asset('/images/virtual.jpg')}}" alt="" style="width:100%;object-fit:contain;"  class="mb-3 bg-light" height="250px">
@@ -53,7 +53,7 @@
                             Create Now</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

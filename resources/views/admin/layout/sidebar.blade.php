@@ -109,16 +109,16 @@
                 </li>
             @endcan
             @role('Organizer')
-                <li class="{{ request()->is('orders*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('orders') }}">
-                    <i class="fas fa-columns"></i><span>{{ __('Ticket Orders') }}</span>
+                <li class="">
+                <a class="nav-link" href="{{ url('user/coaching-bookings') }}">
+                    <i class="fas fa-columns"></i><span>{{ __('Bookings') }}</span>
                 </a>
             </li>    
             @endrole
             @role('admin')
-            <li class="{{ request()->is('orders*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('orders') }}">
-                    <i class="fas fa-columns"></i><span>{{ __('Ticket Orders') }}</span>
+            <li class="">
+                <a class="nav-link" href="{{ url('user/coaching-bookings') }}">
+                    <i class="fas fa-columns"></i><span>{{ __('Bookings') }}</span>
                 </a>
             </li>    
             @endrole
@@ -144,13 +144,13 @@
             </li>
             @endrole
             @can('event_access')
-                <li class="{{ request()->is('events*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('events') }}">
-                        <i class="fas fa-calendar-alt"></i> <span>{{ __('Events') }}</span>
+                <li class="">
+                    <a class="nav-link" href="{{ url('user/coach-booking-list') }}">
+                        <i class="fas fa-calendar-alt"></i> <span>{{ __('Coaching Sessions') }}</span>
                     </a>
                 </li>
             @endcan
-            @if (Auth::user()->hasRole('admin'))
+            {{-- @if (Auth::user()->hasRole('admin'))
                 <li class="">
                     <a class="nav-link" href="{{ url('events-bulk-upload') }}">
                         <i class="fas fa-calendar-alt"></i> <span>{{ __('Events Bulk Upload') }}</span>
@@ -163,21 +163,21 @@
                         <i class="fas fa-calendar-alt"></i> <span>{{ __('Events Names') }}</span>
                     </a>
                 </li>
-            @endcan
-            @can('event_access')
+            @endcan --}}
+            {{-- @can('event_access')
                 <li class="{{ request()->is('eventss-description*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('eventss-description') }}">
                         <i class="fas fa-calendar-alt"></i> <span>{{ __('Events Descriptions') }}</span>
                     </a>
                 </li>
-            @endcan
-            @can('event_access')
+            @endcan --}}
+            {{-- @can('event_access')
                 <li class="{{ request()->is('upload-gallery*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('upload-gallery/create') }}">
                         <i class="fas fa-calendar-alt"></i> <span>{{ __('Events Gallery Post Card') }}</span>
                     </a>
                 </li>
-            @endcan
+            @endcan --}}
             @can('add_product')
             <li class="{{ request()->is('products*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('products') }}">
@@ -236,13 +236,13 @@
                     </a>
                 </li>
             @endcan
-            @can('coupon_access')
+            {{-- @can('coupon_access')
                 <li class="{{ request()->is('coupon*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('coupon') }}">
                         <i class="fas fa-tags"></i> <span>{{ __('Coupon') }}</span>
                     </a>
                 </li>
-            @endcan
+            @endcan --}}
             @can('banner_access')
                 <li class="{{ request()->is('banner*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('banner') }}">
@@ -272,13 +272,13 @@
                     </a>
                 </li>
             @endrole --}}
-            @role('admin')
+            {{-- @role('admin')
                 <li class="{{ request()->is('event-review') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('event-review') }}">
                         <i class="fas fa  fa-flag"></i> <span>{{ __('Reported Events') }}</span>
                     </a>
                 </li>
-            @endrole
+            @endrole --}}
             @role('admin')
                 @can('admin_report')
                     <li class="nav-item dropdown {{ request()->is('admin-report*') ? 'active' : '' }}">

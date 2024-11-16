@@ -167,6 +167,8 @@ class HomeController extends Controller
                         'user_id' => $userId,
                         'actual_amount' => round($afterDiscountPrice, 2),
                         'paid_amount' => $request->merchant_total / 100,
+                        'expiry_date' => date("Y-m-d H:i:s", strtotime("+".$packageData->package_duration)),
+                        'is_active' => CoachingPackageBooking::STATUS_ACTIVE,
                         'created_at'=>date("Y-m-d H:i:s"),
                         'updated_at'=>date("Y-m-d H:i:s")
                     ]);

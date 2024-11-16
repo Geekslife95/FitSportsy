@@ -41,10 +41,18 @@
                                     $inputObjR->params = 'coaching_id='.$package->id;
                                     $inputObjR->url = url('user/remove-coaching-package');
                                     $removeLink = Common::encryptLink($inputObjR);
+
+                                    $inputObjB = new stdClass();
+                                    $inputObjB->params = 'package_id='.$package->id;
+                                    $inputObjB->url = url('user/coaching-bookings');
+                                    $encLinkB = Common::encryptLink($inputObjB);
+
                                 @endphp
                                 <div class="flex">
                                     <a href="{{$editLink}}" class="btn btn-danger btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a href="{{$encLinkB}}" class="text-white btn btn-primary btn-sm">Bookings</a>
                                     <a href="javascript:void(0)" class="btn btn-danger btn-sm remove_package" data-link="{{$removeLink}}"><i class="fas fa-trash-alt"></i></a>
+                                    
                                 </div>
                             </td>
                         </tr>

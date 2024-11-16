@@ -5,6 +5,7 @@ use App\Helpers\Common;
 use App\Http\Controllers\AppHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Coach;
+use App\Models\CoachingPackageBooking;
 use App\Models\TempCourtBooking;
 use App\Services\Category;
 use App\Services\User;
@@ -22,7 +23,14 @@ class CoachBookingController extends Controller
     }
 
     public function coachBookingList(){
-        $data['coachData'] = Coach::select('id','coaching_title','venue_name','poster_image','venue_area','venue_city')->where(['created_by'=>Auth::id(),'is_active'=>Coach::ACTIVE])->orderBy('id','DESC')->paginate(50);
+        $organiserId = Auth::guard('appuser')->check() ? Auth::guard('appuser')->user()->id : 0;
+       
+        $coachData = Coach::select('id','coaching_title','venue_name','poster_image','venue_area','venue_city')->where(['created_by'=>Auth::id(),'is_active'=>Coach::ACTIVE]);
+        if($organiserId > 0){
+            $coachData->where('organiser_id', $organiserId);
+        }
+        $coachData = $coachData->orderBy('id','DESC')->paginate(50);
+        $data['coachData'] = $coachData;
         return view('user.coach-booking.coach-booking-list',$data);
     }
 
@@ -459,6 +467,29 @@ class CoachBookingController extends Controller
         $coachId = $this->memberObj['coaching_id'];
         Coach::where('id', $coachId)->update(['is_active' => Coach::INACTIVE]);
         return redirect('user/coach-booking-list')->with('success','Coaching Data removed successfully...');   
+    }
+
+    public function coachingBookings()
+    {
+        $packageId = isset($this->memberObj['package_id']) ? $this->memberObj['package_id'] : 0;
+
+        $organiserId = Auth::guard('appuser')->check() ? Auth::guard('appuser')->user()->id : 0;
+
+        $bookingData  = CoachingPackageBooking::whereHas('coachingPackage')->with(['coachingPackage' => function($query) use($organiserId){
+            $query->whereHas('coaching')->with(['coaching' => function($q) use($organiserId){
+                if($organiserId > 0){
+                    $q->where('organiser_id', $organiserId);
+                }
+            }]);
+        }]);
+        if($packageId > 0){
+            $bookingData->where('coaching_package_id', $packageId);
+        }
+        $bookingData = $bookingData->orderBy('id','DESC')->paginate(50);
+        $data['bookingData'] = $bookingData;
+        
+        
+        return view('user.coach-booking.coaching-bookings', $data);
     }
 
 }

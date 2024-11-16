@@ -90,28 +90,22 @@
                         <li class="{{Request::url() == url('/').'/dashboard' ? "active" : ""}}">
                             <a href="/dashboard"><i class="fas fa-border-all"></i> <span> Dashboard</span></a>
                         </li>
-                        <li class="{{in_array(Request::url(),$eventArray) ? "active" : ""}}">
-                            <a href="javascript:void(0)"class="subdrop"><i class="fas fa-layer-group"></i> <span>Add Event Details</span></a>
-                            <ul class="sublist">
-                                <li class="{{$step >= 1 ? "active" : "" }} {{Request::url() == url('/').'/dashboard-events' ? "active" : ""}}">
-                                    <i class="{{$step >= 1 ? "fas fa-check-circle" : "far fa-circle" }}"></i> Basics</li>
-                                <li class="{{$step >= 2 ? "active" : "" }}"><i class="{{$step > 2 ? "fas fa-check-circle" : "far fa-circle" }}"></i> Location</li>
-                                <li class="{{$step >= 3 ? "active" : "" }}"><i class="{{$step > 3 ? "fas fa-check-circle" : "far fa-circle" }}"></i> Description</li>
-                                <li class="{{$step >= 4 ? "active" : "" }}"><i class="{{$step > 4 ? "fas fa-check-circle" : "far fa-circle" }}"></i> Photos</li>
-                            </ul>
-                        </li>
-                        <li class="{{in_array(Request::url(),$ticketArray) ? "active" : ""}}">
+                        
+                        {{-- <li class="{{in_array(Request::url(),$ticketArray) ? "active" : ""}}">
                             <a href="javascript:void(0)"><i class="far fa-calendar-check"></i> <span>Add Tickets</span></a>
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a href="/organization/home"><i class="fas fa-border-all"></i> <span> Main Dashboard</span></a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="/user/court-booking-list"><i class="fas fa-border-all"></i> <span> Courts</span></a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="/user/coach-booking-list"><i class="fas fa-border-all"></i> <span> Coaching Sessions</span></a>
+                        </li>
+                        <li>
+                            <a href="/user/coaching-bookings"><i class="fas fa-border-all"></i> <span> Coaching Sessions Bookings</span></a>
                         </li>
                         <li>
                             <a href="/dashboard-logout"><i class="fas fa-cog"></i> <span> Logout</span></a>
