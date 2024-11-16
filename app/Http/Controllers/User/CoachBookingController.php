@@ -480,7 +480,7 @@ class CoachBookingController extends Controller
 
 
         $bookingData  = CoachingPackageBooking::whereHas('coachingPackage')->with(['coachingPackage' => function($query) use($organiserId){
-            $query->whereHas('coaching')->with(['coaching' => function($q) use($organiserId){
+            $query->whereHas('coachingPackage.coaching')->with(['coaching' => function($q) use($organiserId){
                 if(!Auth::user()->hasRole('admin')){
                     $q->where('organiser_id', $organiserId);
                     $q->orWhere('created_by', Auth::id());
