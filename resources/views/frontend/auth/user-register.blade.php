@@ -202,13 +202,13 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script>
     var firebaseConfig = {
-        apiKey: "AIzaSyDhExLmKMsCou01F9Zfrs3g_McD1iqIUmg",
-        authDomain: "otp-verify-c4fc6.firebaseapp.com",
-        projectId: "otp-verify-c4fc6",
-        storageBucket: "otp-verify-c4fc6.firebasestorage.app",
-        messagingSenderId: "1082274178564",
-        appId: "1:1082274178564:web:d30d2f9d36524a4f75b751",
-        measurementId: "G-3SKVXDEKXL"
+        apiKey: "AIzaSyDJajzgTL5muafcdK1y-ABFqJLZal_Ral8",
+        authDomain: "otp-verify-43803.firebaseapp.com",
+        projectId: "otp-verify-43803",
+        storageBucket: "otp-verify-43803.firebasestorage.app",
+        messagingSenderId: "649958214870",
+        appId: "1:649958214870:web:9bf61c9b6b99012f700d77",
+        measurementId: "G-DMQMNEQDQE"
     };
     firebase.initializeApp(firebaseConfig);
 </script>
