@@ -61,7 +61,7 @@
     </div>
 
     <div class="all-category mb-5">
-        @foreach ($coachingsData as $cat)
+        @foreach (Common::allEventCategories() as $cat)
         <div class="category-card">
             <a href="{{url('coachings/'.Str::slug($cat->name).'/'.$cat->id)}}">
                 <img src="{{asset('images/upload/'.$cat->image)}}" class="category-img" alt="...">
