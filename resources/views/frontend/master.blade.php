@@ -436,7 +436,7 @@
     @stack('scripts')
     <script>
         var timeout = null;
-        $(".head-search-box").on('input,click', function(e) {
+        $(".head-search-box").on('input click', function(e) {
             var val = $(this).val().split(' ').join('_');
             if (val == '') {
                 $(".search-result").html('')
