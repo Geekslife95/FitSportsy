@@ -1,7 +1,7 @@
 {
-  "name": "Supershows",
-  "short_name": "Supershows",
-  "description": "Supershows is your go-to online platform for seamlessly booking tickets to a wide variety of events, from exciting music shows to thrilling cricket and football matches. Whether you're a sports fan looking to catch your favorite team in action or a music lover eager to attend live performances, Supershows makes it easy to find and book your preferred events. Enjoy a hassle-free experience with our simple and intuitive platform, allowing you to secure your tickets and be part of the action in no time.",
+  "name": "Fitsportsy",
+  "short_name": "Fitsportsy",
+  "description": "Fitsportsy is your go-to online platform for seamlessly booking tickets to a wide variety of sports coachings.",
   "icons": [
     {
       "src": "/logo.png",
