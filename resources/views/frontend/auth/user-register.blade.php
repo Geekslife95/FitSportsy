@@ -58,14 +58,14 @@
                                             <label class="form-label">Password <span class="text-danger">*</span></label>
                                             <input type="password" class="form-control form-control-user" id="password" autocomplete="new-password" name="password" placeholder="Password">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label class="form-label">Address 1 <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control form-control-user" value="{{old('address_one')}}" name="address_one" id="address_one" placeholder="Enter Address 1">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Address 2</label>
                                             <input type="text" class="form-control form-control-user" value="{{old('address_two')}}" name="address_two" id="address_two" placeholder="Enter Address 2">
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <div id="recaptcha-container" class="mb-3"></div>
                                         </div>
@@ -202,13 +202,13 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script>
     var firebaseConfig = {
-       apiKey: "AIzaSyANStzowYhfrm3ZKv77e-gS6IY6xBI_1cA",
-       authDomain: "wealthyfy-website.firebaseapp.com",
-       projectId: "wealthyfy-website",
-       storageBucket: "wealthyfy-website.appspot.com",
-       messagingSenderId: "353694442485",
-       appId: "1:353694442485:web:e25391f435c7d5e75836bc",
-       measurementId: "G-VSSJ508GQJ"
+        apiKey: "AIzaSyDhExLmKMsCou01F9Zfrs3g_McD1iqIUmg",
+        authDomain: "otp-verify-c4fc6.firebaseapp.com",
+        projectId: "otp-verify-c4fc6",
+        storageBucket: "otp-verify-c4fc6.firebasestorage.app",
+        messagingSenderId: "1082274178564",
+        appId: "1:1082274178564:web:d30d2f9d36524a4f75b751",
+        measurementId: "G-3SKVXDEKXL"
     };
     firebase.initializeApp(firebaseConfig);
 </script>

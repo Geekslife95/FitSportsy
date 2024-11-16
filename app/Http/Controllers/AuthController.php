@@ -39,7 +39,7 @@ class AuthController extends Controller
             'email'=>'required|email',
             'mobile_number'=>'required|numeric',
             'password'=>'required|min:5',
-            'address_one'=>'required'
+            // 'address_one'=>'required'
         ]);
 
         // dd($request->all());
