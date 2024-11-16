@@ -62,7 +62,7 @@ class Common
 
   public static function allEventCategories(){
     $catData = \Cache::rememberForever('event-categories',function(){
-      return \App\Models\Category::select('id','name','slug')->orderBy('order_num','ASC')->where('status',1)->get();
+      return \App\Models\Category::select('id','name','slug','image')->orderBy('order_num','ASC')->where('status',1)->get();
     });
     return $catData;
   }
