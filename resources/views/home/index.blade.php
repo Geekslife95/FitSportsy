@@ -56,6 +56,10 @@
         
     @endif
 
+    <div class="d-sm-flex align-items-center justify-content-between mt-5 mb-3 overflow-hidden">
+        <h1 class="h4 mb-0 float-left">Categories</h1>
+    </div>
+
     <div class="all-category mb-5">
         @foreach ($coachingsData as $cat)
         <div class="category-card">
