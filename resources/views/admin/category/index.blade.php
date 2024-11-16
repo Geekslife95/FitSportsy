@@ -55,7 +55,7 @@
                                                 <th> <img class="table-img" src="{{ url('images/upload/' . $item->image) }}">
                                                 </th>
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ App\Models\Event::where([['is_deleted', 0], ['category_id', $item->id]])->count() }}
+                                                <td>{{ App\Models\Coach::where([['is_active', 1], ['category_id', $item->id]])->count() }}
                                                 </td>
                                                 <td>
                                                     <h5><span
