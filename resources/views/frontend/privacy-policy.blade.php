@@ -3,21 +3,21 @@
 @push('styles')
 <style>
     
-    h1 {
+    .policy-content  h1 {
         text-align: center;
         color: #fff;
     }
-    h2 {
+    .policy-content h2 {
         color: #fff;
         margin-top: 20px;
     }
-    p {
+    .policy-content p {
         margin: 10px 0;
     }
-    ul {
+    .policy-content ul {
         margin: 10px 0 10px 20px;
     }
-    .contact-info {
+    .policy-content .contact-info {
         margin-top: 20px;
     }
 </style>
