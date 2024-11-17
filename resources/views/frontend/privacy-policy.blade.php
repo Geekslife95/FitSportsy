@@ -1,5 +1,27 @@
 @extends('frontend.master', ['activePage' => 'Booking Details'])
 @section('title', __('Privacy Policy'))
+@push('styles')
+<style>
+    
+    h1 {
+        text-align: center;
+        color: #fff;
+    }
+    h2 {
+        color: #fff;
+        margin-top: 20px;
+    }
+    p {
+        margin: 10px 0;
+    }
+    ul {
+        margin: 10px 0 10px 20px;
+    }
+    .contact-info {
+        margin-top: 20px;
+    }
+</style>
+@endpush
 @section('content')
 <section class="policy-area section-area">
     <div class="container">
@@ -8,57 +30,64 @@
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow-sm rounded border-0">
                     <div class="card-body policy-content">
-                        <h1 class="h3">Privacy Note for Supershows Website</h1>
-                        <hr>
-                        <p>At Supershows, we are committed to safeguarding your privacy and ensuring that your personal information is handled responsibly. This Privacy Note explains how we collect, use, disclose, and protect your personal data when you use our website and services. By accessing or using our website, you agree to the practices described in this Privacy Note.</p>
-                        <h5>1. Information We Collect:</h5>
-                        <p>We may collect various types of information, including:</p>
-                        <ul>
-                            <li><b>Personal Information:</b> Name, contact details, billing information, etc.</li>
-                            <li><b>Transaction Information:</b> Details of your purchases and interactions with us.</li>
-                            <li><b>Usage Information:</b> Information about how you navigate and interact with our website.</li>
-                            <li><b>Device Information:</b> Information about the device you use to access our website.</li>
-                            <li><b>Communication Information:</b> Records of your correspondence with us.</li>
-                        </ul>
-                        <h5>2. How We Use Your Information:</h5>
-                        <p>We use your information for various purposes, including:</p>
-                        <ul>
- 
-                            <li><b>Providing Services:</b> Fulfilling your orders, processing payments, and delivering Supershows Seva tickets.</li>
-                            <li><b>Communication:</b> Sending you transactional emails, updates, and responding to your inquiries.</li>
-                            <li><b>Personalization:</b> Customizing your experience on our website based on your preferences.</li>
-                            <li><b>Analytics:</b> Understanding how you use our website to improve its functionality and performance.</li>
-                            <li><b>Legal Obligations:</b> Complying with legal requirements and resolving disputes.</li>
-                           
-                        </ul>
-                        <h5>3. Information Sharing:</h5>
-                        <p>We may share your information with:</p>
-                        <ul>
+                        <h1>Privacy Policy</h1>
+    <p><strong>Last Updated:</strong> 15-11-2024</p>
 
+    <p>This Privacy Policy describes how FitSportsy, owned and operated by Geeks Life Technology Solutions PVT LTD, collects, uses, discloses, and protects your information when you use our services, including our website and mobile applications (collectively, the “Platform”). By accessing or using FitSportsy, you agree to this Privacy Policy.</p>
 
-                            <li><b>Service Providers:</b> Third-party partners who help us operate our website and provide services.</li>
-                            <li><b>Temple Partners:</b>  Sharing relevant information to facilitate the Supershows Seva experience.</li>
-                            <li><b>Legal Authorities:</b> When required by law or to protect our rights and the rights of others.</li>
-                        </ul>
-                        <h5>4. Data Security:</h5>
-                        <p>We implement security measures to protect your information from unauthorized access, disclosure, alteration, or destruction.</p>
-                        <h5>5. Cookies and Tracking:</h5>
-                        <p>We use cookies and similar technologies to enhance your browsing experience and gather usage information.</p>
-                        <h5>6. Your Choices:</h5>
-                       <p>You can:</p> 
+    <h2>1. Information We Collect</h2>
+    <p>When you use FitSportsy to access sports coaching services or purchase sports products, we collect several types of information to provide and improve our services, including:</p>
+    <ul>
+        <li><strong>Personal Information:</strong> Information that identifies you, such as your name, email address, phone number, and billing details.</li>
+        <li><strong>Account Information:</strong> Information related to your account on FitSportsy, including your username, password, and preferences.</li>
+        <li><strong>Activity Data:</strong> Details on your activity within the Platform, such as booking history, purchase history, and interactions with coaching services.</li>
+        <li><strong>Location Information:</strong> With your consent, we may collect your location information to help recommend nearby sports facilities or events.</li>
+        <li><strong>Device and Usage Information:</strong> Information about your device, including IP address, browser type, operating system, and interactions with the Platform.</li>
+    </ul>
 
-                        <ul>
-                            <li>Opt-out of receiving marketing communications.</li>
-                            <li>Control cookies through your browser settings.</li>
-                            <li>Access, update, or delete your personal information by contacting us.</li>
-                        </ul>
-                        <h5>7. Children's Privacy:</h5>
-                        <p>Our services are not directed to children under the age of 13. We do not knowingly collect personal information from them.</p>
-                        <h5>8. Changes to Privacy Note:</h5>
-                        <p>We may update this Privacy Note from time to time. The latest version will be posted on our website.</p>
-                        <h5>9. Contact Us:</h5>
-                        <p>If you have any questions, concerns, or requests related to your privacy or this Privacy Note, please contact us at [contact email/phone].</p>
-                        <p>By using our website, you acknowledge that you have read and understood this Privacy Note and agree to our practices. Your privacy matters to us, and we are dedicated to protecting and respecting it.</p>
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+        <li>Provide, personalize, and improve our Platform services, including sports coaching and product recommendations.</li>
+        <li>Process bookings, transactions, and payments.</li>
+        <li>Communicate with you about your account, transactions, and promotional offers.</li>
+        <li>Analyze trends and user activity to improve and develop new features.</li>
+        <li>Ensure Platform security and detect and prevent fraud or abuse.</li>
+    </ul>
+
+    <h2>3. Sharing Your Information</h2>
+    <p>We may share your information in the following circumstances:</p>
+    <ul>
+        <li><strong>With Service Providers:</strong> We work with third-party providers to perform services on our behalf, such as payment processing, data analytics, and customer support. These providers have access to your information as needed to perform their functions but are not permitted to use it for other purposes.</li>
+        <li><strong>With Sports Coaches and Partners:</strong> When you book a coaching session or purchase a product through FitSportsy, we may share necessary details with the coaches or partner organizations involved to facilitate the service.</li>
+        <li><strong>Legal and Regulatory Purposes:</strong> We may disclose your information as required by law, such as to comply with a legal process or protect our rights and property.</li>
+    </ul>
+
+    <h2>4. Security of Your Information</h2>
+    <p>Geeks Life Technology Solutions PVT LTD is committed to protecting your personal information. We employ industry-standard security measures to safeguard your data. However, no method of transmission over the internet or method of electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+
+    <h2>5. Your Choices and Rights</h2>
+    <p>You have choices regarding the information we collect and how it’s used:</p>
+    <ul>
+        <li><strong>Access and Update:</strong> You may access and update your personal information directly within your account settings.</li>
+        <li><strong>Marketing Preferences:</strong> You may opt out of receiving promotional communications from us by following the unsubscribe instructions provided in those emails.</li>
+        <li><strong>Data Deletion:</strong> You may request the deletion of your account or data by contacting our support team at <a href="mailto:support@fitsportsy.in">support@fitsportsy.in</a>.</li>
+    </ul>
+
+    <h2>6. Children’s Privacy</h2>
+    <p>FitSportsy does not knowingly collect personal information from children under the age of 13. If you become aware that a child has provided us with personal information, please contact us, and we will take steps to delete such information.</p>
+
+    <h2>7. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any changes by updating the "Last Updated" date at the top of this page. We encourage you to review this Privacy Policy periodically.</p>
+
+    <h2>8. Contact Us</h2>
+    <div class="contact-info">
+        <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
+        <p><strong>Geeks Life Technology Solutions PVT LTD</strong><br>
+        CV Raman Nagar, Bangalore-56693<br>
+        Email: <a href="mailto:support@fitsportsy.in">support@fitsportsy.in</a><br>
+        Phone: +91 9686314018</p>
+    </div>
                     </div>
                 </div>
             </div>

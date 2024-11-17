@@ -1,6 +1,28 @@
 @extends('frontend.master', ['activePage' => 'Booking Details'])
 @section('title', __('Terms & Conditions'))
 @section('content')
+@push('styles')
+<style>
+    
+    h1 {
+        text-align: center;
+        color: #fff;
+    }
+    h2 {
+        color: #fff;
+        margin-top: 20px;
+    }
+    p {
+        margin: 10px 0;
+    }
+    ul {
+        margin: 10px 0 10px 20px;
+    }
+    .contact-info {
+        margin-top: 20px;
+    }
+</style>
+@endpush
 <section class="policy-area section-area">
     <div class="container">
         <div class="row justify-content-center">
@@ -8,39 +30,25 @@
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow-sm rounded border-0">
                     <div class="card-body policy-content">
-                        <h1 class="h3">Cancellation and Refund Policy for Supershows</h1>
-                        <hr>
-                        <h4>Cancellation Policy:</h4>
-                        <br>
-                        <h5>1. Cancellations by Customers:</h5>
-                        <ul>
-                            <li>Customers can cancel their events service booking by contacting our customer support team or through their online account.</li>
-                            <li>Cancellation requests made more than 48 hours before the scheduled events will receive a full refund.</li>
-                            <li>Cancellation requests made between 24 and 48 hours before the scheduled events will be eligible for a partial refund up to 70% of the booking amount.</li>
-                           <li>Cancellation requests made less than 24 hours before the scheduled events are not eligible for a refund.</li>
-                        </ul>
-                        <h5>2. Cancellations due to Unforeseen Circumstances:</h5>
-                        <ul>
-                            <li>In cases where the events cannot be conducted due to unforeseen circumstances (e.g., natural disasters, pandemics, venue unavailability), we will provide a full refund or reschedule the events at the customer's convenience.</li>
-                        </ul>
-                        <h4>Refund Policy:</h4>
-                        <br>
-                        <h5>1. Refund Processing:</h5>
-                        <ul>
-                            <li> Refunds for eligible cancellations will be processed within 5 to 7 business days from the date of the cancellation request.</li>
-                            <li> Refunds will be issued using the same payment method used for the original booking.</li>
-                        </ul>
-                        <h5>2. Non-Refundable Fees:</h5>
-                      
-                        <ul>
-                            <li>Any non-refundable fees (e.g., administrative fees) will be clearly stated during the booking process.</li>
+                        <h1>FitSportsy Refund and Cancellation Policy</h1>
 
-                        </ul>
-                        <h5>3. Refund for Partial Cancellations:</h5>
-                      
+                        <h2>1. General Cancellation Policy</h2>
+                        <p>Cancellations on FitSportsy are subject to the specific policy established by each merchant partner (e.g., sports facility, coaching provider). Before making a booking or purchase, you can review the cancellation terms on the merchant’s information page. These policies are also included with your booking ticket in your order history for easy reference.</p>
+                    
+                        <h2>2. Initiating a Cancellation</h2>
                         <ul>
-                            <li> For partial cancellations of multi-events bookings, the refund amount will be adjusted accordingly.</li>
+                            <li><strong>Self-Service Cancellations:</strong> Users can initiate cancellations directly through their booking ticket in the FitSportsy app or website.</li>
+                            <li><strong>Displayed Refund Amount:</strong> The refund amount due, if applicable, will be displayed before confirming the cancellation. This allows you to review the amount that will be refunded based on the merchant's cancellation terms.</li>
                         </ul>
+                    
+                        <h2>3. Refund Process</h2>
+                        <ul>
+                            <li><strong>Credit to Original Payment Source:</strong> Refunds will be credited back to the original payment method used at the time of booking.</li>
+                            <li><strong>Processing Time:</strong> After cancellation is initiated, refunds are typically processed within 5-7 business days.</li>
+                        </ul>
+                    
+                        <h2>4. Coaching-Specific Cancellation and Refund Policy</h2>
+                        <p>For sports coaching bookings, cancellations and refunds are governed by the coach’s specific policies. Please review the coach's cancellation policy before booking to understand any potential fees or conditions. Some coaching sessions may not be eligible for refunds if canceled within a certain timeframe.</p>
                     </div>
                 </div>
             </div>

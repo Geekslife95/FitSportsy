@@ -2,54 +2,95 @@
 @extends('frontend.master', ['activePage' => 'Booking Details'])
 @section('title', __('Terms & Conditions'))
 @section('content')
+@push('styles')
+<style>
+    
+    h1 {
+        text-align: center;
+        color: #fff;
+    }
+    h2 {
+        color: #fff;
+        margin-top: 20px;
+    }
+    p {
+        margin: 10px 0;
+    }
+    ul {
+        margin: 10px 0 10px 20px;
+    }
+    .contact-info {
+        margin-top: 20px;
+    }
+</style>
+@endpush
 <section class="policy-area section-area">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow-sm rounded border-0">
                     <div class="card-body policy-content">
-                        <h1 class="h3">Terms and Conditions</h1>
-                        <p>Welcome to Supershows! These terms and conditions outline the rules and regulations for using our website and services. By accessing this website, we assume you accept these terms and conditions. Do not continue to use Supershows if you do not agree with all the terms and conditions stated on this page.</p>
-                        <hr>
-                        <h5>1. Services:</h5>
-                       <ul>
-                           <li>Supershows is a platform that facilitates the booking of religious rituals, Pujas, and Seva services at various temples and spiritual centers.</li>
-                            <li>Users can book these services online through our platform, subject to availability and temple-specific terms.</li>
-                       </ul>
-                       <h5>2. User Accounts</h5>
-                       <ul>
-                           <li>To use certain features of this website, you may be required to create a user account. You are responsible for maintaining the confidentiality of your account information and password.</li>
-                           <li>You agree to accept responsibility for all activities that occur under your account.</li>
-                       </ul>
-                       <h5>3. Service Bookings</h5>
-                       <ul>
-                           <li>Users can Supershows services through our platform. Booking availability is subject to the specific temple's schedule and terms.</li>
-                           <li>Users are responsible for providing accurate information during the booking process. Any inaccuracies may result in booking issues.</li>
-                       </ul>
-                        <h5>4. Payment</h5>
-                       <ul>
-                           <li>Payments for services are processed securely through our platform. Users are responsible for any fees or charges associated with their bookings.</li>
-                           <li>Cancellation and refund policies may vary by temple. Please review the specific temple's terms regarding cancellations and refunds.</li>
-                       </ul>
-                        <h5>5. User Conduct</h5>
-                       <ul>
-                           <li>Users are expected to conduct themselves respectfully and adhere to the rules and guidelines of the temple or spiritual center they visit.</li>
-                           <li>Inappropriate behavior or violations of temple rules may result in restricted access or cancellation of services.</li>
-                       </ul>
-                       <h5>6. Privacy</h5>
-                       <p>User data and information are subject to our Privacy Policy, which outlines how we collect, use, and protect user data.</p>
-                       <h5>7. Intellectual Property</h5>
-                       <p>All content on this website, including text, graphics, logos, images, and software, is the property of Supershows and is protected by copyright and other intellectual property laws.</p>
-                       <h5>8. Disclaimer</h5>
-                       <ul>
-                           <li>While we strive to provide accurate information, we do not guarantee the accuracy, completeness, or reliability of any content on this website.</li>
-                           <li>We are not responsible for any loss or damage resulting from the use of our services or website.</li>
-                       </ul>
-                       <h5>9. Changes to Terms and Conditions</h5>
-                       <p>We reserve the right to update or revise these terms and conditions at any time. Users are encouraged to check this page regularly for changes.</p>
-                       <h5>10. Contact Information</h5>
-                       <p>For any questions or concerns regarding these terms and conditions, please contact us at support@Supershows.com.</p>
-                       <p>By using our website and services, you agree to these terms and conditions. If you disagree with any part of these terms and conditions, please do not use our website or services.</p>
+                        <h1>Terms and Conditions of Use</h1>
+                        <p><strong>Last Updated:</strong> 15-11-2024</p>
+                    
+                        <p>Welcome to FitSportsy, operated by Geeks Life Technology Solutions PVT LTD. By accessing or using FitSportsy (the “Platform”), you agree to be bound by these Terms of Service (“Terms”). If you do not agree to these Terms, you may not use the Platform.</p>
+                    
+                        <h2>1. Platform Overview</h2>
+                        <p>FitSportsy provides users access to sports coaching services and sports products (collectively, the “Services”). The Platform enables users to browse, book, and participate in various sports activities and purchase products through partner facilities and coaches.</p>
+                    
+                        <h2>2. Eligibility</h2>
+                        <p>To use FitSportsy, you must be at least 18 years of age or, if under 18, have permission from a parent or guardian. By using the Platform, you confirm that you meet these eligibility requirements.</p>
+                    
+                        <h2>3. Account Registration and Security</h2>
+                        <ul>
+                            <li><strong>Account Creation:</strong> To access certain features of FitSportsy, you may need to create an account, providing accurate and complete information. You are responsible for maintaining the confidentiality of your account details.</li>
+                            <li><strong>Account Usage:</strong> You agree not to share your account or password with others and to notify FitSportsy of any unauthorized use.</li>
+                            <li><strong>Account Termination:</strong> FitSportsy reserves the right to suspend or terminate your account for any violation of these Terms.</li>
+                        </ul>
+                    
+                        <h2>4. Use of the Platform</h2>
+                        <p>You agree to use FitSportsy solely for lawful purposes and as permitted by these Terms. Prohibited actions include:</p>
+                        <ul>
+                            <li><strong>Unauthorized Use:</strong> You may not use the Platform in a manner that could interfere with, disrupt, or negatively affect other users’ experience.</li>
+                            <li><strong>Intellectual Property:</strong> You may not copy, modify, distribute, sell, or lease any part of the Platform or Services without prior written permission from FitSportsy.</li>
+                            <li><strong>Prohibited Activities:</strong> Any attempt to hack, disrupt, or compromise the Platform’s security features is strictly forbidden.</li>
+                        </ul>
+                    
+                        <h2>5. Payments and Fees</h2>
+                        <ul>
+                            <li><strong>Service Fees:</strong> Charges for bookings, coaching services, or products purchased through the Platform are as specified on FitSportsy. You agree to pay all applicable fees associated with your use of the Platform.</li>
+                            <li><strong>Refunds:</strong> Refund policies are available within FitSportsy’s guidelines. Please refer to the refund policy for specific conditions on cancellations and refunds.</li>
+                            <li><strong>Third-Party Payment Processing:</strong> Payments may be processed by third-party providers. FitSportsy is not liable for any issues arising from third-party transactions.</li>
+                        </ul>
+                    
+                        <h2>6. Cancellations and Refunds</h2>
+                        <p>Users may cancel bookings as per the cancellation policy outlined on the Platform. FitSportsy reserves the right to modify its refund and cancellation policy at any time.</p>
+                    
+                        <h2>7. Liability and Disclaimer</h2>
+                        <ul>
+                            <li><strong>Platform Use:</strong> You acknowledge that FitSportsy does not control the quality or safety of services provided by third-party coaches or vendors. FitSportsy makes no guarantees about the availability, suitability, or quality of any services accessed through the Platform.</li>
+                            <li><strong>Limitation of Liability:</strong> To the maximum extent permitted by law, FitSportsy, its affiliates, and employees are not liable for any damages arising from your use of the Platform or participation in any services or events organized through FitSportsy.</li>
+                            <li><strong>Indemnity:</strong> You agree to indemnify and hold harmless FitSportsy from any claims, losses, liabilities, and expenses arising from your use of the Platform or violation of these Terms.</li>
+                        </ul>
+                    
+                        <h2>8. Intellectual Property</h2>
+                        <p>All content on the Platform, including text, graphics, logos, and software, is the property of FitSportsy or its licensors. You may not use or reproduce any intellectual property from FitSportsy without explicit permission.</p>
+                    
+                        <h2>9. Privacy</h2>
+                        <p>Our use of your personal data is governed by the FitSportsy Privacy Policy, which can be found <a href="{{url('/privacy-policy')}}">here</a>.</p>
+                    
+                        <h2>10. Modifications to the Terms</h2>
+                        <p>FitSportsy reserves the right to modify these Terms at any time. Changes will be posted on the Platform, and your continued use of the Platform after changes are made constitutes your acceptance of the revised Terms.</p>
+                    
+                        <h2>11. Governing Law</h2>
+                        <p>These Terms are governed by and construed in accordance with the laws of [jurisdiction]. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts in [jurisdiction].</p>
+                    
+                        <h2>12. Contact Us</h2>
+                        <p>For questions about these Terms, please contact us at:</p>
+                        <p><strong>Geeks Life Technology Solutions PVT LTD</strong><br>
+                        CV Raman Nagar, Bangalore-56693<br>
+                        Email: <a href="mailto:support@fitsportsy.in">support@fitsportsy.in</a><br>
+                        Phone: +91 9686314018</p>
                     </div>
                 </div>
             </div>

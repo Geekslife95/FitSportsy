@@ -33,7 +33,7 @@ class HomeController extends Controller
         $data['products'] = HomeService::allProducts();
         $categories = Category::whereHas('coachings', function ($query) use($selectedCity){
             if($selectedCity != 'All'){
-                $query->where('venue_name', '!=' ,$selectedCity);
+                $query->where('venue_name',$selectedCity);
             }
             $query->whereHas('coachingPackage');
         })->get()->toArray();
