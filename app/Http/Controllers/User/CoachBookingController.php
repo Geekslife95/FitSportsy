@@ -5,6 +5,7 @@ use App\Helpers\Common;
 use App\Http\Controllers\AppHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Coach;
+use App\Models\CoachingPackage;
 use App\Models\CoachingPackageBooking;
 use App\Models\TempCourtBooking;
 use App\Services\Category;
@@ -493,6 +494,72 @@ class CoachBookingController extends Controller
         
         
         return view('user.coach-booking.coaching-bookings', $data);
+    }
+
+    public function bookingsAtCenter(){
+        $coachingData = Coach::select('id', 'coaching_title', 'venue_name');
+        if(!Auth::user()->hasRole('admin')){
+            $coachingData->where(function($q){
+                $q->where('organiser_id', Auth::id());
+                $q->orWhere('created_by', Auth::id());
+            });
+        }
+        $coachingData = $coachingData->get();
+        $data['coachingData'] = $coachingData;
+        return view('user.coach-booking.bookings-at-center', $data);
+    }
+
+    public function getPackagesByCoachId(Request $request){
+        $coachId = $request->coachId;
+        $coachPackageData = CoachingPackage::select('id', 'package_name', 'package_price', 'discount_percent', 'description', 'package_duration')->where(['coach_id' => $coachId, 'is_active' => CoachingPackage::STATUS_ACTIVE])->get();
+        $data = [];
+        foreach($coachPackageData as $k => $package){
+            $data[$k] = $package;
+            $realPrice = $package->package_price;
+            $afterDiscountPrice = $package->package_price;
+            if($package->discount_percent > 0 && $package->discount_percent <= 100){
+                $perc = ($realPrice * $package->discount_percent) / 100;
+                $afterDiscountPrice = round($realPrice - $perc, 2);
+            }
+            $data[$k]['final_price'] = "₹".round($afterDiscountPrice,2);
+            $inputObj = new stdClass();
+            $inputObj->params = 'id='.$package->id;
+            $inputObj->url = url('user/book-offline');
+            $data[$k]['book_link'] = Common::encryptLink($inputObj);
+        }
+        return response()->json(['data' => $data]); 
+    }
+
+    public function bookOffline(){
+        $packageId = $this->memberObj['id'];
+        $data['packageData'] = CoachingPackage::find($packageId);
+        $inputObj = new stdClass();
+        $inputObj->params = 'id='.$data['packageData']->id;
+        $inputObj->url = url('user/store-book-offline');
+        $data['book_link'] = Common::encryptLink($inputObj);
+        return view('user.coach-booking.book-offline', $data);
+    }
+
+    public function storeBookOffline(Request $request){
+        $packageId = $this->memberObj['id'];
+        $packageData = CoachingPackage::find($packageId);
+        $orderId = CoachingPackageBooking::insertGetId([
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'mobile_number' => $request->mobile_number,
+            'address' => 'NA',
+            'booking_id' => Common::randomMerchantId(1),
+            'transaction_id' => !empty($request->transaction_id) ? $request->transaction_id : 'NA',
+            'coaching_package_id' => $packageId,
+            'user_id' => 0,
+            'actual_amount' => $request->amount,
+            'paid_amount' => $request->amount,
+            'expiry_date' => date("Y-m-d H:i:s", strtotime("+".$packageData->package_duration)),
+            'is_active' => CoachingPackageBooking::STATUS_ACTIVE,
+            'created_at'=>date("Y-m-d H:i:s"),
+            'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+        return redirect()->back()->with('success', 'Coaching booked successfully...');
     }
 
 }

@@ -154,7 +154,7 @@
                                 $showDiscount = 1;
                             }
                             $type = explode(" ",$package->package_duration);
-                            $type = trim($type[1],'s');
+                            $type = $type[0].' '.trim($type[1],'s');
                         @endphp
                         <div class="col-md-4 d-flex">
                             <div class="subscription-card flex-grow-1 d-flex flex-column position-relative">

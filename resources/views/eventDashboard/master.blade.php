@@ -91,6 +91,10 @@
                             <a href="/dashboard"><i class="fas fa-border-all"></i> <span> Dashboard</span></a>
                         </li>
                         
+                        <li class="">
+                            <a href="/user/bookings-at-center"><i class="fas fa-border-all"></i> <span> Bookings At Centre</span></a>
+                        </li>
+                        
                         {{-- <li class="{{in_array(Request::url(),$ticketArray) ? "active" : ""}}">
                             <a href="javascript:void(0)"><i class="far fa-calendar-check"></i> <span>Add Tickets</span></a>
                         </li> --}}

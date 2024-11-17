@@ -352,10 +352,10 @@
                             No.191/3, 27th Cross, Kaggadasapura Main Rd, above Lenskart Showroom, C.V. Raman Nagar,
                             Bengaluru, Karnataka 560093</a>
                         <a href="tel:+91-7022190602" class="text-white mb-1 text-decoration-none d-block "><i
-                                class="fas fa-phone-alt"></i> +91-7022190602</a>
-                        <a href="mailto:support@supershows.com"
+                                class="fas fa-phone-alt"></i> +919686314018</a>
+                        <a href="mailto:support@fitsportsy.in"
                             class="text-white mb-1 text-decoration-none d-block "><i class="fas fa-envelope"></i>
-                            support@supershows.com</a>
+                            support@fitsportsy.in</a>
                     </div>
                 </div>
             </div>

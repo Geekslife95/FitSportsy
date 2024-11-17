@@ -301,6 +301,11 @@ Route::group(['middleware' => ['organiser','auth'],'prefix'=>'user'], function (
     
     Route::get('/coaching-bookings',[CoachBookingController::class,'coachingBookings']);
 
+    Route::get('/bookings-at-center',[CoachBookingController::class,'bookingsAtCenter']);
+    Route::post('/get-packages-by-coach-id',[CoachBookingController::class,'getPackagesByCoachId']);
+    Route::get('/book-offline',[CoachBookingController::class,'bookOffline']);
+    Route::post('/store-book-offline',[CoachBookingController::class,'storeBookOffline']);
+
 
     
 });
