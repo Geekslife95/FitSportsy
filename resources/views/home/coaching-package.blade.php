@@ -167,9 +167,9 @@
                                 <div class="subscription-card-body">
                                     @if($showDiscount)
                                         <h3 class="subscription-card-title">₹{{ $afterDiscountPrice }} <small class="price-text-muted">/ {{$type}}</small></h3>
-                                        <p><small class="price-text-muted">Normally ₹{{ $realPrice }} / {{$type}}</small></p>
+                                        <p><small class="price-text-muted">Normally ₹{{ $realPrice + 0 }} / {{$type}}</small></p>
                                     @else
-                                        <h3 class="subscription-card-title">₹{{$realPrice}} <small class="price-text-muted">/ {{$type}}</small></h3>
+                                        <h3 class="subscription-card-title">₹{{$realPrice + 0}} <small class="price-text-muted">/ {{$type}}</small></h3>
                                     @endif
                                     
 
