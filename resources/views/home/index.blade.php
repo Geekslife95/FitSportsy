@@ -38,13 +38,15 @@
                                     @php
                                         // $sessionDays = isset($coaching->coachingPackage->session_days) ? json_decode($coaching->coachingPackage->session_days, true) : [];
                                     @endphp
-                                    <p class="my-1 text-light"><small> {!! $coaching->coachingPackage->description  !!}</small></p>
+                                    @if(isset($coaching->coachingPackage) && $coaching->coachingPackage!=null)
+                                        <p class="my-1 text-light"><small> {!! $coaching->coachingPackage->description  !!}</small></p>
 
-                                    <div class="mt-2 d-flex justify-content-between align-items-center">
-                                    {!!Common::showDiscountLabel($coaching->coachingPackage->package_price, $coaching->coachingPackage->discount_percent )!!}  
-                                    
-                                        <a href="{{url('coaching-book/'.$coaching->id.'/'.Str::slug($coaching->coaching_title))}}" class="mt-1 btn btn-success btn-sm mb-1 ">Book Now</a>
-                                    </div>
+                                        <div class="mt-2 d-flex justify-content-between align-items-center">
+                                        {!!Common::showDiscountLabel($coaching->coachingPackage->package_price, $coaching->coachingPackage->discount_percent )!!}  
+                                        
+                                            <a href="{{url('coaching-book/'.$coaching->id.'/'.Str::slug($coaching->coaching_title))}}" class="mt-1 btn btn-success btn-sm mb-1 ">Book Now</a>
+                                        </div>
+                                    @endif
                                 
                                 </div>
                             </div>
