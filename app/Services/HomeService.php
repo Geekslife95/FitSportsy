@@ -50,6 +50,7 @@ class HomeService
                     $query->where('venue_name', $selectedCity);
                 }
                 $query->limit(10); // Get 10 per category
+                $query->whereHas('coachingPackage');
             },
             'coachings.coachingPackage' => function ($query) {
                 $query->orderBy('created_at')->limit(1); // Get the first comment for each post
