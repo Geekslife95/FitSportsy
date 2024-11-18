@@ -156,7 +156,7 @@
                             $type = explode(" ",$package->package_duration);
                             $type = $type[0].' '.trim($type[1],'s');
                         @endphp
-                        <div class="col-md-4 d-flex">
+                        <div class="col-md-4 d-flex mb-4">
                             <div class="subscription-card flex-grow-1 d-flex flex-column position-relative">
                                 <div class="subscription-card-header" style="background-color: #007bff;">
                                     <h4><i class="fas fa-gem" style="font-size: 1rem;"></i> {{ $package->package_name }}</h4>
