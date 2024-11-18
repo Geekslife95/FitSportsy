@@ -37,7 +37,7 @@ class HomeController extends Controller
             }
             $query->whereHas('coachingPackage');
         })->get()->toArray();
-        debug($categories);
+        dd($categories);
         $categoriesIds = [0];
         if(count($categories)){
             $categoriesIds = array_column($categories, 'id');
