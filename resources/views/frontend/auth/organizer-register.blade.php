@@ -53,7 +53,7 @@ $favicon = Common::siteGeneralSettings();
                                                         </div>
                                                     </div> --}}
                                 <div class="form-group">
-                                    <label class="form-label">First Name <span class="text-danger">*</span></label>
+                                    <label class="form-label">Organisation Name <span class="text-danger">*</span></label>
                                     <input type="text" name="first_name" class="form-control form-control-user"
                                         value="{{old('first_name')}}" id="first_name" placeholder="Enter Name">
                                 </div>
@@ -81,7 +81,7 @@ $favicon = Common::siteGeneralSettings();
                                     <input type="password" class="form-control form-control-user" id="password"
                                         autocomplete="new-password" name="password" placeholder="Password">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label class="form-label">Address 1 <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control form-control-user"
                                         value="{{old('address_one')}}" name="address_one" id="address_one"
@@ -92,7 +92,7 @@ $favicon = Common::siteGeneralSettings();
                                     <input type="text" class="form-control form-control-user"
                                         value="{{old('address_two')}}" name="address_two" id="address_two"
                                         placeholder="Enter Address 2">
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <div id="recaptcha-container" class="mb-3"></div>
                                 </div>
@@ -163,7 +163,7 @@ $favicon = Common::siteGeneralSettings();
             $("#otp_frm").show();
         }).catch(function(error) {
             $("#continue_btn").removeAttr('disabled').text('Register');
-            $(".ot_err").text('Something went wrong ...mobile number should be a valid 10 digit number');
+            $(".ot_err").text('something went wrong ...OTP not sent..check mobile number or contact administrator');
         });
     }
 </script>
@@ -172,10 +172,10 @@ $favicon = Common::siteGeneralSettings();
         rules: {
             first_name: {
                 required: true,
-                maxlength: 20
+                maxlength: 190
             },
             last_name: {
-                maxlength: 20
+                maxlength: 250
             },
             email: {
                 required: true,

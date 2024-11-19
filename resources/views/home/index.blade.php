@@ -39,7 +39,9 @@
                                         // $sessionDays = isset($coaching->coachingPackage->session_days) ? json_decode($coaching->coachingPackage->session_days, true) : [];
                                     @endphp
                                     @if(isset($coaching->coachingPackage) && $coaching->coachingPackage!=null)
-                                        <p class="my-1 text-light"><small> {!! $coaching->coachingPackage->description  !!}</small></p>
+                                        <p class="my-1 text-light"><small> 
+                                            {{ $coaching->venue_area.', '.$coaching->venue_address.', '.$coaching->venue_city }}    
+                                        </small></p>
 
                                         <div class="mt-2 d-flex justify-content-between align-items-center">
                                         {!!Common::showDiscountLabel($coaching->coachingPackage->package_price, $coaching->coachingPackage->discount_percent )!!}  

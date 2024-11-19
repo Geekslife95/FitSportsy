@@ -249,6 +249,16 @@
             height: 80px;
         }
     }
+
+    .amenity_round{
+        border-radius: 100%;
+        height: 80px;
+        width: 80px;
+    }
+
+    .amenity_round img{
+        margin-top: 5px;
+    }
 </style>
     
         
@@ -278,7 +288,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-12">
                 <h2 >{{ $coachData->coaching_title }}</h2>
-                <div class="d-flex flex-column flex-md-row dark-gap text-white h5 mb-4">
+                <div class="d-flex flex-column flex-md-row dark-gap text-white h5" style="margin-bottom: 0;">
                     <p class="dark-gap">Sport name: {{ $coachData->category->category_name }}</p>
                     <div class="d-flex">
                         <p class="mr-3">👨‍👩‍👧‍👦 Age group: {{ $coachData->age_group }}</p>
@@ -316,7 +326,7 @@
                             </div>
                         </div>
                         <div class="w-100">
-                            <span class="text-muted">INTENSITY</span>
+                            <span class="text-muted">INTENSITY: {{$sessionDurationData['intensity']}}</span>
                             <div class="dark-intensity-bar mt-2">
                                 <div class="dark-bar-section rounded-left" style="background:{!! Common::intensityColors($sessionDurationData['intensity']) !!};"></div>
                             </div>
@@ -463,7 +473,7 @@
                 <div class="dark-session-item mb-3">
                     <div class="dark-icon-box" style="background: {!! Common::sessionColors($k) !!};"></div>
                     <div class="ml-3 d-flex flex-grow-1 justify-content-start">
-                        <span>{{ $act['activity_duration'] }} Mins</span>
+                        <span style="width:50px;">{{ $act['activity_duration'] }} Mins</span>
                         <span class="text-muted ml-5">{{ $act['activity'] }}</span>
                     </div>
                 </div>
@@ -481,7 +491,7 @@
                     <h4 class="font-weight-bold h5 mb-3">Amenities</h4>
                     <div class="d-flex">
                         @foreach (json_decode($coachData->ameneties) as $ameniti)
-                            <div class="text-center p-3 border border-dark rounded mr-2" style="min-width: 110px;">
+                            <div class="text-center p-3 border border-dark amenity_round mr-2">
                                 <img src="{{ Common::amenitiesSvgArr(str_replace(" ","_",$ameniti)) }}" alt="Badminton"
                                     style="width: 32px; height: 32px;">
                             </div>
@@ -540,7 +550,7 @@
                                 @php
                                     // $sessionDays = isset($coaching->coachingPackage->session_days) ? json_decode($coaching->coachingPackage->session_days, true) : [];
                                 @endphp
-                               <p class="my-1 text-light"><small> {!! $coaching->coachingPackage->description  !!}</small></p>
+                               <p class="my-1 text-light"><small>  {{ $coaching->venue_area.', '.$coaching->venue_address.', '.$coaching->venue_city }} </small></p>
 
                                 <div class="mt-2 d-flex justify-content-between align-items-center">
                                    {!!Common::showDiscountLabel($coaching->coachingPackage->package_price, $coaching->coachingPackage->discount_percent )!!}  

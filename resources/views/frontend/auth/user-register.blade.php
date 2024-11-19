@@ -230,7 +230,7 @@
             $("#otp_frm").show();
       }).catch(function (error) {
             $("#continue_btn").removeAttr('disabled').text('Register');
-            $(".ot_err").text('Something went wrong ...mobile number should be a valid 10 digit number');
+            $(".ot_err").text('something went wrong ...OTP not sent..check mobile number or contact administrator');
       });
    }
 </script>

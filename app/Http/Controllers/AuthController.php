@@ -190,12 +190,12 @@ class AuthController extends Controller
 
     public function postOrganizerRegister(Request $request){
         $request->validate([
-            'first_name'=>'required|max:20',
-            'last_name'=>'max:20',
+            'first_name'=>'required',
+            'last_name'=>'max:255',
             'email'=>'required|email',
             'mobile_number'=>'required|numeric',
             'password'=>'required|min:5',
-            'address_one'=>'required'
+            // 'address_one'=>'required'
         ]);
 
         // dd($request->all());
@@ -203,8 +203,8 @@ class AuthController extends Controller
         $data['name'] = $request->first_name;
         $data['last_name'] = $request->last_name;
         $data['password'] = \Hash::make($request->password);
-        $data['address'] = $request->address_one;
-        $data['address_two'] = $request->address_two;
+        $data['address'] = null;
+        $data['address_two'] = null;
         $data['image'] = "defaultuser.png";
         $data['status'] = 1;
         $data['provider'] = "LOCAL";
