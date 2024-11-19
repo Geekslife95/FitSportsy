@@ -158,6 +158,17 @@
                                 <input type="checkbox" name="donate_checked" class="form-check-input" id="donate_checked" value="5">
                                 <label class="form-check-label" for="donate_checked"><i class="fas fa-heart" style="color:#e64c31;"></i> Donate Rs.5 to support sports initiatives and inspire future champions.</label>
                             </div>
+
+                            <div class="radio-pannel d-flex flex-wrap mb-3 mt-4">
+                                <label class="radio-label mr-2">
+                                    <input type="radio" class="time_radio" name="payment_method" value="1" checked>
+                                    <span>Pay Now</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" class="time_radio" name="payment_method" value="2">
+                                    <span>Pay At Venue</span>
+                                </label>
+                            </div>
                                 
                             <button type="submit" id="btn-text" class="btn default-btn w-100">Proceed To Pay Rs.<span id="ticket_price">{{$afterDiscountPrice + 0}}</span></button>
                         </div>
@@ -180,35 +191,21 @@
             </div>
             <div class="modal-body">
                 <ol>
-                    <li> Please arrive at the temple at least 15 minutes before the scheduled event time to allow for check-in and seating arrangements. Kindly follow the dress code guidelines provided by the temple for the event.
-                    </li>
-                    <li>Your e-ticket, displayed on your mobile device, is your entry pass for the event. Please have it ready for scanning upon arrival.
-                    </li>
-                    <li>Photography and mobile phone usage may be restricted during the event. Please respect the temple's rules and guidelines.</li>
-                    <li>Before entering the temple premises, please remove your shoes and place them in the designated area.
-                    </li>
-                    <li>Maintain a respectful and quiet atmosphere within the temple premises, especially during the event.
-                    </li>
-                    <li>Follow the ushers' instructions for seating arrangements. Ensure that you occupy the seat assigned to you on your ticket.
-                    </li>
-                    <li>If the event involves offering items, kindly follow the instructions of the priest and participate with reverence.
-                    </li>
-                    <li>If you need to bring your mobile phone inside, please ensure it is switched to silent mode during the event.
-                    </li>
-                    <li>If you are bringing children or infants, please ensure they are calm and not disruptive during the event.
-                    </li>
-                    <li>If you arrive after the event has started, please wait quietly until a suitable break or pause to enter and be seated.
-                    </li>
-                    <li>Smoking and consuming food within the temple premises are generally not permitted. Please adhere to the temple's guidelines.
-                    </li>
-                    <li>In case of any questions or assistance needed, feel free to approach the temple authorities or volunteers.
-                    </li>
-                    <li>Familiarize yourself with the location of emergency exits and follow safety protocols provided by the temple.
-                    </li>
-                    <li>Review the terms and conditions regarding refunds and cancellations on your ticket purchase page.
-                    </li>
-                    <li>We value your feedback. If you have any suggestions or feedback about the event experience, please share it with us.
-                    </li>
+                    <li>Please arrive at the venue at least 15 minutes before the scheduled session to allow for check-in and any preparatory activities.</li>
+                    <li>Your e-ticket, displayed on your mobile device, is your entry pass for the event or session. Please have it ready for scanning upon arrival.</li>
+                    <li>Wear appropriate sports attire and footwear as required for your session. Participants without proper gear may not be permitted to join.</li>
+                    <li>Maintain a respectful and sportsmanlike attitude during the session. Disruptive behavior may result in removal from the event or training.</li>
+                    <li>Mobile phones should be kept in silent mode during the session to avoid distractions.</li>
+                    <li>If bringing children or guests, ensure they remain in the designated spectator areas and do not disrupt the session.</li>
+                    <li>Use all equipment responsibly and as instructed by trainers or event coordinators. Damages caused by negligence may incur penalties.</li>
+                    <li>If you arrive late, please wait for a suitable break or the trainer's instructions before joining the session.</li>
+                    <li>Ensure you are medically fit to participate in the activity. Inform trainers of any pre-existing medical conditions before the session.</li>
+                    <li>Familiarize yourself with the location of first-aid kits and emergency exits at the venue.</li>
+                    <li>Smoking, alcohol consumption, and bringing food onto the playing areas are strictly prohibited.</li>
+                    <li>Review the terms and conditions regarding cancellations and refunds on the booking page.</li>
+                    <li>We value your feedback. If you have suggestions or require assistance, feel free to contact FitSportsy staff or event coordinators on-site.</li>
+                    <li>Photography and video recording may be restricted during the session. Please respect any such guidelines provided.</li>
+                    <li>Follow the instructions of the trainers, coordinators, and ushers for a smooth and enjoyable experience.</li>
                 </ol>
             </div>
             <div class="modal-footer">
@@ -263,7 +260,12 @@ $('#continue_btn').on('click',function(){
     $("#loader_parent").css('display','flex');
     // document.register_frm.submit();
     $("#continue_btn").attr('disabled','disabled').text('Processing...');
-    razorpaySubmit(parseFloat($('#payable_amout').val()));
+    if($("input[name='payment_method']:checked").val() == 1){
+        razorpaySubmit(parseFloat($('#payable_amout').val()));
+    }else{
+        document.getElementById('register_frm').submit();
+    }
+    
 });
 </script>
 

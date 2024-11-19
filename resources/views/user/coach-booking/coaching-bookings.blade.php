@@ -22,7 +22,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Mobile</th>
-                                    {{-- <th>Address</th> --}}
+                                    <th>Payment Type</th>
                                     <th>Transaction ID</th>
                                     <th>Paid Amount</th>
                                     <th>Expiry Date</th>
@@ -40,7 +40,7 @@
                                         <td>{{$booking->full_name}}</td>
                                         <td>{{$booking->email}}</td>
                                         <td>{{$booking->mobile_number}}</td>
-                                        {{-- <td>{{$booking->address}}</td> --}}
+                                        <td>{{$booking->payment_type == 2 ? 'Pay At Venue' : 'Paid Online'}}</td>
                                         <td>{{$booking->transaction_id}}</td>
                                         <td>₹{{$booking->paid_amount}}</td>
                                         <td>{{date("d M Y",strtotime($booking->expiry_date))}}</td>

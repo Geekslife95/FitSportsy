@@ -39,7 +39,7 @@
                     <p class="mb-1"><span>Amount Paid </span>: ₹{{$orderData->paid_amount + 0}}</p>
                     <p class="mb-1"><span>Package </span>: {{ $orderData->coachingPackage->package_name }}</p>
                    
-                    <p class="mb-1"><span>Payment </span>: Paid Online</p>
+                    <p class="mb-1"><span>Payment </span>: {{ $orderData->payment_type == 2 ? 'Pay At Venue' : ' Paid Online' }}</p>
                 </div>
                 <div class="row no-gutters">
                     <div class="col-lg-5 col-md-3 col-12">

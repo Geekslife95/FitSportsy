@@ -479,7 +479,7 @@ class CoachBookingController extends Controller
 
         $organiserId = Auth::user()->id;
 
-        $bookingData = CoachingPackageBooking::select('booking_id','package_name','coaching_title','full_name','email','mobile_number','transaction_id','paid_amount','expiry_date','coaching_package_bookings.created_at','coaching_package_bookings.id')->join('coaching_packages as pc','pc.id','coaching_package_bookings.coaching_package_id')->join('coaches as c','c.id','pc.coach_id');
+        $bookingData = CoachingPackageBooking::select('booking_id','package_name','coaching_title','full_name','email','mobile_number','transaction_id','paid_amount','expiry_date','coaching_package_bookings.created_at','coaching_package_bookings.id','payment_type')->join('coaching_packages as pc','pc.id','coaching_package_bookings.coaching_package_id')->join('coaches as c','c.id','pc.coach_id');
         if($packageId > 0){
             $bookingData->where('coaching_package_id', $packageId);
         }

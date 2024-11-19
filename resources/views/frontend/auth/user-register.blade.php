@@ -229,6 +229,7 @@
             $("#register_frm").hide();
             $("#otp_frm").show();
       }).catch(function (error) {
+        console.log(error);
             $("#continue_btn").removeAttr('disabled').text('Register');
             $(".ot_err").text('something went wrong ...OTP not sent..check mobile number or contact administrator');
       });
