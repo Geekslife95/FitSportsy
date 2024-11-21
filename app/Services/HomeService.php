@@ -47,7 +47,7 @@ class HomeService
         $coachingData = Category::with([
             'coachings' => function ($query) use($selectedCity){
                 if($selectedCity != 'All'){
-                    $query->where('venue_name', $selectedCity);
+                    $query->where('venue_city', $selectedCity);
                 }
                 $query->limit(10); // Get 10 per category
                 $query->whereHas('coachingPackage');
@@ -92,7 +92,7 @@ class HomeService
                         ->where('is_active', Coach::ACTIVE)
                         ->where('category_id', $Id);
                 if($selectedCity != 'All'){
-                    $coaches->where('venue_name', $selectedCity);
+                    $coaches->where('venue_city', $selectedCity);
                 }        
         $coaches = $coaches->paginate(50);
         return ['coachesData' => $coaches, 'categoryData' => $categoryData];
