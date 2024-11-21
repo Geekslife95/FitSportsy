@@ -42,6 +42,7 @@ Route::group(['middleware' => ['mode', 'XSS']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('coaching-packages', [HomeController::class, 'coachingPackages'])->name('coaching-packages');
     Route::get('coachings/{category}/{id}', [HomeController::class, 'coachings']);
+    Route::get('city-coachings/{cityName}', [HomeController::class, 'cityCoachings']);
     Route::get('book-coaching-package', [HomeController::class, 'bookCoachingPackage']);
     Route::post('store-book-coaching-package', [HomeController::class, 'storeBookCoachingPackage']);
 

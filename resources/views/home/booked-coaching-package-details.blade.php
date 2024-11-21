@@ -32,37 +32,48 @@
                 {{-- @php
                     dd($orderData);
                 @endphp --}}
-                <div class="mb-4">
-                    <p class="mb-1"><span>Coaching Name </span>: {{$orderData->coachingPackage->coaching->coaching_title}}</p>
-                    <p class="mb-1"><span>Venue </span>: {{$orderData->coachingPackage->coaching->venue_name}}</p>
-                    <p class="mb-1"><span>Actual Amount </span>: ₹{{$orderData->actual_amount + 0}}</p>
-                    <p class="mb-1"><span>Amount Paid </span>: ₹{{$orderData->paid_amount + 0}}</p>
-                    <p class="mb-1"><span>Package </span>: {{ $orderData->coachingPackage->package_name }}</p>
-                   
-                    <p class="mb-1"><span>Payment </span>: {{ $orderData->payment_type == 2 ? 'Pay At Venue' : ' Paid Online' }}</p>
+                <div class="mb-4 row">
+                    <div class="col-md-6">
+                        <p class="mb-1"><span>Name </span>: {{$orderData->full_name}}</p>
+                        <p class="mb-1"><span>Mobile </span>: {{$orderData->mobile_number}}</p>
+                        <p class="mb-1"><span>Email ID </span>: {{$orderData->email}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="mb-1"><span>Coaching Name </span>: {{$orderData->coachingPackage->coaching->coaching_title}}</p>
+                        <p class="mb-1"><span>Venue </span>: {{$orderData->coachingPackage->coaching->venue_name}}</p>
+                        <p class="mb-1"><span>Actual Amount </span>: ₹{{$orderData->actual_amount + 0}}</p>
+                        <p class="mb-1"><span>Amount Paid </span>: ₹{{$orderData->paid_amount + 0}}</p>
+                        <p class="mb-1"><span>Package </span>: {{ $orderData->coachingPackage->package_name }}</p>
+                        <p class="mb-1"><span>Payment </span>: {{ $orderData->payment_type == 2 ? 'Pay At Venue' : ' Paid Online' }}</p>
+                    </div>
+                 
+
+
                 </div>
+
+
                 <div class="row no-gutters">
-                    <div class="col-lg-5 col-md-3 col-12">
+                    <div class="col-lg-5 col-md-4 col-12">
                         <div class="invoice-slot">
                             <div class="invoice-header">
-                                <p>Address</p>
+                                <p>Venue Address</p>
                             </div>
                             <div class="invoice-body">
                                 <p><i class="fas fa-map-marker-alt pr-2"></i> {{$orderData->coachingPackage->coaching->venue_area}}, {{$orderData->coachingPackage->coaching->venue_address}}, {{$orderData->coachingPackage->coaching->venue_city}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-12">
+                    <div class="col-lg-4 col-md-4 col-12">
                         <div class="invoice-slot">
                             <div class="invoice-header">
-                                <p>Session</p>
+                                <p>Session Details</p>
                             </div>
                             <div class="invoice-body ">
                                 <p class="mb-1">{!! $orderData->coachingPackage->description !!}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-12">
+                    <div class="col-lg-3 col-md-4 col-12">
                         <div class="invoice-slot">
                             <div class="invoice-header">
                                 <p>QR Code</p>
@@ -73,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-12">
+                    {{-- <div class="col-lg-3 col-md-3 col-12">
                         <div class="invoice-slot">
                             <div class="invoice-header">
                                 <p>Organizer Name</p>
@@ -82,7 +93,7 @@
                                 <p><i class="fas fa-user pr-2"></i> {{$userData->first_name.' '.$userData->last_name}}</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 
                 <div class="text-right">

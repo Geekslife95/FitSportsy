@@ -324,7 +324,7 @@ public static function showDiscountLabel($price = 0, $discount = 0)
                 </del>
             </small>
             <span class="font-weight-bold pr-2">₹'. ($afterDiscountPrice+0) .'</span>
-            <small class="text-danger">'. $discount .'%</small>
+            <small class="text-danger" style="font-size:18px !important;">'. $discount .'% off</small>
             ';
   }
   $str .= '</p>';

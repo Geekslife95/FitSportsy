@@ -296,7 +296,7 @@
                 <h5 class="text-white mb-2">Categories</h5>
                 <ul class="list-unstyled ">
                     @foreach (Common::allEventCategories() as $cat)
-                        <li><a href="{{ url('all-events?category=' . $cat->id) }}">{{ $cat->name }}</a></li>
+                        <li><a href="{{url('coachings/'.Str::slug($cat->name).'/'.$cat->id)}}">{{ $cat->name }}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -304,7 +304,7 @@
                 <h5 class="text-white mb-2">FitSportsy Locations</h5>
                 <ul class="list-unstyled ">
                     @foreach (Common::allEventCities() as $city)
-                        <li><a href="{{ url('all-events?city=' . $city->id) }}">{{ $city->city_name }}</a></li>
+                        <li><a href="{{url('city-coachings/'.$city->city_name)}}">{{ $city->city_name }}</a></li>
                     @endforeach
                 </ul>
             </div>

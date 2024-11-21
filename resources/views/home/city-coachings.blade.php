@@ -9,10 +9,10 @@
 <div class="container my-5">
     <div class="hawan_section">
         <div class="d-sm-flex align-items-center justify-content-between mt-5 mb-3 overflow-hidden">
-            <h1 class="h4 mb-0 float-left">{{$categoryData->name}} Coachings</h1>
+            <h1 class="h4 mb-0 float-left">Coachings In {{$cityName}}</h1>
         </div>
         <div class="row list-bp">
-            @foreach ($coachingData as $coaching)
+            @forelse ($coachingData as $coaching)
                 <div class="col-xl-3 col-md-4 col-sm-6 mb-3">
                     <div class="card m-card shadow-sm border-0 listcard">
                         <div>
@@ -45,8 +45,13 @@
                         </div>
                     </div>
                 </div>
-                
-            @endforeach
+            @empty
+                <div class="col-xl-12 text-center">
+                    <div class="card m-card shadow-sm border-0 listcard py-5">
+                        <h3>NO COACHING ...</h3>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
     

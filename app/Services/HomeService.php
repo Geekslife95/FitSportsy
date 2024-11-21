@@ -72,7 +72,7 @@ class HomeService
         return CoachingPackage::select('*')->where(['coach_id' => $coachingId, 'is_active' => CoachingPackage::STATUS_ACTIVE])->get();
     }
 
-    public static function getRelateCoachingData($id, $selectedCity = 'All'){
+    public static function getRelateCoachingData($id, $selectedCity = 'All', $categoryId){
         $coachingData = Coach::select('id','coaching_title','poster_image','venue_name', 'venue_area', 'venue_address', 'venue_city')
                         ->with('coachingPackage',function($q){
                             $q->select('id','coach_id','package_price','discount_percent','session_days','description');
@@ -80,7 +80,7 @@ class HomeService
                         if($selectedCity != 'All'){
                             $coachingData->where('venue_city', $selectedCity);
                         }
-        $coachingData = $coachingData->where('is_active', Coach::ACTIVE)->where('id', '!=', $id)->inRandomOrder()->limit(10)->get();
+        $coachingData = $coachingData->where('is_active', Coach::ACTIVE)->where('id', '!=', $id)->where('category_id', $categoryId)->inRandomOrder()->limit(10)->get();
         return $coachingData;
     }
 
@@ -97,6 +97,7 @@ class HomeService
         $coaches = $coaches->paginate(50);
         return ['coachesData' => $coaches, 'categoryData' => $categoryData];
     }
+    
 
     public static function getCoachingDataByPackage(int $packageId)
     {

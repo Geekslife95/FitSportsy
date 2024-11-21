@@ -49,15 +49,24 @@ class HomeController extends Controller
     {
         $selectedCity = Session::has('CURR_CITY') ? Session::get('CURR_CITY') : 'All';
         $data['coachData'] = HomeService::coachingBookDataById($id);
+        
         $sessionDurationData = json_decode($data['coachData']->session_duration, true);
         $data['sessionDurationData'] = $sessionDurationData;
-        $data['relatedCoaching'] = HomeService::getRelateCoachingData($id, $selectedCity);
+        $data['relatedCoaching'] = HomeService::getRelateCoachingData($id, $selectedCity, $data['coachData']->category->id);
         $inputObj = new stdClass();
         $inputObj->params = 'coach_id='.$id;
         $inputObj->url = url('coaching-packages');
         $data['packageLink'] = Common::encryptLink($inputObj);
         return view('home.coaching-book', $data);
     }
+
+    public function cityCoachings($cityName){
+        $coachData = HomeService::getCoachingDataByCity($cityName);
+        $data['cityName'] = $cityName;
+        $data['coachingData'] = $coachData;
+        return view('home.city-coachings', $data);
+    }
+
 
     public function coachingPackages(){
         $coachingId = $this->memberObj['coach_id'];
