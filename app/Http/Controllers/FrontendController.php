@@ -409,6 +409,7 @@ class FrontendController extends Controller
             try {
                 Mail::to($user->email)->send(new ResetPassword($content, $detail));
             } catch (\Throwable $th) {
+                // dd($th);
                 Log::info($th->getMessage());
             }
             return Redirect::back()->with('success', 'New password will send in your mail, please check it.');
