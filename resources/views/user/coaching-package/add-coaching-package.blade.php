@@ -109,7 +109,7 @@
                                 <div class="col-lg-12 col-md-12 col-12 d-none">
                                     <div class="form-group">
                                         <h6 for="">Session Days <span class="text-danger">*</span></h6>
-                                        <p id="check_err" class="text-danger"></p>
+                                        
                                         <div class="radio-pannel d-flex flex-wrap" style="gap:15px">
                                             @foreach (Common::daysArr() as $day)
                                                 <label class="radio-label selectgroup-item w-auto">
@@ -140,6 +140,37 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="is_sold_out" class="form-label">Sold Out <span class="text-danger">*</span></label>      
+                                        <select name="is_sold_out" id="is_sold_out" class="form-control" required>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+
+                                <div class="col-md-6">
+                                    <div class="form-group mt-3">
+                                        <h6>Payment Buttons <span>(Select to show on payment page)</span></h6>
+                                        <div class="d-flex">
+                                            <div class="custom-checkbox mr-3">
+                                              <input type="checkbox" id="pay_now" name="is_pay_now" value="1">
+                                              <label for="pay_now" class="ml-2">Pay Now</label>
+                                            </div>
+                                            <div class="custom-checkbox ml-3">
+                                              <input type="checkbox" id="pay_venue" name="is_venue_pay" value="1">
+                                              <label for="pay_venue" class="ml-2">Pay At Venue</label>
+                                            </div>
+                                          </div>
+                                    </div>
+                                   
+                                      <p id="check_err" class="text-danger"></p>
+                                </div>
+
+                               
 
 
                             </div>
@@ -204,6 +235,13 @@
             $(element).css({ border: '1px solid #c1c1c1' });
         },
         submitHandler: function(form) {
+            if($("input[name='is_pay_now']:checked").length < 1 && $("input[name='is_venue_pay']:checked").length < 1){
+                $("#check_err").html('select payment buttons to show').focus() ;
+            }else{
+                document.event_form.submit();
+                $("#continue_btn").attr('disabled','disabled').text('Processing...');
+            }
+            
             // var checkedLength = 0;
             // $("input[name='session_days[]']").each(function(){
             //     if($(this).is(':checked')){
@@ -213,8 +251,8 @@
             // if(checkedLength < 1){
             //     $("#check_err").html('select one or more session days').focus() ;
             // }else{
-                document.event_form.submit();
-                $("#continue_btn").attr('disabled','disabled').text('Processing...');
+                // document.event_form.submit();
+                // $("#continue_btn").attr('disabled','disabled').text('Processing...');
             // }
             
         }

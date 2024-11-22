@@ -343,7 +343,12 @@
                 <div class="event-ticket card shadow-sm mb-3">
                     <div class="card-body">
                         <div class="single-ticket">
-                            <a href="{{ $packageLink }}" class="btn default-btn w-100">Continue To Book {{ $coachData->category->category_name }}</a>
+                            @if($isTicketSoldAvailable == 0)
+                                <a href="javascript:void(0)" class="btn default-btn w-100">Sold Out</a>
+                            @else
+                                <a href="{{ $packageLink }}" class="btn default-btn w-100">Continue To Book {{ $coachData->category->category_name }}</a>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>

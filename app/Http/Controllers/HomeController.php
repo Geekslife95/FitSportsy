@@ -53,6 +53,7 @@ class HomeController extends Controller
         $sessionDurationData = json_decode($data['coachData']->session_duration, true);
         $data['sessionDurationData'] = $sessionDurationData;
         $data['relatedCoaching'] = HomeService::getRelateCoachingData($id, $selectedCity, $data['coachData']->category->id);
+        $data['isTicketSoldAvailable'] = HomeService::checkedIfTicketSoldOut($id);
         $inputObj = new stdClass();
         $inputObj->params = 'coach_id='.$id;
         $inputObj->url = url('coaching-packages');
@@ -72,6 +73,10 @@ class HomeController extends Controller
         $coachingId = $this->memberObj['coach_id'];
         $data['coachData'] = HomeService::coachingBookDataById($coachingId);
         $data['packageData'] = HomeService::getCoachingPackagesDataByCoachId($coachingId);
+        $availableData = HomeService::checkedIfTicketSoldOut($coachingId);
+        if($availableData < 1){
+            return redirect('/');
+        }
         return view('home.coaching-package', $data);
     }
 
@@ -88,10 +93,16 @@ class HomeController extends Controller
     {
         $packageId = $this->memberObj['id'];
         $data['coachingData'] = HomeService::getCoachingDataByPackage($packageId);
+        if($data['coachingData']->is_sold_out == 1){
+            return redirect('/');
+        }
+
         $inputObj = new stdClass();
         $inputObj->params = 'id='.$packageId;
         $inputObj->url = url('store-book-coaching-package');
         $data['encLink'] = Common::encryptLink($inputObj);
+
+
         return view('home.book-coaching-package', $data);
     }
 

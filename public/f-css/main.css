@@ -163,7 +163,7 @@ label {
     color: red
 }
 .create-btn{
-   height: 70px;
+   height: 90px;
 }
 .btn-primary {
     color: #fff;
@@ -3566,5 +3566,9 @@ margin-bottom: 0px;
     background-color: rgba(255, 255, 255, 0.8);
     color: #ff9900;
     transform: translate(-50%, -50%) scale(1.1);
+  }
+  
+  .custom-checkbox input[type="checkbox"] {
+    transform: scale(1.5);
   }
   

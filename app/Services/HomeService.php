@@ -105,5 +105,9 @@ class HomeService
         return $packageData;
     }
 
+    public static function checkedIfTicketSoldOut(int $id){
+        return CoachingPackage::where(['coach_id' => $id, 'is_active' => CoachingPackage::STATUS_ACTIVE, 'is_sold_out' => 0])->count();
+    }
+
 }
 

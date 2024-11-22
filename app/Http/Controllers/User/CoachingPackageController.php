@@ -49,8 +49,11 @@ class CoachingPackageController extends Controller
         $coachingPackageObj->discount_percent = $request->package_discount;
         $coachingPackageObj->platform_fee_pay_by = $request->platform_fee;
         $coachingPackageObj->gateway_fee_pay_by = $request->gateway_fee;
+        $coachingPackageObj->is_pay_now = !empty($request->is_pay_now) ? 1 : 0;
+        $coachingPackageObj->is_venue_pay = !empty($request->is_venue_pay) ? 1 : 0;
         $coachingPackageObj->description = $request->description;
         $coachingPackageObj->session_start_time = $request->start_time;
+        $coachingPackageObj->is_sold_out = $request->is_sold_out;
         $coachingPackageObj->session_end_time = $request->end_time;
         $coachingPackageObj->session_days = json_encode($request->session_days);
         $coachingPackageObj->package_duration = $request->duration.' '.$request->duration_type;
@@ -86,7 +89,10 @@ class CoachingPackageController extends Controller
         $coachingPackageObj->platform_fee_pay_by = $request->platform_fee;
         $coachingPackageObj->gateway_fee_pay_by = $request->gateway_fee;
         $coachingPackageObj->description = $request->description;
+        $coachingPackageObj->is_pay_now = !empty($request->is_pay_now) ? 1 : 0;
+        $coachingPackageObj->is_venue_pay = !empty($request->is_venue_pay) ? 1 : 0;
         $coachingPackageObj->session_start_time = $request->start_time;
+        $coachingPackageObj->is_sold_out = $request->is_sold_out;
         $coachingPackageObj->session_end_time = $request->end_time;
         $coachingPackageObj->session_days = json_encode($request->session_days);
         $coachingPackageObj->package_duration = $request->duration.' '.$request->duration_type;

@@ -87,6 +87,7 @@ Route::group(['middleware' => ['mode', 'XSS']], function () {
     Route::get('/user-register',[AuthController::class,'userRegister']);
     Route::post('/user-register',[AuthController::class,'postUserRegister']);
     Route::get('/logout-user', [AuthController::class, 'logoutUser']);
+    Route::get('/logout', [AuthController::class, 'logoutUser']);
 
     Route::get('/search-all-events', [AppUserController::class, 'searchAllEvents']);
 
