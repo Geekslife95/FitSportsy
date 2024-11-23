@@ -49,7 +49,6 @@ class HomeController extends Controller
     {
         $selectedCity = Session::has('CURR_CITY') ? Session::get('CURR_CITY') : 'All';
         $data['coachData'] = HomeService::coachingBookDataById($id);
-        dd($data['coachData']);
         $sessionDurationData = json_decode($data['coachData']->session_duration, true);
         $data['sessionDurationData'] = $sessionDurationData;
         $data['relatedCoaching'] = HomeService::getRelateCoachingData($id, $selectedCity, $data['coachData']->category->id);
