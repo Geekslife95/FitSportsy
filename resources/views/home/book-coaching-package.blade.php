@@ -160,14 +160,18 @@
                             </div>
 
                             <div class="radio-pannel d-flex flex-wrap mb-3 mt-4">
-                                <label class="radio-label mr-2">
-                                    <input type="radio" class="time_radio" name="payment_method" value="1" checked>
-                                    <span>Pay Now</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" class="time_radio" name="payment_method" value="2">
-                                    <span>Pay At Venue</span>
-                                </label>
+                                @if($coachingData->is_pay_now == 1)
+                                    <label class="radio-label mr-2">
+                                        <input type="radio" class="time_radio" name="payment_method" value="1" checked>
+                                        <span>Pay Now</span>
+                                    </label>
+                                @endif
+                                @if($coachingData->is_venue_pay == 1)
+                                    <label class="radio-label">
+                                        <input type="radio" class="time_radio" name="payment_method" value="2" {{$coachingData->is_pay_now != 1 ? 'checked' : ''}}>
+                                        <span>Pay At Venue</span>
+                                    </label>
+                                @endif
                             </div>
                                 
                             <button type="submit" id="btn-text" class="btn default-btn w-100">Proceed To Pay Rs.<span id="ticket_price">{{$afterDiscountPrice + 0}}</span></button>
