@@ -233,6 +233,22 @@ public static function amenitiesArr(){
         'sport'=>'Washroom',
         'image'=>asset('images/amenities/white/washroom.svg')
       ],
+      [
+        'sport'=>'Dress Change',
+        'image'=>asset('images/amenities/white/dresschange.svg')
+      ],
+      [
+        'sport'=>'Lockers',
+        'image'=>asset('images/amenities/white/lockers.svg')
+      ],
+      [
+        'sport'=>'Signage',
+        'image'=>asset('images/amenities/white/signage.svg')
+      ],
+      [
+        'sport'=>'Wifi',
+        'image'=>asset('images/amenities/white/wifi.svg')
+      ],
     
       
     ];
@@ -272,9 +288,72 @@ public static function availableSportsArr(){
       'sport'=>'Volley Ball',
       'image'=>asset('images/amenities/white/volleyball.svg')
     ],
+    [
+      'sport'=>'Chess',
+      'image'=>asset('images/amenities/white/chess.svg')
+    ],
+    [
+      'sport'=>'Crossfit',
+      'image'=>asset('images/amenities/white/crossfit.svg')
+    ],
+    [
+      'sport'=>'Hockey',
+      'image'=>asset('images/amenities/white/hockey.svg')
+    ],
+    [
+      'sport'=>'Yoga',
+      'image'=>asset('images/amenities/white/yoga.svg')
+    ],
+    [
+      'sport'=>'Hockey',
+      'image'=>asset('images/amenities/white/hockey.svg')
+    ],
+    [
+      'sport'=>'Zumba',
+      'image'=>asset('images/amenities/white/zumba.svg')
+    ],
   
     
   ];
+}
+
+public static function SportsSvgArr($key){
+  $arr = [
+    'Badminton' => asset('images/amenities/white/badminton.svg'),
+    'Basket_Ball' => asset('images/amenities/white/basketball.svg'),
+    'Cricket' => asset('images/amenities/white/cricket.svg'),
+    'Long_Tennis' => asset('images/amenities/white/longtennis.svg'),
+    'Skating' => asset('images/amenities/white/skating.svg'),
+    'Swimming' => asset('images/amenities/white/swimming.svg'),
+    'Table_Tennis' => asset('images/amenities/white/tabletennis.svg'),
+    'Volley_Ball' => asset('images/amenities/white/volleyball.svg'),
+    'Chess' => asset('images/amenities/white/chess.svg'),
+    'Chess' => asset('images/amenities/white/chess.svg'),
+    'Hockey' => asset('images/amenities/white/hockey.svg'),
+    'Yoga' => asset('images/amenities/white/yoga.svg'),
+    'Zumba' => asset('images/amenities/white/zumba.svg'),
+  ];
+  return $arr[$key];
+}
+
+public static function amenitiesSvgArr($key){
+  $arr = [
+    'Bed_Room' => asset('images/amenities/white/bedroom.svg'),
+    'Blue_Parking' => asset('images/amenities/white/blueparking.svg'),
+    'Changing_Room' => asset('images/amenities/white/changingroom.svg'),
+    'Drinking' => asset('images/amenities/white/drinking.svg'),
+    'FirstAid' => asset('images/amenities/white/firstaid.svg'),
+    'Parking' => asset('images/amenities/white/parking.svg'),
+    'Running' => asset('images/amenities/white/running.svg'),
+    'Shower' => asset('images/amenities/white/shower.svg'),
+    'Toilets' => asset('images/amenities/white/toilets.svg'),
+    'Washroom' => asset('images/amenities/white/washroom.svg'),
+    'Dress_Change' => asset('images/amenities/white/dresschange.svg'),
+    'Lockers' => asset('images/amenities/white/lockers.svg'),
+    'Signage' => asset('images/amenities/white/signage.svg'),
+    'Wifi' => asset('images/amenities/white/wifi.svg'),
+  ];
+  return $arr[$key];
 }
 
 public static function courtBookDurationArr(){
@@ -382,35 +461,7 @@ public static function sessionColors($key){
   return isset($colors[$key]) ? $colors[$key] : $colors[array_rand($colors)];
 }
 
-public static function SportsSvgArr($key){
-  $arr = [
-    'Badminton' => asset('images/amenities/white/badminton.svg'),
-    'Basket_Ball' => asset('images/amenities/white/basketball.svg'),
-    'Cricket' => asset('images/amenities/white/cricket.svg'),
-    'Long_Tennis' => asset('images/amenities/white/longtennis.svg'),
-    'Skating' => asset('images/amenities/white/skating.svg'),
-    'Swimming' => asset('images/amenities/white/swimming.svg'),
-    'Table_Tennis' => asset('images/amenities/white/tabletennis.svg'),
-    'Volley_Ball' => asset('images/amenities/white/volleyball.svg'),
-  ];
-  return $arr[$key];
-}
 
-public static function amenitiesSvgArr($key){
-  $arr = [
-    'Bed_Room' => asset('images/amenities/white/bedroom.svg'),
-    'Blue_Parking' => asset('images/amenities/white/blueparking.svg'),
-    'Changing_Room' => asset('images/amenities/white/changingroom.svg'),
-    'Drinking' => asset('images/amenities/white/drinking.svg'),
-    'FirstAid' => asset('images/amenities/white/firstaid.svg'),
-    'Parking' => asset('images/amenities/white/parking.svg'),
-    'Running' => asset('images/amenities/white/running.svg'),
-    'Shower' => asset('images/amenities/white/shower.svg'),
-    'Toilets' => asset('images/amenities/white/toilets.svg'),
-    'Washroom' => asset('images/amenities/white/washroom.svg'),
-  ];
-  return $arr[$key];
-}
 
 
 public static function caloriesArr()
